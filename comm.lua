@@ -31,6 +31,11 @@ function runparame()
 	return sul;
 end
 
+function getsiing()
+	sul=httpGet("http://g.7gu.cn/index.php?g=api&m=Wxwapi&a=sign");
+	return sul;
+end
+
 
 --选择图片
 function selectphoto(y)
@@ -81,7 +86,7 @@ end
 -------------------------授权一台设备-------------------------
 --加入专属对接
 function exclusive(join)
-   strexclusive=httpGet('http://mapi.aiputime.com/http.action?apiType=JoinBusi&apiId='..join['abcuser']'..&apiSecret='.join['abcpwd'].'&busiKey='..join['joinbusi']);
+   strexclusive=httpGet('http://mapi.aiputime.com/http.action?apiType=JoinBusi&apiId='..join['abcuser']..'&apiSecret='..join['abcpwd']..'&busiKey='..join['joinbusi']);
    if strexclusive==nil then
 		exclusive(join);
    end
@@ -108,7 +113,7 @@ function queryexclusive(join)
 	--WXZC250X00
 	--WXZC123123
 	--9Ew6maOrdc
-   strexclusive=httpGet('http://mapi.aiputime.com/http.action?apiType=QuitBusi&apiId='..join['abcuser']'..&apiSecret='.join['abcpwd'].'&busiKey='..join['joinbusi']);
+   strexclusive=httpGet('http://mapi.aiputime.com/http.action?apiType=QuitBusi&apiId='..join['abcuser']..'&apiSecret='..join['abcpwd']..'&busiKey='..join['joinbusi']);
    c=string.sub(strexclusive,string.find(strexclusive,':')+1,string.len(strexclusive)-1);	
    if c=='1' then
    	  return 1;
