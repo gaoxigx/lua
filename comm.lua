@@ -135,7 +135,7 @@ function getmobile()
 		notifyMessage('网速太慢或已断网',2000);
 		getmobile();
 	end
-
+	joinary={};
 	joinary['abcuser']=getparamecom(hpone,'abcuser')--平台用户名
 	joinary['abcpwd']=getparamecom(hpone,'abcpwd')--平台密码
 	joinary['joinbusi']=getparamecom(hpone,'joinbusi');--对接码;
