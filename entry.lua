@@ -76,7 +76,7 @@ function insetinfo()
 	path="/var/touchelf/scripts/scriptfile/comm.lua";
 	f=io.file(path);
 	fit=string.gsub(f.time(),' ','');
-	if string.sub(filetime,1,string.len(filetime)-1)~=string.sub(fit,1,string.len(fit)-1) then
+	if string.sub(filetime,1,string.len(filetime))~=string.sub(fit,1,string.len(fit)) then
 		flag = ftpGet("ftp://121.40.140.16:/script/public/script/scriptfile/comm.lua", "/var/touchelf/scripts/scriptfile/comm.lua", "productconsole", "T4t8u0p1");
 		notifyMessage('加截文件../comm',2000);
 	end
@@ -90,7 +90,7 @@ function insetinfo()
 	path="/var/touchelf/scripts/scriptfile/action.lua";
 	f=io.file(path);
 	fit=string.gsub(f.time(),' ','');
-	if string.sub(filetime,1,string.len(filetime)-1)~=string.sub(fit,1,string.len(fit)-1) then
+	if string.sub(filetime,1,string.len(filetime))~=string.sub(fit,1,string.len(fit)) then
 		flag = ftpGet("ftp://121.40.140.16:/script/public/script/scriptfile/action.lua", "/var/touchelf/scripts/scriptfile/action.lua", "productconsole", "T4t8u0p1");	     
 	end
 	--action--
@@ -124,7 +124,7 @@ function insetinfo()
 	path="/var/touchelf/scripts/scriptfile/post.lua";
 	f=io.file(path);
 	fit=string.gsub(f.time(),' ','');
-	if string.sub(filetime,1,string.len(filetime)-1)~=string.sub(fit,1,string.len(fit)-1) then
+	if string.sub(filetime,1,string.len(filetime))~=string.sub(fit,1,string.len(fit)) then
 		flag = ftpGet("ftp://121.40.140.16:/script/public/script/scriptfile/post.lua", "/var/touchelf/scripts/scriptfile/post.lua", "productconsole", "T4t8u0p1");
 	end
 	
@@ -137,7 +137,7 @@ function insetinfo()
 	path="/var/touchelf/scripts/scriptfile/register.lua";
 	f=io.file(path);
 	fit=string.gsub(f.time(),' ','');
-	if string.sub(filetime,1,string.len(filetime)-1)~=string.sub(fit,1,string.len(fit)-1) then
+	if string.sub(filetime,1,string.len(filetime))~=string.sub(fit,1,string.len(fit)) then
 		flag = ftpGet("ftp://121.40.140.16:/script/public/script/scriptfile/register.lua", "/var/touchelf/scripts/scriptfile/register.lua", "productconsole", "T4t8u0p1");
 	end
 
@@ -151,7 +151,7 @@ function insetinfo()
 	path="/var/touchelf/scripts/scriptfile/catwxw.lua";
 	f=io.file(path);
 	fit=string.gsub(f.time(),' ','');
-	if string.sub(filetime,1,string.len(filetime)-1)~=string.sub(fit,1,string.len(fit)-1) then
+	if string.sub(filetime,1,string.len(filetime))~=string.sub(fit,1,string.len(fit)) then
 		flag = ftpGet("ftp://121.40.140.16:/script/public/script/scriptfile/catwxw.lua", "/var/touchelf/scripts/scriptfile/catwxw.lua", "productconsole", "T4t8u0p1");
 	end
 	
