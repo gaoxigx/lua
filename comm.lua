@@ -10,6 +10,12 @@ function openweiximsg()
  	textmsg=textlocal(73,436,574,611); 	
 end
 
+--得到相应的命令
+function getparamecom(sul,str)
+	v=string.sub(sul,string.find(sul,'<'..str..'>')+string.len('<'..str..'>'),string.find(sul,'</'..str..'>')-1);
+	return v;
+end
+
 --确认发送手机短信
 function sendmobile()
  	textmsg=textlocal(73,436,574,611); 	
@@ -24,11 +30,8 @@ function runparame()
 	sul=httpGet("http://g.7gu.cn/index.php?g=api&m=equictive&a=saveDeviceID&cdkey="..cdkey.."&vn="..versioninfo());
 	return sul;
 end
---得到相应的命令
-function getparame(sul,str)
-	v=string.sub(sul,string.find(sul,'<'..str..'>')+string.len('<'..str..'>'),string.find(sul,'</'..str..'>')-1);
-	return v;
-end
+
+
 --选择图片
 function selectphoto(y)
 	msleeprand(1500);
@@ -77,10 +80,10 @@ end
  -- 将设备ID保存到deviceID变量中
 -------------------------授权一台设备-------------------------
 --加入专属对接
-function exclusive()
-   strexclusive=httpGet('http://mapi.aiputime.com/http.action?apiType=JoinBusi&apiId=gaoxi&apiSecret=fadacai888&busiKey=WXZC123123');
+function exclusive(join)
+   strexclusive=httpGet('http://mapi.aiputime.com/http.action?apiType=JoinBusi&apiId='..join['abcuser']'..&apiSecret='.join['abcpwd'].'&busiKey='..join['joinbusi']);
    if strexclusive==nil then
-		exclusive();
+		exclusive(join);
    end
    c=string.sub(strexclusive,string.find(strexclusive,':')+1,string.len(strexclusive)-1);
    if c=='1' then
@@ -96,15 +99,16 @@ function exclusive()
     end
     if c=='-83' then str='加入或创建的专属对接数量超过限制' end
    notifyMessage(str,5000);
-   exclusive();
+   exclusive(join);
 end
 --退出专属对接
-function queryexclusive()
+function queryexclusive(join)
+
 	--ndVGtxJnUO
 	--WXZC250X00
 	--WXZC123123
 	--9Ew6maOrdc
-   strexclusive=httpGet('http://mapi.aiputime.com/http.action?apiType=QuitBusi&apiId=gaoxi&apiSecret=fadacai888&busiKey=WXZC123123');
+   strexclusive=httpGet('http://mapi.aiputime.com/http.action?apiType=QuitBusi&apiId='..join['abcuser']'..&apiSecret='.join['abcpwd'].'&busiKey='..join['joinbusi']);
    c=string.sub(strexclusive,string.find(strexclusive,':')+1,string.len(strexclusive)-1);	
    if c=='1' then
    	  return 1;
@@ -116,15 +120,25 @@ function queryexclusive()
     if c=='-82' then str='用户已加入此对接' end
     if c=='-83' then str='加入或创建的专属对接数量超过限制' end
    notifyMessage(str,5000);
-   queryexclusive();
+   queryexclusive(join);
 end
 
 --得到手机号码
 function getmobile()
-	exclusive();
+	hpone=runparame();
+	if hpone==nil or hpone=='' then
+		notifyMessage('网速太慢或已断网',2000);
+		getmobile();
+	end
+
+	join['abcuser']=getparamecom(hpone,'abcuser')--平台用户名
+	join['abcpwd']=getparamecom(hpone,'abcpwd')--平台密码
+	join['joinbusi']=getparamecom(hpone,'joinbusi');--对接码;
+
+	exclusive(join);
 	--'{"c":1,"data":["15818618500"]}';	
 	--mobile=httpGet("http://mapi.aiputime.com/http.action?apiType=GetPhone&apiId=gaoxi0&apiSecret=fadacai888&pId=1");
-	strmobile=httpGet("http://mapi.aiputime.com/http.action?apiType=GetPhone&apiId=gaoxi&apiSecret=fadacai888&pId=1");
+	strmobile=httpGet("http://mapi.aiputime.com/http.action?apiType=GetPhone&apiId="..join['abcuser'].."&apiSecret="..join['abcpwd'].."&pId=1");
 	--strmobile='{"c":1,"data":["15818618500"]}';
 	if strmobile==nil then
 		notifyMessage('网络状态不好重新获取',2000);
@@ -192,10 +206,6 @@ function getip()
 end
 
 
---得到头像
-function getavatar()
-
-end
 --得到验证码
 function getverify(mobile)
 	--'{"c":1,"m":"您的验证码为888999","mc":"685000"}';
@@ -509,7 +519,11 @@ function fg(str, split_char)--分割字符串
      end--]]
 end
 
+
+
+
 ------------------------end操作函数-------------------------------
+
 -----------------------------------
 
     --移动
