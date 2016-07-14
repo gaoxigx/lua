@@ -241,11 +241,9 @@
         a_num=math.random(1,#a);
         --]]
         signstr=getsiing();
-        -- notifyMessage(signstr,5000);
+
         inputText(signstr);
 
-        -- msleeprand(2000);
-        -- clickarea(170,1059,464,1120); --点击键盘空格键
         msleeprand(2000);
         clickarea(550,62,622,100); --点击完成
 
