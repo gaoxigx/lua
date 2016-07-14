@@ -113,7 +113,10 @@
         -- msleeprand(2000);
         -- clickarea(170,1059,464,1120); --点击键盘空格键
         msleeprand(3000);
-        clickarea(554,62,622,98); --点击发送   
+        clickarea(554,62,622,98); --点击发送  
+
+        msleeprand(3000);
+        btnlefttop();--点击坐上角返回
 
     end
 
@@ -158,6 +161,9 @@
 
         msleeprand(3000);
         btnlefttop();
+
+        msleeprand(2000);
+        btnlefttop();--点击坐上角返回
     end
 
     --设置朋友圈照片
@@ -197,6 +203,9 @@
 
         msleeprand(3000);
         btnlefttop();
+
+        msleeprand(2000);
+        btnlefttop();--点击坐上角返回
     end
 
 
@@ -219,7 +228,7 @@
     inputText(str);--删除键
 
      msleeprand(3000);
-
+--[[
         a = {"今天天气很不错", 
             "这鬼天气，晒成狗了", 
             "又下雨，MB",
@@ -230,12 +239,18 @@
             "许多不舍！",
         }
         a_num=math.random(1,#a);
-        inputText(a[a_num]);
+        --]]
+        signstr=getsiing();
+        -- notifyMessage(signstr,5000);
+        inputText(signstr);
 
         -- msleeprand(2000);
         -- clickarea(170,1059,464,1120); --点击键盘空格键
         msleeprand(2000);
         clickarea(550,62,622,100); --点击完成
+
+        msleeprand(2000);
+        btnlefttop();--点击坐上角返回
 
     end
 
