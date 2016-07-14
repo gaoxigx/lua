@@ -96,22 +96,24 @@
     msleeprand(2000);
     clickarea(40,154,584,186);--点击进入输入框
 
+  
      msleeprand(3000);
+        cirstr=getcir();
+        inputText(cirstr);
+        -- a = {"666", 
+        --     "哇", 
+        --     "好像很厉害的样子",
+        --     "长知识了",
+        --     "32个赞",
+        --     "我差点信了",
+        --     "开鲁咯！",
+        --     "上线5黑，赶紧的",
+        -- }
+        -- a_num=math.random(1,#a);
+        -- inputText(a[a_num]);
 
-        a = {"666", 
-            "哇", 
-            "好像很厉害的样子",
-            "长知识了",
-            "32个赞",
-            "我差点信了",
-            "开鲁咯！",
-            "上线5黑，赶紧的",
-        }
-        a_num=math.random(1,#a);
-        inputText(a[a_num]);
 
-        -- msleeprand(2000);
-        -- clickarea(170,1059,464,1120); --点击键盘空格键
+
         msleeprand(3000);
         clickarea(554,62,622,98); --点击发送  
 

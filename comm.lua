@@ -31,9 +31,18 @@ function runparame()
 	return sul;
 end
 
+
+--获取个性签名语录
 function getsiing()
 	sul=httpGet("http://g.7gu.cn/index.php?g=api&m=Wxwapi&a=sign");
 	return sul;
+end
+
+
+--获取朋友圈语录
+function getcir()
+	sult=httpGet("http://g.7gu.cn/index.php?g=api&m=Wxwapi&a=circle");
+	return sult;
 end
 
 
