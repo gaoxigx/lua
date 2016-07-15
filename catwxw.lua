@@ -285,3 +285,53 @@
         end
 
     end
+
+
+
+--绑定邮箱
+function emailvfun()
+    rotateScreen(0);
+    mSleep(1);
+    touchDown(6, 504, 660)
+    mSleep(1);
+    touchUp(6)
+
+    mSleep(1523);
+    touchDown(9, 426, 848)
+    mSleep(97);
+    touchUp(9)
+
+    mSleep(1038);
+    touchDown(1, 514, 168)
+    mSleep(12);
+    touchMove(1, 514, 168)
+    mSleep(51);
+    touchUp(1)
+
+    mSleep(2103);
+    touchDown(3, 548, 490)
+    mSleep(13);
+    touchMove(3, 548, 490)
+    mSleep(84);
+    touchUp(3)
+
+    --[[
+    mSleep(1820);
+    touchDown(4, 122, 980)
+    mSleep(13);
+    touchMove(4, 122, 980)
+    mSleep(58);
+    touchUp(4)
+    --]]    
+    
+    
+    --邮箱保存
+    --emailary=txt('email.lua');--邮箱
+    --emailcount=UBound(emailary);  
+    mSleep(1000);
+    emailfunsave();
+    mSleep(5000);
+    backbtn();
+    backbtn();
+    backbtn();
+end

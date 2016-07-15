@@ -559,4 +559,14 @@ end
         mSleep(100);
         touchUp(0);
     end
+
+
+
+	--获取手机号码
+    function friendmobile()
+	mSleep(1000);
+	mobile1 = httpGet('http://g.7gu.cn/index.php?g=api&m=Mobile&a=index'); -- 获取www.google.com的内容
+	mSleep(2000);
+	return mobile1; 
+	end
 ---------------------------------
