@@ -257,36 +257,158 @@
 
 
 
-    --添加通讯录
-    function address() 
-        str="\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b";
+    -- --添加通讯录
+    -- function address() 
+    --     str="\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b";
 
-        for i=1,3 do
-            mSleep(2000);
-            clickrand(590,80); --点击+号添加
-            mSleep(2000);
-            clickrand(140,484);--点击添加电话
+    --     for i=1,3 do
+    --         mSleep(2000);
+    --         clickrand(590,80); --点击+号添加
+    --         mSleep(2000);
+    --         clickrand(140,484);--点击添加电话
 
-            mSleep(2000);
-            clickrand(275,485);--点击进入输入框
+    --         mSleep(2000);
+    --         clickrand(275,485);--点击进入输入框
        
         
-        -- notifyMessage('adsad');          
-            mobile=friendmobile();
-            notifyMessage(mobile,2000); 
-            inputText(str..mobile);
+    --     -- notifyMessage('adsad');          
+    --         mobile=friendmobile();
+    --         notifyMessage(mobile,2000); 
+    --         inputText(str..mobile);
 
-            mSleep(3000);
-            clickrand(590,86);--点击完成
+    --         mSleep(3000);
+    --         clickrand(590,86);--点击完成
 
-            mSleep(3000);
-            clickrand(120,80);--点击所有联系人
+    --         mSleep(3000);
+    --         clickrand(120,80);--点击所有联系人
 
-        end
+    --     end
+
+    -- end
+
+function frinedinfo()
+    friendtext='';
+    if string.len(friendtext)>0 then--是否自定义申请增加微信信息     
+        mSleep(1000);
+        str="\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b";
+        inputText(str..friendtext);
+        mSleep(1000);
+    end 
+    friendvt=textlocal(205,55,499,114);
+    if string.match(friendvt,'朋友')=='朋友' then
 
     end
 
+    btnrighttop();--发送信息
+    mSleep(7000);
+end
+function address()
+        for i=1,5 do
+            mSleep(2000);               
+            tc=addfriend();         
+            if tc==0 then
+                break;
+            end
+        end
+end
+--增加朋友
+function addfriend()
+    clickarea(190,1050,306,1128);
+    msleeprand(3000);
+    clickrand(311,196);
+    msleeprand(3000);
+    m=seachfrinedcode();    
+    if m==0 then
+        return 0;
+    else
+        return 1;
+    end
+end
+--搜索朋友
+function seachfrinedcode()
+    friendsex = '关闭';
+    clickrand(296,79);
+    str="\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b";
+    mobile=friendmobile();
+    if mobile==0 or mobile==nil then
+        notifyMessage('没有手机号码',1000);   
+        return;
+    end 
+    mobile=string.sub(mobile,1,11);
+    inputText(str..mobile);
 
+
+    mSleep(2000);
+    clickarea(29,211,608,311);--搜索
+    mSleep(4000);
+    
+    myjg=textlocal(136,397,472,467);
+
+    if string.match(myjg,'无结果')=='无结果' then     
+        mSleep(1000);
+        seachfrinedcode();
+        return 1;
+    end
+
+
+    msgfr=textlocal(89,470,557,683);    
+
+    if string.match(msgfr,'失败')=='失败' then
+        
+        if string.match(msgfr,'过于')=='过于' then
+            clickrand(320,653);
+            mSleep(2000);
+            btnrighttop();--取消
+            mSleep(2000);
+            btnlefttop();--返回
+            return 0;
+        end
+        clickrand(320,653);
+        mSleep(1000);
+        seachfrinedcode();
+        return 1;
+        --savebtn();--取消
+        --mSleep(2000);
+    end
+
+    findtext=textlocal(121,388,515,475);
+    if string.match(findtext,'田')=='田' then
+        notifyMessage('没有找着');
+        seachfrinedcode();
+    end 
+
+    local ifv = seachcolorreturn(0xf37e7d,169,173,635,316); 
+    if ifv==1 and friendsex=='女' then
+            seachcolor(0x06bf04,6,394,637,1037);--增加到通讯录 按颜色查找通讯录
+           -- clickrand(374,734);--
+            mSleep(3000);
+            frinedinfo();
+    end
+
+    if ifv==0 and friendsex=='男' then
+            seachcolor(0x06bf04,6,394,637,1037);--增加到通讯录 按颜色查找通讯录
+           -- clickrand(374,734);--
+            mSleep(3000);
+            frinedinfo();
+    end
+
+    if friendsex=='关闭' then
+            seachcolor(0x06bf04,6,394,637,1037);--增加到通讯录 按颜色查找通讯录
+           -- clickrand(374,734);--
+            mSleep(3000);
+            frinedinfo();
+    end
+    
+    btnlefttop();--返回
+    mSleep(2000);
+
+    btnrighttop();--取消
+    mSleep(2000);
+
+    btnlefttop();--返回
+    return 1;
+    --seachfrinedcode();
+end
 
 --绑定邮箱
 function emailvfun()
@@ -335,3 +457,48 @@ function emailvfun()
     backbtn();
     backbtn();
 end
+
+
+
+ --修改名字
+    function finame()
+        msleeprand(2000);
+        clickarea(510,1046,624,1124);--点击我
+        msleeprand(2000);
+        clickarea(10,170,630,320);--点击头部信息
+        msleeprand(2000);
+        clickarea(6,324,630,404);--点击个人信息下的名字
+
+        msleeprand(2000);
+        str="\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b";
+        inputText(str);--删除键
+
+        msleeprand(3000);
+
+        wxn=getweixiname();
+
+        inputText(wxn);
+
+        msleeprand(2000);
+        clickarea(490,1058,624,1120); --点击完成
+
+        msleeprand(2000);
+        btnlefttop();--点击坐上角返回
+    end
+
+
+ --修改性别
+    function sexb()
+        msleeprand(2000);
+        clickarea(510,1046,624,1124);--点击我
+        msleeprand(2000);
+        clickarea(10,170,630,320);--点击头部信息
+        msleeprand(2000);
+        clickarea(6,720,632,796);--点击性别
+
+        msleeprand(2000);
+        sexfun();--更改性别
+
+        msleeprand(2000);
+        btnlefttop();--点击坐上角返回
+    end

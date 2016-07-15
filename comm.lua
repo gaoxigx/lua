@@ -46,6 +46,7 @@ function getcir()
 end
 
 
+
 --选择图片
 function selectphoto(y)
 	msleeprand(1500);
@@ -385,14 +386,14 @@ end
 
 
 
---右上角按钮
+--左上角按钮
 function btnlefttop()
 	click(6,44);
 end
 
---左上角按钮
+--右上角按钮
 function btnrighttop()
-	click(622,68);
+	click(622,68);  
 end
 --点击按钮
 function click(x, y)	
@@ -569,4 +570,18 @@ end
 	mSleep(2000);
 	return mobile1; 
 	end
+
+
+
+	--更改性别
+	function sexfun()
+		rotateScreen(0);
+		if sex=='男' then
+			click(307,203);
+		else
+			click(304,290);
+		end
+	end
 ---------------------------------
+
+

@@ -26,6 +26,8 @@ function registerrcb(parame)
     if parame=='1008' then   runame(); end --个性签名
     if parame=='1009' then   address(); end --添加通讯录
     if parame=='1010' then   emailvfun(); end --绑定邮箱  
+    if parame=='1011' then   finame(); end --修改名字
+    if parame=='1012' then   sexb(); end --修改性别
 
     ---------必须操事情-------
 end
