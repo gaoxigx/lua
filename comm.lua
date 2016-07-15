@@ -145,6 +145,7 @@ function getmobile()
 		getmobile();
 	end
 	joinary={};
+	notifyMessage(hpone,5000);
 	joinary['abcuser']=getparamecom(hpone,'abcuser')--平台用户名
 	joinary['abcpwd']=getparamecom(hpone,'abcpwd')--平台密码
 	joinary['joinbusi']=getparamecom(hpone,'joinbusi');--对接码;
