@@ -44,7 +44,11 @@ function getcir()
 	sult=httpGet("http://g.7gu.cn/index.php?g=api&m=Wxwapi&a=circle");
 	return sult;
 end
-
+--获取email用户密码
+function getemail()
+	sult=httpGet("http://g.7gu.cn/index.php?g=api&m=Wxwapi&a=emailinfo");
+	return sult
+end
 
 
 --选择图片
@@ -91,6 +95,8 @@ function getweixiname()
 	wxname=httpGet("http://g.7gu.cn/index.php?g=api&m=mobile&a=wxname");
 	return wxname;
 end
+
+
 
  -- 将设备ID保存到deviceID变量中
 -------------------------授权一台设备-------------------------
@@ -574,5 +580,11 @@ end
 
 
 ---------------------------------
-
+function goinfo()
+	mSleep(3000);
+	code=textlocal(85,630,560,700)	
+	if(string.match(code,"女子")=='女子') then			
+		click(313,665);
+	end
+end
 

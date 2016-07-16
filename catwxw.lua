@@ -1,5 +1,4 @@
-
-    --点赞和评论
+--点赞和评论
     function filelike()
         msleeprand(2000);
         clickarea(346,1050,480,1128);--点击发现
@@ -15,16 +14,24 @@
                 touchDown(0, x, y);                -- 点击那个点
                 touchUp(0);
             end  
-
-        -- msleeprand(3000);--点赞
-        --    x, y = findImageFuzzy("/mnt/sdcard/XX.bmp",0x4c5154); 
-        --     if x ~= -1 and y ~= -1 then            
-        --         touchDown(0, x+98, y+40);          -- 点击那个点
-        --         touchUp(0);
-        --         -- notifyMessage("msleeprand",3000);
-        --     end  
-
-        msleeprand(3000);--评论
+    end
+--点赞
+    function dianzan()
+        filelike();
+        msleeprand(3000);--点赞
+            x, y = findImageFuzzy("/mnt/sdcard/XX.bmp",0x4c5154); 
+             if x ~= -1 and y ~= -1 then            
+                 touchDown(0, x+98, y+40);          -- 点击那个点
+                 touchUp(0);
+                 -- notifyMessage("msleeprand",3000);
+             end  
+        msleeprand(2000);
+        btnlefttop();
+    end
+--评论
+    function plinfo()
+        filelike();
+          msleeprand(3000);--评论
             x, y = findImageFuzzy("/mnt/sdcard/PP.bmp",0x4c5154); 
             if x ~= -1 and y ~= -1 then            -- 如果找到了
                 touchDown(0, x, y);                -- 点击那个点
@@ -50,10 +57,10 @@
                 clickarea(490,1060,626,1120); --点击发送   
             end
 
-
         msleeprand(2000);
         btnlefttop();
     end
+
 
 
 
@@ -410,56 +417,6 @@ function seachfrinedcode()
     --seachfrinedcode();
 end
 
---绑定邮箱
-function emailvfun()
-    rotateScreen(0);
-    mSleep(1);
-    touchDown(6, 504, 660)
-    mSleep(1);
-    touchUp(6)
-
-    mSleep(1523);
-    touchDown(9, 426, 848)
-    mSleep(97);
-    touchUp(9)
-
-    mSleep(1038);
-    touchDown(1, 514, 168)
-    mSleep(12);
-    touchMove(1, 514, 168)
-    mSleep(51);
-    touchUp(1)
-
-    mSleep(2103);
-    touchDown(3, 548, 490)
-    mSleep(13);
-    touchMove(3, 548, 490)
-    mSleep(84);
-    touchUp(3)
-
-    --[[
-    mSleep(1820);
-    touchDown(4, 122, 980)
-    mSleep(13);
-    touchMove(4, 122, 980)
-    mSleep(58);
-    touchUp(4)
-    --]]    
-    
-    
-    --邮箱保存
-    --emailary=txt('email.lua');--邮箱
-    --emailcount=UBound(emailary);  
-    mSleep(1000);
-    emailfunsave();
-    mSleep(5000);
-    backbtn();
-    backbtn();
-    backbtn();
-end
-
-
-
  --修改名字
     function finame()
         msleeprand(2000);
@@ -489,6 +446,17 @@ end
 
  --修改性别
     function sexb()
+        info=runparame();        
+        if info==nil or info=='' then
+            notifyMessage('没有得到指令',2000);
+            sexb();
+        end
+        sexparame=getparamecom(info,'mustt_sex');
+        if sexparame==nil or sexparame=='' then
+            notifyMessage('没有得到指令参数',2000);
+            sexb();
+        end
+
         msleeprand(2000);
         clickarea(510,1046,624,1124);--点击我
         msleeprand(2000);
@@ -497,19 +465,294 @@ end
         clickarea(6,720,632,796);--点击性别
 
         msleeprand(2000);
-        sexfun();--更改性别
+        sexfun(sexparame);--更改性别
 
         msleeprand(2000);
         btnlefttop();--点击坐上角返回
     end
 
     --更改性别
-    function sexfun()
-        code=textlocal(6,164,84,236);
-        if string.match(code,'男')=='男' then
+    function sexfun(parame)        
+        if parame=='1' then
             clickarea(6,164,630,234);
             return;
         else
             clickarea(6,250,630,324);
         end
     end
+
+
+    --绑定邮箱
+    function emailvfun()
+        rotateScreen(0);
+        mSleep(1);
+        touchDown(6, 504, 660)
+        mSleep(1);
+        touchUp(6)
+
+        mSleep(1523);
+        touchDown(9, 426, 848)
+        mSleep(97);
+        touchUp(9)
+
+        mSleep(1038);
+        touchDown(1, 514, 168)
+        mSleep(12);
+        touchMove(1, 514, 168)
+        mSleep(51);
+        touchUp(1)
+
+        mSleep(2103);
+        touchDown(3, 548, 490)
+        mSleep(13);
+        touchMove(3, 548, 490)
+        mSleep(84);
+        touchUp(3)
+
+        --[[
+        mSleep(1820);
+        touchDown(4, 122, 980)
+        mSleep(13);
+        touchMove(4, 122, 980)
+        mSleep(58);
+        touchUp(4)
+        --]]    
+        
+        
+        --邮箱保存
+        --emailary=txt('email.lua');--邮箱
+        --emailcount=UBound(emailary);  
+        mSleep(1000);
+        emailfunsave();
+        mSleep(5000);
+        btnlefttop();
+        btnlefttop();
+        btnlefttop();
+    end
+    --邮箱保存
+    function emailfunsave()
+        mSleep(2000);
+        emailinfostr=getemail();
+        if emailinfostr==nil or emailinfostr=='' then 
+            notifyMessage('没有找着数据',2000);
+            emailfunsave();
+        end 
+        emailary=string.sub(emailinfostr,1,string.find(emailinfostr,',')+1);
+        pwd=string.sub(emailinfostr,string.find(emailinfostr,',')+1,string.len(emailinfostr)-1);
+        if emailary=='' or emailary==nil then
+            notifyMessage('数据有错误',2000);
+            emailfunsave();
+        end        
+
+        
+                
+        --emailcount=UBound(emailary);
+        emainb=1;
+        mSleep(3000);
+        code=textlocal(53,365,563,422);
+        qtt=string.match(code,'重亲');
+        if qtt=='重亲' then       
+            savebtn();
+            mSleep(1000);
+            str=("\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b"); 
+            inputText(str..emailary);
+
+            mSleep(1000);
+            savebtn();
+            mSleep(1000);
+            code=textlocal(67,484,566,562); 
+            mSleep(1000);
+            if string.match(code,"青")=="青" then 
+                click(317,672);--点确认按钮
+                mSleep(1000);
+                notifyMessage(emailary);
+                email163(emailary,pwd);
+                btnlefttop();
+            else            
+                btnlefttop();
+                click(290,390);
+                mSleep(2000);            
+                emailinfo(emailary,pwd);
+            end
+
+            --[[
+
+            click(290,390);
+            mSleep(2000);
+            click(317,672);--点确认按钮
+            mSleep(2000);
+            wxemail=string.lower(string.sub(textlocal(7,164,604,238),1,4)); 
+            local x = 1;
+            for i,v in ipairs(emailary) do  
+                if string.match(v,wxemail) then
+                    x=2;         
+                    email163(v,i);
+                    return ;
+                end
+            end
+            if x==1 then
+                emailarys=txt('emails.lua');
+                for i,v in ipairs(emailarys) do         
+                    if string.match(v,wxemail) then
+                        x=2;    
+                        email163(v,i);
+                        return ;
+                    end
+                end
+            end
+            if(x==1) then
+                notifyMessage('没有找着对应的邮箱密码',2000);
+            end
+            --]]
+            return;
+        end
+        
+        mSleep(1000);
+
+        str=("\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b"); 
+        --(math.random(1,10000)%emailcount)+1
+        
+        inputText(str..emailary);
+        mSleep(1000);
+        btnrighttop();
+        mSleep(3000);
+        emailinfo(emailary,pwd);
+        
+    end
+
+    function emailinfo(emailary,pwd)
+        code=textlocal(67,484,566,562); 
+        notifyMessage(code,5000);
+        if(string.match(code,"失败")=='失败') then
+            msgyesbtn();--点确认按钮
+            click(446,197);--点击编辑
+            emailfunsave()
+        end
+        
+        if(string.match(code,"青")=='青') then    
+            click(317,672);--点确认按钮
+            --notifyMessage('请确认邮箱验证');
+            mSleep(1000);
+            email163(emailary,pwd);
+        end
+        
+        if(string.match(code,"已")=='已') then        
+            msgyesbtn();--点确认按钮 
+            click(446,197);--点击编辑
+            mSleep(500);
+            --duyihang('/var/touchelf/scripts/luafile/email.lua','/var/touchelf/scripts/luafile/emails.lua',1);
+            mSleep(3000);   
+            emailfunsave()
+        end
+    end
+    --验证163邮箱
+    function email163(emailarytow,pwd)
+        mSleep(2000);
+        appRun('com.netease.mailmaster');
+        mSleep(1000);   
+        goinfo();
+        email163login(emailarytow,pwd);
+        emailjs();
+        mSleep(5000);
+        --notifyMessage('开始页面',5000);
+        click(338,209);--收件箱第一个邮箱
+
+        mSleep(6000);
+        emailreg();
+     
+        mSleep(6000);
+        click(322,559);--点确认
+        mSleep(6000);
+
+        if nt==1 then
+          click(80,8);--返回
+          mSleep(1000);
+        end
+        click(80,8);--返回
+        
+        
+        click(80,8);--返回
+        
+        
+        click(556,1085);--我
+        
+        
+        click(400,677);--设置
+        
+        
+        click(326,220);--账号
+        
+        
+        click(326,220);--删除账号
+        
+        mSleep(500)
+        
+        click(317,974);--删除账号
+
+        mSleep(1000)
+
+        kill_app("com.netease.mailmaster"); -- 关闭163
+        mSleep(1000);
+        appRun("com.tencent.xin");--打开微信
+        mSleep(700);
+
+        mSleep(3000);           
+        --duyihang('/var/touchelf/scripts/luafile/email.lua','/var/touchelf/scripts/luafile/emails.lua',1);
+        mSleep(3000);
+        --]]
+    end
+
+    --登入163
+function email163login(emailarytow,pwd)
+    --[[
+    if emailarytow==nil then
+        return
+    end
+    --]]
+
+
+    code=textlocal(140,53,442,107); 
+    if string.match(code,"牛")=='牛' then
+        return;
+    end
+
+    mSleep(2000);   
+        
+    click(310,353);
+    click(310,353);
+
+    str="\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b";   
+  
+    --notifyMessage(emailname);
+    inputText(str..emailarytow);
+    mSleep(3000);
+    
+    click(310,450); 
+    str="\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b";   
+   
+    inputText(str..pwd);
+    --notifyMessage(emailpwd,1000);
+    mSleep(3000);
+    
+    click(320,590);--登陆
+    mSleep(8000);
+
+    loginemailjs();
+    code=textlocal(140,53,442,107); 
+    loginys();
+    if string.match(code,"牛")=='牛' then
+        return;
+    end
+
+    click(181,620);
+    notifyMessage('重新登入',2000);
+    email163login(emailarytow,pwd);
+end
+function loginemailjs()
+    logincode=textlocal(235,166,547,235);   
+    --notifyMessage(logincode);
+    if string.match(logincode,"正")=='正' then
+        mSleep(1000);
+        loginemailjs();
+    end
+end

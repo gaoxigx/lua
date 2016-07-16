@@ -19,7 +19,8 @@ function registerrcb(parame)
     ---------进入接口-------
 
     ---------必须操事情-------
-    if parame=='1004' then   filelike(); end --点赞和评论
+    if parame=='1003' then   dianzan(); end --点赞
+    if parame=='1004' then   plinfo(); end --评论
     if parame=='1005' then   filesend(); end --发送朋友圈
     if parame=='1006' then   friendmi(); end --头像设置
     if parame=='1007' then   friend(); end --设置朋友圈照片
