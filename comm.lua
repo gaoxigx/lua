@@ -8,13 +8,6 @@ function openweiximsg()
 	end
 end
 
---微信号被封后点取消
-function wxbf()
-	code=textlocal(60,406,580,640);
-	if(string.match(code,'圭甘号')=='圭甘号') then			
-		clickarea(60,662,312,734);--点击取消
-	end
-end
 
 --得到相应的命令
 function getparamecom(sul,str)
@@ -58,7 +51,6 @@ end
 --
 function setmobilestatus(phone)
 	cd=getDeviceID();
-	notifyMessage("http://g.7gu.cn/index.php?g=Api&m=Wxwapi&a=mobilestatus&cdkey="..cd.."&pn="..phone,5000);
 	sul=httpGet("http://g.7gu.cn/index.php?g=Api&m=Wxwapi&a=mobilestatus&cdkey="..cd.."&pn="..phone);
 	return sul;
 end

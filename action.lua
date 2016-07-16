@@ -248,18 +248,34 @@ function loginweixi()
 	openweixi();--打开微信
 	msleeprand(3000);	
 	openweiximsg()--打开微信后弹框
-	msleeprand(2000);
-	wxbf();--被封号提示框
-	msleeprand(2000);	
-	code=textlocalnmb(248,370,470,410);
-	if code==nil then
-		return;
+	msleeprand(3000);
+
+	codedh=textlocal(60,406,580,640);--封号提示框
+	if(string.match(codedh,'圭甘号')=='圭甘号') then			
+		clickarea(60,662,312,734);--点击取消
 	end
-	mobile=string.gsub(code,' ','');
-	notifyMessage(mobile,5000);
 	
-	setmobilestatus(mobile);
-	--main();
+	codecw=textlocal(60,478,572,572);--密码错误
+	if(string.match(codecw,'密石马')=='密石马') then			
+		clickarea(56,600,576,668);--点击确定
+	end
+
+	msleeprand(2000);
+	codestr=textlocal(16,487,106,538);--封号后保存异常页面
+	if(string.match(codestr,'密石马')=='密石马') then	
+		msleeprand(2000);
+		code=textlocalnmb(248,370,470,410);
+		if code==nil or code=='' then
+			return;
+		end
+		mobile=string.gsub(code,' ','');	
+		rsul=setmobilestatus(mobile);
+		msleeprand(2000);
+		if rsul~='0' and rsul~=nil then
+			notifyMessage('异常号码已保存',2000);
+		end
+
+	end
 end
 
 
