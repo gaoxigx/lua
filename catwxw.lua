@@ -67,16 +67,20 @@
 
     --发送朋友圈
     function filesend()
+
+
     msleeprand(2000);
     clickarea(346,1050,480,1128);--点击发现
     msleeprand(2000);
     clickarea(10,164,630,234);--点击朋友圈
     msleeprand(2000);
     clickarea(566,65,612,100);--右上角
+    msleeprand(2000);   
+    zdl();  --知道了
     msleeprand(2000);
     clickarea(6,940,632,1024);--从手机相册选择
-    -- msleeprand(3000);  
-    -- clickarea(22,320,620,458)--点击第二个相册
+    msleeprand(3000);  
+    clickarea(22,320,620,458)--点击第二个相册
 
 	msleeprand(3000); --点击移动
 	clickmove();

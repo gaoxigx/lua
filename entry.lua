@@ -13,7 +13,7 @@ function main()
 	require "post";
 	require "register";
 	require "catwxw";
-	
+
 	gsinfo=runparame();--得到指令23,134,628,289		
 	if gsinfo==nil or gsinfo=='' then
 		notifyMessage('请连接网络再运行',5000);

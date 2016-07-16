@@ -588,3 +588,11 @@ function goinfo()
 	end
 end
 
+
+function zdl()
+	mSleep(3000);
+	code=textlocal(250,718,388,788)	
+	if(string.match(code,'矢口道了')=='矢口道了') then			
+		clickarea(50,716,590,798);
+	end
+end
