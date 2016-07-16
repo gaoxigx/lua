@@ -502,3 +502,14 @@ end
         msleeprand(2000);
         btnlefttop();--点击坐上角返回
     end
+
+    --更改性别
+    function sexfun()
+        code=textlocal(6,164,84,236);
+        if string.match(code,'男')=='男' then
+            clickarea(6,164,630,234);
+            return;
+        else
+            clickarea(6,250,630,324);
+        end
+    end

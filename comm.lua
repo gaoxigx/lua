@@ -573,16 +573,6 @@ end
 	end
 
 
-
-	--更改性别
-	function sexfun()
-		rotateScreen(0);
-		if sex=='男' then
-			click(307,203);
-		else
-			click(304,290);
-		end
-	end
 ---------------------------------
 
 
