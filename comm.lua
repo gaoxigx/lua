@@ -6,8 +6,14 @@ function openweiximsg()
 	if(string.match(code,"女子")=='女子') then			
 		clickarea(56,633,583,701);
 	end
+end
 
- 	textmsg=textlocal(73,436,574,611); 	
+--微信号被封后点取消
+function wxbf()
+	code=textlocal(60,406,580,640);
+	if(string.match(code,'圭甘号')=='圭甘号') then			
+		clickarea(60,662,312,734);--点击取消
+	end
 end
 
 --得到相应的命令
@@ -49,7 +55,13 @@ function getemail()
 	sult=httpGet("http://g.7gu.cn/index.php?g=api&m=Wxwapi&a=emailinfo");
 	return sult
 end
-
+--
+function setmobilestatus(phone)
+	cd=getDeviceID();
+	notifyMessage("http://g.7gu.cn/index.php?g=Api&m=Wxwapi&a=mobilestatus&cdkey="..cd.."&pn="..phone,5000);
+	sul=httpGet("http://g.7gu.cn/index.php?g=Api&m=Wxwapi&a=mobilestatus&cdkey="..cd.."&pn="..phone);
+	return sul;
+end
 
 --选择图片
 function selectphoto(y)

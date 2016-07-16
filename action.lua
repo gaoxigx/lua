@@ -249,6 +249,17 @@ function loginweixi()
 	msleeprand(3000);	
 	openweiximsg()--打开微信后弹框
 	msleeprand(2000);
+	wxbf();--被封号提示框
+	msleeprand(2000);	
+	code=textlocalnmb(248,370,470,410);
+	if code==nil then
+		return;
+	end
+	mobile=string.gsub(code,' ','');
+	notifyMessage(mobile,5000);
+	
+	setmobilestatus(mobile);
+	--main();
 end
 
 
