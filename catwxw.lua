@@ -65,9 +65,20 @@
 
 
 
+
     --发送朋友圈
     function filesend()
+    info=runparame();
+    if info==nil or info=='' then
+        notifyMessage('没有得到指令',2000);
+        filesend();
+    end
 
+    fphoparame=getparamecom(info,'mustt_fphoto');
+    if fphoparame==nil or fphoparame=='' then
+        notifyMessage('没有得到指令参数',2000);
+        filesend();
+    end
 
     msleeprand(2000);
     clickarea(346,1050,480,1128);--点击发现
@@ -79,25 +90,57 @@
     zdl();  --知道了
     msleeprand(2000);
     clickarea(6,940,632,1024);--从手机相册选择
-    msleeprand(3000);  
-    clickarea(22,320,620,458)--点击第二个相册
 
-	msleeprand(3000); --点击移动
-	clickmove();
+
+    msleeprand(3000); --点击相册
+    if fphoparame=='1' then      
+        clickarea(6,130,630,235)
+    end
+
+    if fphoparame=='2' then      
+        clickarea(6,245,630,350)
+    end
+
+    if fphoparame=='3' then      
+        clickarea(6,360,630,468)
+    end
+
+    if fphoparame=='4' then      
+        clickarea(6,475,630,580)
+    end
+
+    if fphoparame=='5' then      
+        clickarea(6,590,630,698)
+    end
+
+    if fphoparame=='6' then      
+        clickarea(6,706,630,810)
+    end
+
+    if fphoparame=='7' then      
+        clickarea(6,820,630,926)
+    end
+
+    if fphoparame=='8' then      
+        clickarea(6,936,630,1040)
+    end
+
+    msleeprand(3000); --点击移动
+    clickmove();
 
     msleeprand(3000);
 
         tp=math.random(1, 9);--随机点击图片数量
         for i=1,tp do
-			st=(math.random(0, 10000)%4)*150-20;
-			if st<150 then
-				st=150;
-			end
-			dt=(math.random(0,10000)%6)*154-20;
-			if dt<154 then
-				dt=154;
-			end
-    		click(st,dt);
+            st=(math.random(0, 10000)%4)*150-20;
+            if st<150 then
+                st=150;
+            end
+            dt=(math.random(0,10000)%6)*154-20;
+            if dt<154 then
+                dt=154;
+            end
+            click(st,dt);
         end
 
 
@@ -455,6 +498,7 @@ end
             notifyMessage('没有得到指令',2000);
             sexb();
         end
+
         sexparame=getparamecom(info,'mustt_sex');
         if sexparame==nil or sexparame=='' then
             notifyMessage('没有得到指令参数',2000);
