@@ -384,3 +384,69 @@ end
         msleeprand(2000);
         btnlefttop();
     end
+--检查手机号码是否则存在
+function datectionmobile()
+	msleeprand(3000);
+	clickarea(190,1050,306,1128);
+    msleeprand(3000);
+    clickrand(311,196);
+    msleeprand(3000);
+
+    tt=datefriendinfo();    
+end
+--运行手机号码是否则存在
+function datefriendinfo()
+    friendsex = '关闭';
+   	msleeprand(1000);
+    clickrand(296,79);
+    str="\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b";
+    mobile=friendmobiletype();
+    if mobile=='0' or mobile==nil then
+        notifyMessage('没有手机号码',1000); 
+        return datefriendinfo();
+    end 
+   
+    mobile=string.sub(mobile,1,11);
+    inputText(str..mobile);
+
+    msleeprand(1000);
+    clickarea(29,211,608,311);--搜索
+    msleeprand(1000);
+    
+    myjg=textlocal(136,397,472,467);
+    if string.match(myjg,'无结果')=='无结果' then     
+        msleeprand(1000);
+        friendmobiletypeset(mobile,1);
+        
+        return datefriendinfo();
+    end
+
+    msgfr=textlocal(89,470,557,683); 
+    if string.match(msgfr,'不存在')=='不存在' then
+      	friendmobiletypeset(mobile,1);
+        clickrand(320,653);
+        msleeprand(1000);
+        return datefriendinfo();
+    end
+
+    if string.match(msgfr,'失败')=='失败' then     
+    	if string.match(msgfr,'过于')=='过于' then
+            clickrand(320,653);            
+		    btnlefttop();--返回		
+            return 5;
+        end   
+        clickrand(320,653);
+        msleeprand(1000);
+        friendmobiletypeset(mobile,1);
+        return datefriendinfo();
+    end
+
+    findtext=textlocal(121,388,515,475);
+    if string.match(findtext,'田')=='田' then
+        notifyMessage('没有找着');
+        datefriendinfo();
+    end 
+    friendmobiletypeset(mobile,2);
+    btnlefttop();--返回
+    return datefriendinfo();
+end

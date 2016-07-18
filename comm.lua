@@ -577,9 +577,6 @@ end
         mSleep(100);
         touchUp(0);
     end
-
-
-
 	--获取手机号码
     function friendmobile()
 	mSleep(1000);
@@ -588,7 +585,16 @@ end
 	return mobile1; 
 	end
 
-
+--检查手机号码
+function friendmobiletype()	
+	mobile2 = httpGet('http://g.7gu.cn/index.php?g=api&m=Mobile&a=getmboiletype'); -- 获取www.google.com的内容	
+	return mobile2; 
+end
+--检查手机号码状态修改为已检查过
+function friendmobiletypeset(mobile,stratu)	
+	mobile3 = httpGet('http://g.7gu.cn/index.php?g=api&m=Mobile&a=setmobiletype&mobile='..mobile..'&st='..stratu); -- 获取www.google.com的内容
+	return mobile3; 
+end
 ---------------------------------
 --打开微信弹出信息按钮 
 function goinfo()
@@ -608,4 +614,5 @@ function zdl()
 	if(string.match(code,'矢口道了')=='矢口道了') then			
 		clickarea(50,716,590,798);
 	end
+
 end
