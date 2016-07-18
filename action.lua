@@ -37,7 +37,7 @@ end
 function flymodel()
 	mSleep(1000);
 	appRun('com.apple.Preferences');
-	mSleep(1000);
+	mSleep(3000);
 	flstrclick=textlocal(101,292,418,359);
 	if string.match(flstrclick,'飞')=='飞' then
 	 	click(530,329);	
@@ -247,14 +247,15 @@ end
 function loginweixi()
 	openweixi();--打开微信
 	msleeprand(3000);	
-	openweiximsg()--打开微信后弹框
-	msleeprand(3000);
+	openweiximsg();--打开微信后弹框
+	
+	msleeprand(2000);
 
 	codedh=textlocal(60,406,580,640);--封号提示框
 	if(string.match(codedh,'圭甘号')=='圭甘号') then			
 		clickarea(60,662,312,734);--点击取消
 	end
-	
+	msleeprand(1000);
 	codecw=textlocal(60,478,572,572);--密码错误
 	if(string.match(codecw,'密石马')=='密石马') then			
 		clickarea(56,600,576,668);--点击确定
@@ -274,8 +275,9 @@ function loginweixi()
 		if rsul~='0' and rsul~=nil then
 			notifyMessage('异常号码已保存',2000);
 		end
-
+		return 0;
 	end
+	return 1;
 end
 
 

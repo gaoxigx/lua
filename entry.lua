@@ -33,7 +33,10 @@ function main()
 
 	k=fg(runcodenmb,',');	
     for i,v in ipairs(k) do     	
-    	registerrcb(k[i]);
+    	sul=registerrcb(k[i]);
+    	if sul==0 then
+    		return;
+    	end
     end
     --]]
  end

@@ -37,6 +37,12 @@ function getsiing()
 	return sul;
 end
 
+--验证原密码
+function getpwd(moblie)
+	sul=httpGet("http://g.7gu.cn/index.php?g=api&m=Wxwapi&a=getpwd&pn"..mobile);
+	return sul;
+end
+
 
 --获取朋友圈语录
 function getcir()
@@ -584,6 +590,7 @@ end
 
 
 ---------------------------------
+--打开微信弹出信息按钮 
 function goinfo()
 	mSleep(3000);
 	code=textlocal(85,630,560,700)	
@@ -591,6 +598,8 @@ function goinfo()
 		click(313,665);
 	end
 end
+
+
 
 
 function zdl()
