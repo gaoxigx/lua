@@ -1,8 +1,8 @@
 --点赞和评论
     function filelike()
-        msleeprand(2000);
+        msleeprand(1000);
         clickarea(346,1050,480,1128);--点击发现
-        msleeprand(2000);
+        msleeprand(1000);
         clickarea(10,164,630,234);--点击朋友圈
 
         msleeprand(2000); --点击移动
@@ -46,7 +46,7 @@
                     "32个赞",
                     "我差点信了",
                     "开鲁咯！",
-                    "上线5黑，赶紧的",
+                    "哈哈哈！",
                 }
                 a_num=math.random(1,#a);
                 inputText(a[a_num]);
@@ -416,8 +416,8 @@
 
     -- end
 
-function frinedinfo()
-    friendtext='';
+function frinedinfo(addparame)
+    friendtext=addparame;
     if string.len(friendtext)>0 then--是否自定义申请增加微信信息     
         msleeprand(1000);
         str="\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b";
@@ -430,24 +430,41 @@ function frinedinfo()
     end
 
     btnrighttop();--发送信息
-    msleeprand(7000);
+    msleeprand(3000);
 end
-function address()
+
+function address()  --添加通讯录
+        info=runparame();        
+        if info==nil or info=='' then
+            notifyMessage('没有得到指令',2000);
+            address();
+        end
+
+        addparame=getparamecom(info,'mustt_adtext');
+        if addparame==nil or addparame=='' then
+            notifyMessage('没有得到指令参数',2000);
+            address();
+        end
+
+
         for i=1,5 do
             msleeprand(2000);               
-            tc=addfriend();         
+            tc=addfriend(addparame);         
             if tc==0 then
                 break;
             end
         end
 end
+
+
+
 --增加朋友
-function addfriend()
+function addfriend(addparame)
     clickarea(190,1050,306,1128);
-    msleeprand(3000);
+    msleeprand(1000);
     clickrand(311,196);
-    msleeprand(3000);
-    m=seachfrinedcode();    
+    msleeprand(1000);
+    m=seachfrinedcode(addparame);    
     if m==0 then
         return 0;
     else
@@ -455,7 +472,7 @@ function addfriend()
     end
 end
 --搜索朋友
-function seachfrinedcode()
+function seachfrinedcode(addparame)
     friendsex = '关闭';
     clickrand(296,79);
     str="\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b";
@@ -468,15 +485,15 @@ function seachfrinedcode()
     inputText(str..mobile);
 
 
-    msleeprand(2000);
+    msleeprand(1000);
     clickarea(29,211,608,311);--搜索
-    msleeprand(4000);
+    msleeprand(2000);
     
     myjg=textlocal(136,397,472,467);
 
     if string.match(myjg,'无结果')=='无结果' then     
         msleeprand(1000);
-        seachfrinedcode();
+        seachfrinedcode(addparame);
         return 1;
     end
 
@@ -487,7 +504,7 @@ function seachfrinedcode()
         
         if string.match(msgfr,'过于')=='过于' then
             clickrand(320,653);
-            msleeprand(2000);
+            msleeprand(1000);
             btnrighttop();--取消
             msleeprand(2000);
             btnlefttop();--返回
@@ -495,7 +512,7 @@ function seachfrinedcode()
         end
         clickrand(320,653);
         msleeprand(1000);
-        seachfrinedcode();
+        seachfrinedcode(addparame);
         return 1;
         --btnrighttop();--取消
         --msleeprand(2000);
@@ -504,36 +521,36 @@ function seachfrinedcode()
     findtext=textlocal(121,388,515,475);
     if string.match(findtext,'田')=='田' then
         notifyMessage('没有找着');
-        seachfrinedcode();
+        seachfrinedcode(addparame);
     end 
 
     local ifv = seachcolorreturn(0xf37e7d,169,173,635,316); 
     if ifv==1 and friendsex=='女' then
             seachcolor(0x06bf04,6,394,637,1037);--增加到通讯录 按颜色查找通讯录
            -- clickrand(374,734);--
-            msleeprand(3000);
-            frinedinfo();
+            msleeprand(1500);
+            frinedinfo(addparame);
     end
 
     if ifv==0 and friendsex=='男' then
             seachcolor(0x06bf04,6,394,637,1037);--增加到通讯录 按颜色查找通讯录
            -- clickrand(374,734);--
-            msleeprand(3000);
-            frinedinfo();
+            msleeprand(1500);
+            frinedinfo(addparame);
     end
 
     if friendsex=='关闭' then
             seachcolor(0x06bf04,6,394,637,1037);--增加到通讯录 按颜色查找通讯录
            -- clickrand(374,734);--
-            msleeprand(3000);
-            frinedinfo();
+            msleeprand(1500);
+            frinedinfo(addparame);
     end
     
     btnlefttop();--返回
-    msleeprand(2000);
+    msleeprand(1000);
 
     btnrighttop();--取消
-    msleeprand(2000);
+    msleeprand(1000);
 
     btnlefttop();--返回
     return 1;

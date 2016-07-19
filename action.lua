@@ -5,29 +5,29 @@ function vpn(gsinfo)
 
 
 
-	mSleep(1000);
+	msleeprand(1000);
 	appRun('com.apple.Preferences');
-	mSleep(1000);
+	msleeprand(1000);
 	textmsg=textlocal(113,749,356,819);
 	if string.match(textmsg,'VPN')=='VPN' then
 		click(547,783);
 	else
 		click(529,683);
 	end	
-	mSleep(2000);
+	msleeprand(2000);
 	
 	textmsg=textlocal(94,166,559,245);
 	if string.match(textmsg,'VPN')=='VPN' then	
 
-		mSleep(1000);
+		msleeprand(1000);
 		inputtextstr(vpnuser);
-		mSleep(1000);
+		msleeprand(1000);
 		click(588,1064);
-		mSleep(2000);
+		msleeprand(2000);
 		inputtextstr(vpnpwd);
-		mSleep(2000);
+		msleeprand(2000);
 		click(474, 466);
-		mSleep(6000);		
+		msleeprand(4000);		
 		return 1;
 	end
 	vpn(gsinfo);
@@ -35,20 +35,20 @@ end
 
 --飞行模式
 function flymodel()
-	mSleep(1000);
+	msleeprand(1000);
 	appRun('com.apple.Preferences');
-	mSleep(3000);
+	msleeprand(2000);
 	flstrclick=textlocal(101,292,418,359);
 	if string.match(flstrclick,'飞')=='飞' then
 	 	click(530,329);	
-	 	mSleep(2000);
+	 	msleeprand(2000);
 	 	click(530,329);
 	else
 	 	click(530,235);
-	 	mSleep(2000);
+	 	msleeprand(2000);
 	 	click(530,235);
 	end
-	mSleep(2000);
+	msleeprand(2000);
 	--[[
 	existscolor=seachcolorreturn('x04cd964',458,188,637,373);	
 	notifyMessage(existscolor,5000);
@@ -62,28 +62,28 @@ end
 
 --一键新机 hd
 function reloaddata()
-	mSleep(1000);	
+	msleeprand(1000);	
 	appRun('com.workhard.hdfakerset');
-	mSleep(1000);
+	msleeprand(1000);
 	click(152,257);
-	mSleep(6000);
+	msleeprand(6000);
 end
 --一键备份 hd
 function backuphd(mobile,pwd)
-	mSleep(1000);	
+	msleeprand(1000);	
 	appRun('com.workhard.hdfakerset');
-	mSleep(1000);	
+	msleeprand(1000);	
 	click(139,1064);--操作
-	mSleep(1000);
+	msleeprand(1000);
 	click(293,675);--备份数据
-	mSleep(1000);
+	msleeprand(1000);
 	click(557,82);--开始备份
-	mSleep(3000);
+	msleeprand(3000);
 	inputtextstr(mobile..'-'..pwd);--更改名字
-	mSleep(4000);
-	mSleep(2000); 
+	msleeprand(4000);
+	msleeprand(2000); 
 	click(326,304);--开始备份
-	mSleep(3000);
+	msleeprand(3000);
 	click(323,657);--点完成
 end
 
@@ -108,7 +108,7 @@ function registerweixi(cd)
 		msleeprand(500);
 	end
     --]]
-	mSleep(2000);
+	msleeprand(2000);
 	--click(305,426);	
 	clickarea(220,388,525,457);
 	msleeprand(1000);
@@ -147,7 +147,7 @@ function registerweixi(cd)
 		clickarea(37,761,599,831);
 	end
 
-	ysmsleepadd('完善个人',23,134,628,289)--延时
+	ysmsleeprandadd('完善个人',23,134,628,289)--延时
 
 	--clickarea(245,346,394,497);
 	--runcodenmb=getparame(gsinfo,'photo');--得到对应的值
@@ -220,7 +220,7 @@ function reigistinputwxname(str)
 end
 --设备密码
 function filepaw(pwdstr)
-		msleeprand(5000);
+		msleeprand(3000);
         clickarea(500,1046,624,1124);--点击我
         msleeprand(2000);
         clickarea(4,808,632,880);--点击设置
@@ -229,6 +229,8 @@ function filepaw(pwdstr)
         msleeprand(2000);
         clickarea(4,678,634,756);--点击微信密码
         msleeprand(3000);
+        
+
         clickarea(224,407,620,472);--点击密码
         msleeprand(3000);
         inputtextstr(pwdstr);
@@ -238,7 +240,7 @@ function filepaw(pwdstr)
         inputtextstr(pwdstr);
         msleeprand(2000);
         clickarea(558,68,622,98);--点击完成
-        msleeprand(3000);
+        msleeprand(2000);
 end    
 
 
@@ -246,32 +248,32 @@ end
 --启动登入微信
 function loginweixi()
 	openweixi();--打开微信
-	msleeprand(3000);	
+	msleeprand(2000);	
 	openweiximsg();--打开微信后弹框
-	
+
 	msleeprand(2000);
 
 	codedh=textlocal(60,406,580,640);--封号提示框
 	if(string.match(codedh,'圭甘号')=='圭甘号') then			
 		clickarea(60,662,312,734);--点击取消
 	end
-	msleeprand(1000);
+
 	codecw=textlocal(60,478,572,572);--密码错误
 	if(string.match(codecw,'密石马')=='密石马') then			
 		clickarea(56,600,576,668);--点击确定
 	end
 
-	msleeprand(2000);
+	msleeprand(1000);
 	codestr=textlocal(16,487,106,538);--封号后保存异常页面
 	if(string.match(codestr,'密石马')=='密石马') then	
-		msleeprand(2000);
+		msleeprand(1000);
 		code=textlocalnmb(248,370,470,410);
 		if code==nil or code=='' then
 			return;
 		end
 		mobile=string.gsub(code,' ','');	
 		rsul=setmobilestatus(mobile);
-		msleeprand(2000);
+		msleeprand(1000);
 		if rsul~='0' and rsul~=nil then
 			notifyMessage('异常号码已保存',2000);
 		end
@@ -285,42 +287,42 @@ end
 function dhfakei()    
 	appRun('com.workhard.hdfakerset');
     rotateScreen(0);
-    mSleep(3);
+    msleeprand(3);
     touchDown(6, 524, 636)
-    mSleep(14);
+    msleeprand(14);
     touchUp(6)
 
-    mSleep(2364);
+    msleeprand(2364);
     touchDown(4, 96, 1108)
-    mSleep(98);
+    msleeprand(98);
     touchUp(4)
 
-    mSleep(1000);
+    msleeprand(1000);
     touchDown(3, 276, 776)
-    mSleep(64);
+    msleeprand(64);
     touchUp(3)
 
-    mSleep(3003);
+    msleeprand(2000);
     touchDown(1, 622, 52)
-    mSleep(65);
+    msleeprand(65);
     touchUp(1)
 
-    mSleep(2901);
+    msleeprand(2000);
     touchDown(2, 276, 524)
-    mSleep(82);
+    msleeprand(82);
     touchUp(2)
 
-    mSleep(5535);
+    msleeprand(3000);
     touchDown(9, 282, 632)
-    mSleep(82);
+    msleeprand(82);
     touchUp(9)
 	
-	mSleep(4351);
+	msleeprand(3000);
     keyDown('HOME');
-    mSleep(176);
+    msleeprand(176);
     keyUp('HOME');
 
-    mSleep(1000);
+    msleeprand(1000);
 end
 
 
@@ -352,7 +354,7 @@ end
         --         -- notifyMessage("msleeprand",3000);
         --     end  
 
-        msleeprand(3000);--评论
+        msleeprand(2000);--评论
             x, y = findImageFuzzy("/mnt/sdcard/PP.bmp",0x4c5154); 
             if x ~= -1 and y ~= -1 then            -- 如果找到了
                 touchDown(0, x, y);                -- 点击那个点
@@ -367,7 +369,7 @@ end
                     "32个赞",
                     "我差点信了",
                     "开鲁咯！",
-                    "上线5黑，赶紧的",
+                    "哈哈哈",
                 }
                 a_num=math.random(1,#a);
                 inputText(a[a_num]);
