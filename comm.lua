@@ -1,9 +1,8 @@
 ---------------
 --打开微信弹出信息按钮 
-function openweiximsg()
-
-	code=textlocal(85,630,560,700);		
-	if(string.match(code,"女子")=='女子') then			
+function openweiximsg()	
+	local msgcode=textlocal(85,630,560,700);		
+	if(string.match(msgcode,"女子")=='女子') then			
 		clickarea(56,633,583,701);
 	end
 end

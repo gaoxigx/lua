@@ -1,14 +1,14 @@
 --点赞和评论
     function filelike()
-        msleeprandrand(2000);
+        msleeprand(1000);
         clickarea(346,1050,480,1128);--点击发现
-        msleeprandrand(2000);
+        msleeprand(1000);
         clickarea(10,164,630,234);--点击朋友圈
 
-        msleeprandrand(2000); --点击移动
+        msleeprand(2000); --点击移动
         clickmove();
 
-        msleeprandrand(2000);
+        msleeprand(2000);
             x, y = findImage("/mnt/sdcard/dz66.bmp"); -- 在全屏范围找到第一个路径为"/mnt/sdcar/a.bmp"的图片, 将其左上角坐标保存到变量x和y中
             if x ~= -1 and y ~= -1 then            -- 如果找到了
                 touchDown(0, x, y);                -- 点击那个点
@@ -18,25 +18,25 @@
 --点赞
     function dianzan()
         filelike();
-        msleeprandrand(3000);--点赞
+        msleeprand(3000);--点赞
             x, y = findImageFuzzy("/mnt/sdcard/XX.bmp",0x4c5154); 
              if x ~= -1 and y ~= -1 then            
                  touchDown(0, x+98, y+40);          -- 点击那个点
                  touchUp(0);
-                 -- notifyMessage("msleeprandrand",3000);
+                 -- notifyMessage("msleeprand",3000);
              end  
-        msleeprandrand(2000);
+        msleeprand(2000);
         btnlefttop();
     end
 --评论
     function plinfo()
         filelike();
-          msleeprandrand(3000);--评论
+          msleeprand(3000);--评论
             x, y = findImageFuzzy("/mnt/sdcard/PP.bmp",0x4c5154); 
             if x ~= -1 and y ~= -1 then            -- 如果找到了
                 touchDown(0, x, y);                -- 点击那个点
                 touchUp(0);
-                msleeprandrand(2000);
+                msleeprand(2000);
                 -- os.execute("input text \"asdasd\"");
 
                 a = {"666", 
@@ -46,18 +46,18 @@
                     "32个赞",
                     "我差点信了",
                     "开鲁咯！",
-                    "上线5黑，赶紧的",
+                    "哈哈哈！",
                 }
                 a_num=math.random(1,#a);
                 inputText(a[a_num]);
 
-                msleeprandrand(2000);
+                msleeprand(2000);
                 clickarea(170,1059,464,1120); --点击键盘空格键
-                msleeprandrand(2000);
+                msleeprand(2000);
                 clickarea(490,1060,626,1120); --点击发送   
             end
 
-        msleeprandrand(2000);
+        msleeprand(2000);
         btnlefttop();
     end
 
@@ -80,19 +80,19 @@
         filesend();
     end
 
-    msleeprandrand(2000);
+    msleeprand(2000);
     clickarea(346,1050,480,1128);--点击发现
-    msleeprandrand(2000);
+    msleeprand(2000);
     clickarea(10,164,630,234);--点击朋友圈
-    msleeprandrand(2000);
+    msleeprand(2000);
     clickarea(566,65,612,100);--右上角
-    msleeprandrand(2000);   
+    msleeprand(2000);   
     zdl();  --知道了
-    msleeprandrand(2000);
+    msleeprand(2000);
     clickarea(6,940,632,1024);--从手机相册选择
 
 
-    msleeprandrand(3000); --点击相册
+    msleeprand(3000); --点击相册
     if fphoparame=='1' then      
         clickarea(6,130,630,235)
     end
@@ -125,10 +125,10 @@
         clickarea(6,936,630,1040)
     end
 
-    msleeprandrand(3000); --点击移动
+    msleeprand(3000); --点击移动
     clickmove();
 
-    msleeprandrand(3000);
+    msleeprand(3000);
 
         tp=math.random(1, 9);--随机点击图片数量
         for i=1,tp do
@@ -144,14 +144,14 @@
         end
 
 
-    msleeprandrand(3000);
+    msleeprand(3000);
     clickarea(520,1070,618,1108);--选好图片点击完成
 
-    msleeprandrand(2000);
+    msleeprand(2000);
     clickarea(40,154,584,186);--点击进入输入框
 
   
-     msleeprandrand(3000);
+     msleeprand(3000);
         cirstr=getcir();
         inputText(cirstr);
         -- a = {"666", 
@@ -168,10 +168,10 @@
 
 
 
-        msleeprandrand(3000);
+        msleeprand(3000);
         clickarea(554,62,622,98); --点击发送  
 
-        msleeprandrand(3000);
+        msleeprand(3000);
         btnlefttop();--点击坐上角返回
 
     end
@@ -194,18 +194,18 @@
     end
 
 
-        msleeprandrand(2000);
+        msleeprand(2000);
         clickarea(510,1046,624,1124); --点击我
-        msleeprandrand(2000);
+        msleeprand(2000);
         clickarea(10,170,630,320);--点击头部栏信息
-        msleeprandrand(2000);
+        msleeprand(2000);
         clickarea(6,164,632,314);--点击头像
-        msleeprandrand(2000);
+        msleeprand(2000);
         btnrighttop();--点击个人头像右上角选择
-        msleeprandrand(3000);
+        msleeprand(3000);
         clickarea(6,840,632,924);--点击从手机相册选择
 
-        msleeprandrand(3000); --点击相册
+        msleeprand(3000); --点击相册
         if aphoparame=='1' then      
             clickarea(6,130,630,286)
         end
@@ -230,10 +230,10 @@
             clickarea(6,950,630,1120)
         end
 
-        msleeprandrand(2000); --点击移动
+        msleeprand(2000); --点击移动
         clickmove();
 
-        msleeprandrand(4000);
+        msleeprand(4000);
     -- notifyMessage('sdfsdf',5000); 
         st=(math.random(0, 10000)%4)*156-20;
         if st<156 then
@@ -245,13 +245,13 @@
         end
         click(st,dt);--随机选择图片
 
-        msleeprandrand(3000);
+        msleeprand(3000);
         clickarea(540,1040,616,1076);--选取图片
 
-        msleeprandrand(3000);
+        msleeprand(3000);
         btnlefttop();
 
-        msleeprandrand(2000);
+        msleeprand(2000);
         btnlefttop();--点击坐上角返回
     end
 
@@ -270,19 +270,19 @@
         friend();
     end
 
-        msleeprandrand(2000);
+        msleeprand(2000);
         clickarea(346,1050,480,1128);--点击发现
-        msleeprandrand(2000);
+        msleeprand(2000);
         clickarea(10,164,630,234);--点击朋友圈
-        msleeprandrand(2000);
+        msleeprand(2000);
         clickarea(8,136,632,506);--轻触设置相册封面    
-        msleeprandrand(3000);
+        msleeprand(3000);
         clickarea(6,940,632,1020);--点击更改相册封面
-        msleeprandrand(2000);
+        msleeprand(2000);
         clickarea(6,164,632,240);--从手机相册选择
 
 
-        msleeprandrand(3000); --点击相册
+        msleeprand(3000); --点击相册
         if afphoparame=='1' then      
             clickarea(6,130,630,286)
         end
@@ -307,10 +307,10 @@
             clickarea(6,950,630,1120)
         end
 
-        msleeprandrand(2000); --点击移动
+        msleeprand(2000); --点击移动
         clickmove();
 
-        msleeprandrand(4000);
+        msleeprand(4000);
     -- notifyMessage('sdfsdf',5000); 
         st=(math.random(0, 10000)%4)*157-20;
 
@@ -320,13 +320,13 @@
         end
         click(st,dt);--随机选择图片
 
-        msleeprandrand(3000);
+        msleeprand(3000);
         clickarea(540,1040,616,1076);--选取图片
 
-        msleeprandrand(3000);
+        msleeprand(3000);
         btnlefttop();
 
-        msleeprandrand(2000);
+        msleeprand(2000);
         btnlefttop();--点击坐上角返回
     end
 
@@ -336,20 +336,20 @@
 
     --个性签名
     function runame()
-    msleeprandrand(2000);
+    msleeprand(2000);
     clickarea(510,1046,624,1124);--点击我
-    msleeprandrand(2000);
+    msleeprand(2000);
     clickarea(10,170,630,320);--点击头部信息
-    msleeprandrand(2000);
+    msleeprand(2000);
     clickarea(6,894,632,992);--点击个性签名
 
-    msleeprandrand(2000);
+    msleeprand(2000);
     clickrand(632,310);--点击进入输入框
-    msleeprandrand(2000);
+    msleeprand(2000);
     str="\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b";
 
 
-     msleeprandrand(3000);
+     msleeprand(3000);
 --[[
         a = {"今天天气很不错", 
             "这鬼天气，晒成狗了", 
@@ -376,10 +376,10 @@
 
         
 
-        msleeprandrand(2000);
+        msleeprand(2000);
         clickarea(550,62,622,100); --点击完成
 
-        msleeprandrand(2000);
+        msleeprand(2000);
         btnlefttop();--点击坐上角返回
 
     end
@@ -416,8 +416,8 @@
 
     -- end
 
-function frinedinfo()
-    friendtext='';
+function frinedinfo(addparame)
+    friendtext=addparame;
     if string.len(friendtext)>0 then--是否自定义申请增加微信信息     
         msleeprand(1000);
         str="\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b";
@@ -430,24 +430,41 @@ function frinedinfo()
     end
 
     btnrighttop();--发送信息
-    msleeprand(7000);
+    msleeprand(3000);
 end
-function address()
+
+function address()  --添加通讯录
+        info=runparame();        
+        if info==nil or info=='' then
+            notifyMessage('没有得到指令',2000);
+            address();
+        end
+
+        addparame=getparamecom(info,'mustt_adtext');
+        if addparame==nil or addparame=='' then
+            notifyMessage('没有得到指令参数',2000);
+            address();
+        end
+
+
         for i=1,5 do
             msleeprand(2000);               
-            tc=addfriend();         
+            tc=addfriend(addparame);         
             if tc==0 then
                 break;
             end
         end
 end
+
+
+
 --增加朋友
-function addfriend()
+function addfriend(addparame)
     clickarea(190,1050,306,1128);
-    msleeprandrand(3000);
+    msleeprand(1000);
     clickrand(311,196);
-    msleeprandrand(3000);
-    m=seachfrinedcode();    
+    msleeprand(1000);
+    m=seachfrinedcode(addparame);    
     if m==0 then
         return 0;
     else
@@ -455,7 +472,7 @@ function addfriend()
     end
 end
 --搜索朋友
-function seachfrinedcode()
+function seachfrinedcode(addparame)
     friendsex = '关闭';
     clickrand(296,79);
     str="\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b";
@@ -468,15 +485,15 @@ function seachfrinedcode()
     inputText(str..mobile);
 
 
-    msleeprand(2000);
+    msleeprand(1000);
     clickarea(29,211,608,311);--搜索
-    msleeprand(4000);
+    msleeprand(2000);
     
     myjg=textlocal(136,397,472,467);
 
     if string.match(myjg,'无结果')=='无结果' then     
         msleeprand(1000);
-        seachfrinedcode();
+        seachfrinedcode(addparame);
         return 1;
     end
 
@@ -487,7 +504,7 @@ function seachfrinedcode()
         
         if string.match(msgfr,'过于')=='过于' then
             clickrand(320,653);
-            msleeprand(2000);
+            msleeprand(1000);
             btnrighttop();--取消
             msleeprand(2000);
             btnlefttop();--返回
@@ -495,7 +512,7 @@ function seachfrinedcode()
         end
         clickrand(320,653);
         msleeprand(1000);
-        seachfrinedcode();
+        seachfrinedcode(addparame);
         return 1;
         --btnrighttop();--取消
         --msleeprand(2000);
@@ -504,36 +521,36 @@ function seachfrinedcode()
     findtext=textlocal(121,388,515,475);
     if string.match(findtext,'田')=='田' then
         notifyMessage('没有找着');
-        seachfrinedcode();
+        seachfrinedcode(addparame);
     end 
 
     local ifv = seachcolorreturn(0xf37e7d,169,173,635,316); 
     if ifv==1 and friendsex=='女' then
             seachcolor(0x06bf04,6,394,637,1037);--增加到通讯录 按颜色查找通讯录
            -- clickrand(374,734);--
-            msleeprand(3000);
-            frinedinfo();
+            msleeprand(1500);
+            frinedinfo(addparame);
     end
 
     if ifv==0 and friendsex=='男' then
             seachcolor(0x06bf04,6,394,637,1037);--增加到通讯录 按颜色查找通讯录
            -- clickrand(374,734);--
-            msleeprand(3000);
-            frinedinfo();
+            msleeprand(1500);
+            frinedinfo(addparame);
     end
 
     if friendsex=='关闭' then
             seachcolor(0x06bf04,6,394,637,1037);--增加到通讯录 按颜色查找通讯录
            -- clickrand(374,734);--
-            msleeprand(3000);
-            frinedinfo();
+            msleeprand(1500);
+            frinedinfo(addparame);
     end
     
     btnlefttop();--返回
-    msleeprand(2000);
+    msleeprand(1000);
 
     btnrighttop();--取消
-    msleeprand(2000);
+    msleeprand(1000);
 
     btnlefttop();--返回
     return 1;
@@ -542,27 +559,27 @@ end
 
  --修改名字
     function finame()
-        msleeprandrand(2000);
+        msleeprand(2000);
         clickarea(510,1046,624,1124);--点击我
-        msleeprandrand(2000);
+        msleeprand(2000);
         clickarea(10,170,630,320);--点击头部信息
-        msleeprandrand(2000);
+        msleeprand(2000);
         clickarea(6,324,630,404);--点击个人信息下的名字
 
-        msleeprandrand(2000);
+        msleeprand(2000);
         str="\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b";
         inputText(str);--删除键
 
-        msleeprandrand(3000);
+        msleeprand(3000);
 
         wxn=getweixiname();
 
         inputText(wxn);
 
-        msleeprandrand(2000);
+        msleeprand(2000);
         clickarea(490,1058,624,1120); --点击完成
 
-        msleeprandrand(2000);
+        msleeprand(2000);
         btnlefttop();--点击坐上角返回
     end
 
@@ -581,17 +598,17 @@ end
             sexb();
         end
 
-        msleeprandrand(2000);
+        msleeprand(2000);
         clickarea(510,1046,624,1124);--点击我
-        msleeprandrand(2000);
+        msleeprand(2000);
         clickarea(10,170,630,320);--点击头部信息
-        msleeprandrand(2000);
+        msleeprand(2000);
         clickarea(6,720,632,796);--点击性别
 
-        msleeprandrand(2000);
+        msleeprand(2000);
         sexfun(sexparame);--更改性别
 
-        msleeprandrand(2000);
+        msleeprand(2000);
         btnlefttop();--点击坐上角返回
     end
 

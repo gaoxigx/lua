@@ -7,7 +7,7 @@ gsinfo='';
 weixiinfo={};
 function main()
 
-	insetinfo();
+	--insetinfo();
 	require "comm";
 	require "action";	
 	require "post";
