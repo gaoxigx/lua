@@ -446,7 +446,20 @@ function datefriendinfo()
         notifyMessage('没有找着');
         datefriendinfo();
     end 
-    friendmobiletypeset(mobile,2);
+
+
+    local ifv = seachcolorreturn(0xf37e7d,169,173,635,316); 
+    if ifv==1 then
+           -- seachcolor(0x06bf04,6,394,637,1037);--增加到通讯录 按颜色查找通讯录
+           -- clickrand(374,734);--
+            notifyMessage('女子');
+            friendmobiletypeset(mobile,3);
+            --msleeprand(3000);
+           -- frinedinfo();
+    else
+    		friendmobiletypeset(mobile,2);
+    end
+    msleeprand(500);
     btnlefttop();--返回
     return datefriendinfo();
 end
