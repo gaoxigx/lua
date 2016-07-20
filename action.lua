@@ -121,18 +121,18 @@ function registerweixi(cd)
 	weixiinfo['pn']=mobile;
 	 ::redo::
 	--点注册按钮
-	msleeprand(2000);
-	seachcolor(0x06bf04,6,394,637,1037);
-	msleeprand(2000);
+	msleeprand(1000);
+	--seachcolor(0x06bf04,6,394,637,1037);
+	clickarea(47,526,568,608);
 	--确认发送短信
 	sendmobile();
-	msleeprand(2000);
+	msleeprand(1000);
 
 	textmsg=textlocal(58,134,601,238);
 	if string.match(textmsg,'马')~='马' then		
 		goto redo;
 	end
-
+	ysmsleepadd('正石马',23,143,628,266)--延时
 	--输入验证码	
 	verifyinfo=getverify(mboile);	
 	--inputtextnumberrorn(6);--输入错误

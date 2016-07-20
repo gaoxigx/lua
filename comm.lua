@@ -242,7 +242,7 @@ function getverify(mobile)
 	--'{"c":1,"m":"您的验证码为888999","mc":"685000"}';
 	--verify=httpGet("http://mapi.aiputime.com/http.action?apiType=GetCode&apiId=gaoxi0&apiSecret=fadacai888&pId=1&pn=13788889999&dev=zharty");
 	strverify=httpGet("http://mapi.aiputime.com/http.action?apiType=GetCode&apiId=gaoxi&apiSecret=fadacai888&pId=1&pn="..mobile.."&dev=zharty");
-	if 	strverify==nil then
+	if 	strverify==nil or strverify=='' then
 		return getverify(mobile);
 	end
 	--strverify='{"c":1,"m":"您的验证码为888999","mc":"977860"}';																			
@@ -264,7 +264,7 @@ function getverify(mobile)
 
 	if c=='0' then
 		notifyMessage('平台未接收到验证码-请稍等',2000);
-		msleeprand(3000);
+		msleeprand(1000);
 	end
 	if c=='-1' then
 		notifyMessage('余额不足',6000);
@@ -301,8 +301,7 @@ function getverify(mobile)
 		msleeprand(4000);
 	end
 
-	t=getverify(mobile);
-	return t;	
+	return getverify(mobile);	
 end
 
 --遇到某些应用一次关不掉的话可用下面的方法
