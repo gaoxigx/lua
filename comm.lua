@@ -112,7 +112,7 @@ end
 --加入专属对接
 function exclusive(joinarte)
    strexclusive=httpGet('http://mapi.aiputime.com/http.action?apiType=JoinBusi&apiId='..joinarte['abcuser']..'&apiSecret='..joinarte['abcpwd']..'&busiKey='..joinarte['joinbusi']);
-   if strexclusive==nil then
+   if strexclusive==nil or strexclusive=='' then
 		exclusive(joinarte);
    end
    c=string.sub(strexclusive,string.find(strexclusive,':')+1,string.len(strexclusive)-1);
@@ -138,17 +138,18 @@ function queryexclusive(join)
 	--WXZC250X00
 	--WXZC123123
 	--9Ew6maOrdc
+	--wDaPJCXDUZ	
    strexclusive=httpGet('http://mapi.aiputime.com/http.action?apiType=QuitBusi&apiId='..join['abcuser']..'&apiSecret='..join['abcpwd']..'&busiKey='..join['joinbusi']);
    c=string.sub(strexclusive,string.find(strexclusive,':')+1,string.len(strexclusive)-1);	
    if c=='1' then
    	  return 1;
    end	
-   str='网络错误';
-    if c=='-10' then str='账户不存在或密码错误' end
-    if c=='-80' then str='传递的参数不正确' end
-    if c=='-81' then str='不存在此对接' end
-    if c=='-82' then str='用户已加入此对接' end
-    if c=='-83' then str='加入或创建的专属对接数量超过限制' end
+    str='网络错误';
+    if c=='-10' then str='账户不存在或密码错误'; end
+    if c=='-80' then str='传递的参数不正确'; end
+    if c=='-81' then str='不存在此对接'; end
+    if c=='-82' then str='用户已加入此对接'; end
+    if c=='-83' then str='加入或创建的专属对接数量超过限制'; end
    notifyMessage(str,5000);
    queryexclusive(join);
 end
@@ -160,8 +161,7 @@ function getmobile()
 		notifyMessage('网速太慢或已断网',2000);
 		getmobile();
 	end
-	joinary={};
-	notifyMessage(hpone,5000);
+	joinary={};	
 	joinary['abcuser']=getparamecom(hpone,'abcuser')--平台用户名
 	joinary['abcpwd']=getparamecom(hpone,'abcpwd')--平台密码
 	joinary['joinbusi']=getparamecom(hpone,'joinbusi');--对接码;
@@ -169,7 +169,7 @@ function getmobile()
 	exclusive(joinary);
 	--'{"c":1,"data":["15818618500"]}';	
 	--mobile=httpGet("http://mapi.aiputime.com/http.action?apiType=GetPhone&apiId=gaoxi0&apiSecret=fadacai888&pId=1");
-	strmobile=httpGet("http://mapi.aiputime.com/http.action?apiType=GetPhone&apiId="..joinary['abcuser'].."&apiSecret="..joinary['abcpwd'].."&pId=1");
+	strmobile=httpGet("http://mapi.aiputime.com/http.action?apiType=GetPhone&apiId="..joinary['abcuser'].."&apiSecret="..joinary['abcpwd'].."&pId=1");	
 	--strmobile='{"c":1,"data":["15818618500"]}';
 	if strmobile==nil then
 		notifyMessage('网络状态不好重新获取',2000);

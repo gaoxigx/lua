@@ -112,7 +112,7 @@ function registerweixi(cd)
 	--click(305,426);	
 	clickarea(220,388,525,457);
 	msleeprand(1000);
-	inputtextnumberror();
+	--inputtextnumberror();
 	--得到手机号码
 
 	mboile=getmobile();
@@ -135,11 +135,10 @@ function registerweixi(cd)
 
 	--输入验证码	
 	verifyinfo=getverify(mboile);	
-	msleeprand(2000);
-	inputtextnumberrorn(6);--输入错误
+	--inputtextnumberrorn(6);--输入错误
 	msleeprand(500);
 	inputtextstr(verifyinfo);
-	msleeprand(2000);
+	msleeprand(1000);
 	clickarea(35,497,602,568);
 	--seachcolor(0x06bd04,6,394,637,1037);--点提交	
 	textmsg=textlocal(37,761,599,831)
@@ -147,7 +146,7 @@ function registerweixi(cd)
 		clickarea(37,761,599,831);
 	end
 
-	ysmsleeprandadd('完善个人',23,134,628,289)--延时
+	ysmsleepadd('完善个人',23,134,628,289)--延时
 
 	--clickarea(245,346,394,497);
 	--runcodenmb=getparame(gsinfo,'photo');--得到对应的值
@@ -213,9 +212,8 @@ end
 --注册时输入昵称
 function reigistinputwxname(str)
 	clickarea(125,568,586,639);
-	msleeprand(1000);
 	msleeprand(500);
-	inputtexterror();
+	--inputtexterror();
 	inputtextstr(str);--输入昵称	
 end
 --设备密码
