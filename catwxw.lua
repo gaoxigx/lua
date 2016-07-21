@@ -336,20 +336,20 @@
 
     --个性签名
     function runame()
-    msleeprand(2000);
+    msleeprand(1000);
     clickarea(510,1046,624,1124);--点击我
-    msleeprand(2000);
+    msleeprand(1000);
     clickarea(10,170,630,320);--点击头部信息
-    msleeprand(2000);
+    msleeprand(1000);
     clickarea(6,894,632,992);--点击个性签名
 
-    msleeprand(2000);
+    msleeprand(1000);
     clickrand(632,310);--点击进入输入框
     msleeprand(2000);
-    str="\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b";
+    str="\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b";
 
 
-     msleeprand(3000);
+     msleeprand(2000);
 --[[
         a = {"今天天气很不错", 
             "这鬼天气，晒成狗了", 
@@ -362,7 +362,7 @@
         }
         a_num=math.random(1,#a);
         --]]
-        signstr=getsiing();
+        signstr=string.gsub(getsiing(),' ','');--去除空格
         if signstr==0 then
             notifyMessage('数据库里个性签名语录已用完',2000);
             os.exit();
@@ -379,7 +379,7 @@
         msleeprand(2000);
         clickarea(550,62,622,100); --点击完成
 
-        msleeprand(2000);
+        msleeprand(1000);
         btnlefttop();--点击坐上角返回
 
     end

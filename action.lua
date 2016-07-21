@@ -95,7 +95,7 @@ function registerweixi(cd)
 	openweiximsg()--打开微信后弹框
 	msleeprand(2000);
 	seachcolor(0x06bf04,6,394,637,1037);--点注册
-	msleeprand(1000);
+	--msleeprand(2000);
 	--[[
 	--是否进入微信号
 	textmsg=textlocal(20,121,622,275);
@@ -108,8 +108,7 @@ function registerweixi(cd)
 		msleeprand(500);
 	end
     --]]
-	msleeprand(2000);
-	--click(305,426);	
+	msleeprand(3000);
 	clickarea(220,388,525,457);
 	msleeprand(1000);
 	--inputtextnumberror();
@@ -246,7 +245,7 @@ end
 --启动登入微信
 function loginweixi()
 	openweixi();--打开微信
-	msleeprand(2000);	
+	msleeprand(2500);	
 	openweiximsg();--打开微信后弹框
 
 	msleeprand(2000);
@@ -284,43 +283,15 @@ end
 --启动dhfakei恢复
 function dhfakei()    
 	appRun('com.workhard.hdfakerset');
-    rotateScreen(0);
-    msleeprand(3);
-    touchDown(6, 524, 636)
-    msleeprand(14);
-    touchUp(6)
-
-    msleeprand(2364);
-    touchDown(4, 96, 1108)
-    msleeprand(98);
-    touchUp(4)
-
-    msleeprand(1000);
-    touchDown(3, 276, 776)
-    msleeprand(64);
-    touchUp(3)
-
-    msleeprand(2000);
-    touchDown(1, 622, 52)
-    msleeprand(65);
-    touchUp(1)
-
-    msleeprand(2000);
-    touchDown(2, 276, 524)
-    msleeprand(82);
-    touchUp(2)
-
-    msleeprand(3000);
-    touchDown(9, 282, 632)
-    msleeprand(82);
-    touchUp(9)
-	
-	msleeprand(3000);
-    keyDown('HOME');
-    msleeprand(176);
-    keyUp('HOME');
-
-    msleeprand(1000);
+	mSleep(1000);
+	click(106,1076);
+	mSleep(800);
+	click(215,774);
+	mSleep(800);
+	click(572,80);
+	mSleep(800);
+	click(323,538);
+	mSleep(8000);
 end
 
 
@@ -459,7 +430,7 @@ function datefriendinfo()
     else
     		friendmobiletypeset(mobile,2);
     end
-    msleeprand(500);
+    msleeprand(1000);
     btnlefttop();--返回
     return datefriendinfo();
 end

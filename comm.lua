@@ -259,7 +259,7 @@ function getverify(mobile)
 	
 	if c=='-2' then
 		notifyMessage('号码存不在了',2000);
-		return 0;
+		msleeprand(1000);
 	end
 
 	if c=='0' then
