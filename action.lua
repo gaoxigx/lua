@@ -119,24 +119,25 @@ function registerweixi(cd)
 	--输入手机号码
 	inputtextverify(mboile,209,385,623,455,11);
 	weixiinfo['pn']=mobile;
-	 ::redo::
+
 	--点注册按钮
 	msleeprand(1000);
 	--seachcolor(0x06bf04,6,394,637,1037);
 	clickarea(47,526,568,608);
 	--确认发送短信
-	sendmobile();
-	msleeprand(1000);
+	--确认发送手机短信
+	msleeprand(2000);
+ 	clickrand(449,665);
 
-	textmsg=textlocal(58,134,601,238);
-	if string.match(textmsg,'马')~='马' then		
-		goto redo;
-	end
-	ysmsleepadd('正石马',23,143,628,266)--延时
+
+	msleeprand(1000);
+    
+	ysmsleepadd('正石马',23,120,628,266)--延时
 	--输入验证码	
 	verifyinfo=getverify(mboile);	
+
 	--inputtextnumberrorn(6);--输入错误
-	msleeprand(500);
+	msleeprand(2000);
 	inputtextstr(verifyinfo);
 	msleeprand(1000);
 	clickarea(35,497,602,568);
