@@ -74,17 +74,15 @@ function backuphd(mobile,pwd)
 	appRun('com.workhard.hdfakerset');
 	msleeprand(1000);	
 	click(139,1064);--操作
-	msleeprand(1000);
+	msleeprand(500);
 	click(293,675);--备份数据
-	msleeprand(1000);
+	msleeprand(500);
 	click(557,82);--开始备份
-	msleeprand(3000);
-	inputtextstr(mobile..'-'..pwd);--更改名字
-	msleeprand(4000);
-	msleeprand(2000); 
-	click(326,304);--开始备份
-	msleeprand(3000);
+	msleeprand(2000);
+	click(317,353);--开始备份
+	msleeprand(4500);
 	click(323,657);--点完成
+	msleeprand(500);
 end
 
 --注册入口
@@ -95,11 +93,12 @@ function registerweixi(cd)
 	openweiximsg()--打开微信后弹框
 	msleeprand(2000);
 	seachcolor(0x06bf04,6,394,637,1037);--点注册
+
+
 	--msleeprand(2000);
 	--[[
 	--是否进入微信号
 	textmsg=textlocal(20,121,622,275);
-
 	if string.match(textmsg,'手木凡号')~='手木凡号' then		
 		msleeprand(5000);	
 	    clickrand(320,1074);--点更多
@@ -108,30 +107,29 @@ function registerweixi(cd)
 		msleeprand(500);
 	end
     --]]
-	msleeprand(3000);
-	clickarea(220,388,525,457);
+
+    ysmsleepadd('手木',43,118,599,245)--延时
+
+	msleeprand(500);
+	click(436,420);
 	msleeprand(1000);
 	--inputtextnumberror();
 	--得到手机号码
 
 	mboile=getmobile();
 	--输入手机号码
-	inputtextverify(mboile,209,385,623,455,11);
+	inputtextstr(mboile,209,385,623,455,11);
 	weixiinfo['pn']=mobile;
-
 	--点注册按钮
 	msleeprand(1000);
-	--seachcolor(0x06bf04,6,394,637,1037);
 	clickarea(47,526,568,608);
-	--确认发送短信
+
 	--确认发送手机短信
-	msleeprand(2000);
- 	clickrand(449,665);
-
-
 	msleeprand(1000);
-    
-	ysmsleepadd('正石马',23,120,628,266)--延时
+	ysmsleepadd('发送',60,442,576,600)--延时
+ 	clickarea(325,626,580,700);
+	msleeprand(3000);
+	--ysmsleepadd('正石马',23,120,628,266)--延时
 	--输入验证码	
 	verifyinfo=getverify(mboile);	
 
@@ -161,15 +159,16 @@ function registerweixi(cd)
     
 	msleeprand(2000);
 	
-	strpwd='168168';	
+	strpwd='asd168168';	
 	weixiinfo['pwd']=strpwd;
 	saveweixiweb(weixiinfo);
 	
 	gerxi=mobile..'---'..strpwd..'---'..str;
 	writeonestr("/var/touchelf/scripts/scriptfile/pwd.txt",gerxi);
 	msleeprand(3000);
-	filepaw(strpwd);
-	backuphd(mobile,strpwd);
+	filepaw(strpwd);--创建密码
+	filewxhao();--设置微信号
+	backuphd(mobile,strpwd);--开始备份
 end
 
 
@@ -218,47 +217,102 @@ function reigistinputwxname(str)
 end
 --设备密码
 function filepaw(pwdstr)
-		msleeprand(3000);
+		msleeprand(1000);
         clickarea(500,1046,624,1124);--点击我
-        msleeprand(2000);
+        msleeprand(1000);
         clickarea(4,808,632,880);--点击设置
-        msleeprand(2000);
+        msleeprand(1000);
         clickarea(6,160,629,235);--点击帐号与安全
-        msleeprand(2000);
+        msleeprand(1000);
         clickarea(4,678,634,756);--点击微信密码
-        msleeprand(3000);
-        
-
+        msleeprand(1000); 
         clickarea(224,407,620,472);--点击密码
         msleeprand(3000);
         inputtextstr(pwdstr);
         msleeprand(2000);
         clickarea(224,450,515,565);--点击确认密码
-        msleeprand(1000);
+        msleeprand(2000);
         inputtextstr(pwdstr);
         msleeprand(2000);
         clickarea(558,68,622,98);--点击完成
-        msleeprand(2000);
+        msleeprand(1000);
+        btnlefttop();
+        msleeprand(1000);
+        btnlefttop();
+
 end    
 
 
- 
+
+--设置微信号
+function filewxhao()
+	msleeprand(1000);
+    clickarea(500,1046,624,1124);--点击我
+    msleeprand(1000);
+    clickarea(4,808,632,880);--点击设置
+    msleeprand(1000);
+    clickarea(6,160,629,235);--点击帐号与安全
+    msleeprand(1000);
+    clickarea(6,160,634,236);--微信号
+    msleeprand(1000);
+
+    weixiinput();--输入微信号
+
+    msleeprand(3000);
+    btnlefttop();
+    msleeprand(1000);
+    btnlefttop();
+    msleeprand(1000);
+    btnlefttop();
+end
+
+function weixiinput()
+	s = randomStrnum(8) --生成8位随机字母
+    inputtextstr(s);
+    
+    msleeprand(2000);--保存
+    btnrighttop();
+
+    msleeprand(4000);
+	clickarea(326,639,580,700);--点击确定
+
+	msleeprand(2000);
+	codeycz=textlocal(60,452,572,600);--帐号已存在提示框
+	if(string.match(codeycz,'失败')=='失败') then			
+		clickarea(59,620,577,687);--点击确定
+		weixiinput();
+	end
+	
+end
+
+
 --启动登入微信
 function loginweixi()
 	openweixi();--打开微信
-	msleeprand(2500);	
-	openweiximsg();--打开微信后弹框
-
+	msleeprand(3000);	
+	openweiximsg();--打开微信后弹框	
+	msleeprand(500);
+	codexin=textlocal(191,52,440,113);
+	if(string.match(codexin,'信')=='信') then			
+		return 1;
+	end
 	msleeprand(2000);
-
 	codedh=textlocal(60,406,580,640);--封号提示框
-	if(string.match(codedh,'圭甘号')=='圭甘号') then			
+	if(string.match(codedh,'圭寸')=='圭寸') then			
 		clickarea(60,662,312,734);--点击取消
+		return 0;
+	end
+
+	codecx=textlocal(64,482,572,572);--登录错误
+	if(string.match(codecx,'重亲斤')=='重亲斤') then			
+		clickarea(64,597,575,662);--点击取消
+		return 0;
 	end
 
 	codecw=textlocal(60,478,572,572);--密码错误
 	if(string.match(codecw,'密石马')=='密石马') then			
 		clickarea(56,600,576,668);--点击确定
+		return 0;
 	end
 
 	msleeprand(1000);
@@ -368,7 +422,8 @@ function datectionmobile()
 end
 --运行手机号码是否则存在
 function datefriendinfo()
-    friendsex = '关闭';
+
+	ysmsleepadd('肖',544,56,632,106);
    	msleeprand(1000);
     clickrand(296,79);
     str="\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b";
@@ -415,8 +470,8 @@ function datefriendinfo()
 
     findtext=textlocal(121,388,515,475);
     if string.match(findtext,'田')=='田' then
-        notifyMessage('没有找着');
-        datefriendinfo();
+        notifyMessage('没有找着');        
+        return datefriendinfo();
     end 
 
 
@@ -431,7 +486,8 @@ function datefriendinfo()
     else
     		friendmobiletypeset(mobile,2);
     end
-    msleeprand(1000);
+
+	ysmsleepadd('田',222,58,425,110);
     btnlefttop();--返回
     return datefriendinfo();
 end

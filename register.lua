@@ -29,6 +29,8 @@ function registerrcb(parame)
     if parame=='1010' then   emailvfun(); end --绑定邮箱  
     if parame=='1011' then   finame(); end --修改名字
     if parame=='1012' then   sexb(); end --修改性别
+    if parame=='1013' then   ressname(); end --发送名片
+   
     if parame=='1020' then   datectionmobile(); end --检查手机号码是否存在
     return 1;
     ---------必须操事情-------
