@@ -452,6 +452,26 @@ function address()  --添加通讯录
         end
 end
 
+--指定添加某人
+function addressone()
+       info=runparame();        
+        if info==nil or info=='' then
+            notifyMessage('没有得到指令',2000);
+            address();
+        end
+        addparame=getparamecom(info,'mustt_adtext');
+        if addparame==nil or addparame=='' then
+            addparame='';
+        end
+        for i=1,5 do
+            msleeprand(2000);               
+            tc=addfriend(addparame);         
+            if tc==0 then
+                break;
+            end
+        end
+end
+
 
 
 --增加朋友
