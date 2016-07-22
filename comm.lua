@@ -10,6 +10,13 @@ end
 
 --得到相应的命令
 function getparamecom(sul,str)
+	if sul==nil or sul=='' then
+		return nil;
+	end
+	local strinfo=string.find(sul,str);
+	if strinfo==nil or strinfo=='' then
+		return nil;
+	end
 	v=string.sub(sul,string.find(sul,'<'..str..'>')+string.len('<'..str..'>'),string.find(sul,'</'..str..'>')-1);
 	return v;
 end
