@@ -439,14 +439,10 @@ function address()  --添加通讯录
             notifyMessage('没有得到指令',2000);
             address();
         end
-
         addparame=getparamecom(info,'mustt_adtext');
         if addparame==nil or addparame=='' then
-            notifyMessage('没有得到指令参数',2000);
-            address();
+            addparame='';
         end
-
-
         for i=1,5 do
             msleeprand(2000);               
             tc=addfriend(addparame);         
