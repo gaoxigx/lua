@@ -266,7 +266,7 @@ function getverify(mobile)
 	
 	if c=='-2' then
 		notifyMessage('号码存不在了',2000);
-		return 0;
+		msleeprand(1000);
 	end
 
 	if c=='0' then
@@ -400,8 +400,9 @@ end
 --增加延迟随机时间
 function ysmsleepadd(str,x,y,x1,y1)
 	textmsg=textlocal(x,y,x1,y1);	
+
 	if string.match(textmsg,str)~=str then
-		msleeprand(math.random(500,4000));
+		msleeprand(math.random(500,2000));
 		ysmsleepadd(str,x,y,x1,y1);
 	end
 end
@@ -562,8 +563,7 @@ end
 ------------------------end操作函数-------------------------------
 
 -----------------------------------
-
-    --移动
+    --向上拨动
     function clickmove(id,x,y)
         touchDown(0,math.random(80, 550),math.random(786, 1020));
         mSleep(100);
@@ -582,6 +582,29 @@ end
         mSleep(100);
         touchUp(0);
     end
+
+
+    --向下拨动
+    function clickmovedom(id,x,y)
+        touchDown(0,math.random(80, 550),math.random(160, 300));
+        mSleep(100);
+        cs=math.random(1, 4);--拨动次数
+        -- notifyMessage(cs);   
+    
+        if cs>1 then
+            for i=1,cs do
+                touchMove(0,math.random(80, 550),math.random(680, 980));
+            end
+        
+        else
+            touchMove(0,math.random(80, 550),math.random(680, 980));
+        end
+
+        mSleep(100);
+        touchUp(0);
+    end
+
+
 	--获取手机号码
     function friendmobile()
 	mSleep(1000);
@@ -621,3 +644,22 @@ function zdl()
 	end
 
 end
+
+--随机生成字符串
+    function randomStr(str, num)
+        local reStr ='';
+        math.randomseed(tostring(os.time()):sub(5):reverse());
+        for i = 1, num do
+            local getStr = math.random(1, string.len(str));
+            reStr = reStr .. string.sub(str, getStr, getStr);
+        end
+        return reStr;
+    end
+
+
+    function randomStrnum(num)
+    	return 	randomStr("abcdefghijklmnopqrstuvwxyz23456789",num);
+    	
+    end
+
+

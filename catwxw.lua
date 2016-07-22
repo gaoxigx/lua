@@ -9,7 +9,7 @@
         clickmove();
 
         msleeprand(2000);
-            x, y = findImage("/mnt/sdcard/dz66.bmp"); -- 在全屏范围找到第一个路径为"/mnt/sdcar/a.bmp"的图片, 将其左上角坐标保存到变量x和y中
+            x, y = findImage("/var/touchelf/scripts/scriptfile/images/dz66.bmp"); -- 在全屏范围找到第一个路径为"/mnt/sdcar/a.bmp"的图片, 将其左上角坐标保存到变量x和y中
             if x ~= -1 and y ~= -1 then            -- 如果找到了
                 touchDown(0, x, y);                -- 点击那个点
                 touchUp(0);
@@ -19,7 +19,7 @@
     function dianzan()
         filelike();
         msleeprand(3000);--点赞
-            x, y = findImageFuzzy("/mnt/sdcard/XX.bmp",0x4c5154); 
+            x, y = findImageFuzzy("/var/touchelf/scripts/scriptfile/images/XX.bmp",0x4c5154); 
              if x ~= -1 and y ~= -1 then            
                  touchDown(0, x+98, y+40);          -- 点击那个点
                  touchUp(0);
@@ -32,7 +32,7 @@
     function plinfo()
         filelike();
           msleeprand(3000);--评论
-            x, y = findImageFuzzy("/mnt/sdcard/PP.bmp",0x4c5154); 
+            x, y = findImageFuzzy("/var/touchelf/scripts/scriptfile/images/PP.bmp",0x4c5154); 
             if x ~= -1 and y ~= -1 then            -- 如果找到了
                 touchDown(0, x, y);                -- 点击那个点
                 touchUp(0);
@@ -126,17 +126,17 @@
     end
 
     msleeprand(3000); --点击移动
-    clickmove();
+    clickmovedom();
 
-    msleeprand(3000);
+    msleeprand(3500);
 
         tp=math.random(1, 9);--随机点击图片数量
         for i=1,tp do
-            st=(math.random(0, 10000)%4)*150-20;
-            if st<150 then
-                st=150;
+            st=(math.random(0, 10000)%4)*152-25;
+            if st<152 then
+                st=152;
             end
-            dt=(math.random(0,10000)%6)*154-20;
+            dt=(math.random(0,10000)%6)*154-125;
             if dt<154 then
                 dt=154;
             end
@@ -336,20 +336,20 @@
 
     --个性签名
     function runame()
-    msleeprand(2000);
+    msleeprand(1000);
     clickarea(510,1046,624,1124);--点击我
-    msleeprand(2000);
+    msleeprand(1000);
     clickarea(10,170,630,320);--点击头部信息
-    msleeprand(2000);
+    msleeprand(1000);
     clickarea(6,894,632,992);--点击个性签名
 
-    msleeprand(2000);
+    msleeprand(1000);
     clickrand(632,310);--点击进入输入框
     msleeprand(2000);
-    str="\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b";
+    str="\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b";
 
 
-     msleeprand(3000);
+     msleeprand(2000);
 --[[
         a = {"今天天气很不错", 
             "这鬼天气，晒成狗了", 
@@ -362,7 +362,7 @@
         }
         a_num=math.random(1,#a);
         --]]
-        signstr=getsiing();
+        signstr=string.gsub(getsiing(),' ','');--去除空格
         if signstr==0 then
             notifyMessage('数据库里个性签名语录已用完',2000);
             os.exit();
@@ -379,7 +379,7 @@
         msleeprand(2000);
         clickarea(550,62,622,100); --点击完成
 
-        msleeprand(2000);
+        msleeprand(1000);
         btnlefttop();--点击坐上角返回
 
     end
@@ -473,12 +473,11 @@ function addressone()
 end
 
 
-
 --增加朋友
 function addfriend(addparame)
-    clickarea(190,1050,306,1128);
+    clickarea(190,1050,306,1128);--点击通讯录
     msleeprand(1000);
-    clickrand(311,196);
+    clickarea(26,152,535,187);--点击搜索框
     msleeprand(1000);
     m=seachfrinedcode(addparame);    
     if m==0 then
@@ -929,4 +928,95 @@ function loginemailjs()
         msleeprand(1000);
         loginemailjs();
     end
+end
+
+
+function ressname() --发送名片
+    info = runparame();
+    if info==nil or info=='' then
+        notifyMessage('没有得到指令',2000);
+        ressname();
+    end
+
+    naparame=getparamecom(info,'mustt_name');
+    if naparame==nil or naparame=='' then
+        notifyMessage('没有得到指令参数',2000);
+        ressname();
+    end
+
+    card(naparame);
+end
+
+
+--发送名片
+
+function card(namestr) 
+    name=fg(namestr,',');
+    clickarea(190,1050,306,1128);--点击通讯录
+    msleeprand(1000);
+    
+    click(317,173);--搜索
+    mSleep(1000);
+    cs=wixiname(name);
+    if cs==0 then
+        notifyMessage('没有找着');
+        return; 
+    end 
+    mSleep(2000);
+    btnright();--个人信息
+    c=getColor(527,421);
+    mSleep(1000);
+    --10066329
+    if c==15461355 then
+        mSleep(1000);
+        click(545,428)--置顶
+    end
+
+
+    mSleep(1000);
+    clickrand(91,223)--个人头像
+
+    mSleep(1000);
+    btnright()--三个点 
+
+    mSleep(1500);
+    click(287,337);--推荐给朋友
+
+    mSleep(500);
+    click(272,326);--选中搜索人
+
+    mSleep(1500);
+    click(302,170);
+
+    inputText(name[cs]);
+
+    mSleep(1500);
+    click(64,239);--选中搜索人
+
+
+    mSleep(2000);
+    clickrand(455,653);--发送
+end
+
+
+ --搜索人名
+function wixiname(name)
+    for x in ipairs(name) do
+        click(286,83);
+        str="\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b";
+        inputText(str..name[x]);----搜索朋友
+        mSleep(1000);
+        fontinfo=textlocal(137,151,548,320);
+        if string.match(fontinfo,'搜')~='搜' and string.match(fontinfo,'网络查')~='网络查' then
+            click(298,277);--选中搜索人
+            mSleep(1000);
+            return x;           
+        end
+    end
+    return 0;
+end   
+
+--微信右向角按钮
+function btnright();
+    clickrand(589,83);
 end
