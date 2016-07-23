@@ -348,8 +348,7 @@
     msleeprand(2000);
     str="\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b";
 
-
-     msleeprand(2000);
+    msleeprand(2000);
 --[[
         a = {"今天天气很不错", 
             "这鬼天气，晒成狗了", 
@@ -459,17 +458,16 @@ function addressone()
             notifyMessage('没有得到指令',2000);
             address();
         end
-        addparame=getparamecom(info,'mustt_adtext');
+        addparame=getparamecom(info,'mustt_grname');
         if addparame==nil or addparame=='' then
             addparame='';
-        end
-        for i=1,5 do
-            msleeprand(2000);               
-            tc=addfriend(addparame);         
-            if tc==0 then
-                break;
-            end
-        end
+        end   
+
+        msleeprand(1000);
+        clickarea(26,152,535,187);--点击搜索框
+        msleeprand(1000);
+        seachfrinedcodeone(addparame);       
+
 end
 
 
@@ -486,12 +484,13 @@ function addfriend(addparame)
         return 1;
     end
 end
+
 --搜索朋友
 function seachfrinedcode(addparame)
     friendsex = '关闭';
     clickrand(296,79);
     str="\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b";
-    mobile=friendmobile();
+    local mobile=friendmobile();
     if mobile==0 or mobile==nil then
         notifyMessage('没有手机号码',1000);   
         return;
@@ -559,6 +558,92 @@ function seachfrinedcode(addparame)
            -- clickrand(374,734);--
             msleeprand(1500);
             frinedinfo(addparame);
+    end
+    
+    btnlefttop();--返回
+    msleeprand(1000);
+
+    btnrighttop();--取消
+    msleeprand(1000);
+
+    btnlefttop();--返回
+    return 1;
+    --seachfrinedcode();
+end
+
+--搜索朋友
+function seachfrinedcodeone(mobileone)
+    friendsex = '关闭';
+    clickrand(296,79);
+    str="\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b";
+    local mobile=mobileone;
+    if mobile==0 or mobile==nil then
+        notifyMessage('没有手机号码',1000);   
+        return;
+    end 
+    mobile=string.sub(mobile,1,11);
+    inputText(str..mobile);
+
+
+    msleeprand(1000);
+    clickarea(29,211,608,311);--搜索
+    msleeprand(2000);
+    
+    myjg=textlocal(136,397,472,467);
+
+    if string.match(myjg,'无结果')=='无结果' then     
+        msleeprand(1000);
+        seachfrinedcode(mobileone);
+        return 1;
+    end
+
+
+    msgfr=textlocal(89,470,557,683);    
+
+    if string.match(msgfr,'失败')=='失败' then
+        
+        if string.match(msgfr,'过于')=='过于' then
+            clickrand(320,653);
+            msleeprand(1000);
+            btnrighttop();--取消
+            msleeprand(2000);
+            btnlefttop();--返回
+            return 0;
+        end
+        clickrand(320,653);
+        msleeprand(1000);
+        seachfrinedcode(mobileone);
+        return 1;
+        --btnrighttop();--取消
+        --msleeprand(2000);
+    end
+
+    findtext=textlocal(121,388,515,475);
+    if string.match(findtext,'田')=='田' then
+        notifyMessage('没有找着');
+        seachfrinedcode(mobileone);
+    end 
+
+    local ifv = seachcolorreturn(0xf37e7d,169,173,635,316); 
+    if ifv==1 and friendsex=='女' then
+            seachcolor(0x06bf04,6,394,637,1037);--增加到通讯录 按颜色查找通讯录
+           -- clickrand(374,734);--
+            msleeprand(1500);
+            frinedinfo(mobileone);
+    end
+
+    if ifv==0 and friendsex=='男' then
+            seachcolor(0x06bf04,6,394,637,1037);--增加到通讯录 按颜色查找通讯录
+           -- clickrand(374,734);--
+            msleeprand(1500);
+            frinedinfo(mobileone);
+    end
+
+    if friendsex=='关闭' then
+            seachcolor(0x06bf04,6,394,637,1037);--增加到通讯录 按颜色查找通讯录
+           -- clickrand(374,734);--
+            msleeprand(1500);
+            frinedinfo(mobileone);
     end
     
     btnlefttop();--返回
