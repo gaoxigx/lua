@@ -14,18 +14,17 @@ function vpn(gsinfo)
 	else
 		click(529,683);
 	end	
-	msleeprand(2000);
+	msleeprand(800);
 	
 	textmsg=textlocal(94,166,559,245);
 	if string.match(textmsg,'VPN')=='VPN' then	
 
-		msleeprand(1000);
 		inputtextstr(vpnuser);
-		msleeprand(1000);
+		msleeprand(600);
 		click(588,1064);
-		msleeprand(2000);
+		msleeprand(800);
 		inputtextstr(vpnpwd);
-		msleeprand(2000);
+		msleeprand(500);
 		click(474, 466);
 		msleeprand(4000);		
 		return 1;
@@ -89,9 +88,10 @@ end
 function registerweixi(cd)
 	weixiinfo['cd']=cd;
 	openweixi();--打开微信
-	msleeprand(3000);	
-	openweiximsg()--打开微信后弹框
-	msleeprand(2000);
+	ysmsleepaddnmb('推送',59,439,581,617,3);	
+	clickarea(131,636,517,702)--点击好
+	-- openweiximsg();
+	msleeprand(200);
 	seachcolor(0x06bf04,6,394,637,1037);--点注册
 
 
@@ -125,7 +125,7 @@ function registerweixi(cd)
 	clickarea(47,526,568,608);
 
 	--确认发送手机短信
-	msleeprand(1000);
+	msleeprand(500);
 	ysmsleepadd('发送',60,442,576,600)--延时
  	clickarea(325,626,580,700);
 	msleeprand(3000);
@@ -219,21 +219,25 @@ end
 function filepaw(pwdstr)
 		msleeprand(1000);
         clickarea(500,1046,624,1124);--点击我
-        msleeprand(1000);
+        msleeprand(400);
         clickarea(4,808,632,880);--点击设置
-        msleeprand(1000);
+        msleeprand(400);
         clickarea(6,160,629,235);--点击帐号与安全
-        msleeprand(1000);
+        msleeprand(400);
         clickarea(4,678,634,756);--点击微信密码
-        msleeprand(1000); 
-        clickarea(224,407,620,472);--点击密码
-        msleeprand(3000);
+        msleeprand(1000);
+		ysmsleepaddnmb('密石马',180,50,470,110,3);
+
+        clickarea(215,425,440,458);--点击密码
+        msleeprand(800);
         inputtextstr(pwdstr);
-        msleeprand(2000);
-        clickarea(224,450,515,565);--点击确认密码
-        msleeprand(2000);
+        msleeprand(2500);
+
+        clickarea(215,512,440,545);--点击确认密码
+        msleeprand(800);
         inputtextstr(pwdstr);
-        msleeprand(2000);
+        msleeprand(2500);
+
         clickarea(558,68,622,98);--点击完成
         msleeprand(1000);
         btnlefttop();
@@ -300,19 +304,16 @@ function loginweixi()
 	codedh=textlocal(60,406,580,640);--封号提示框
 	if(string.match(codedh,'圭寸')=='圭寸') then			
 		clickarea(60,662,312,734);--点击取消
-		return 0;
 	end
 
 	codecx=textlocal(64,482,572,572);--登录错误
 	if(string.match(codecx,'重亲斤')=='重亲斤') then			
 		clickarea(64,597,575,662);--点击取消
-		return 0;
 	end
 
 	codecw=textlocal(60,478,572,572);--密码错误
 	if(string.match(codecw,'密石马')=='密石马') then			
 		clickarea(56,600,576,668);--点击确定
-		return 0;
 	end
 
 	msleeprand(1000);

@@ -1,9 +1,9 @@
 ---------------
 --打开微信弹出信息按钮 
 function openweiximsg()	
-	local msgcode=textlocal(85,630,560,700);		
-	if(string.match(msgcode,"女子")=='女子') then			
-		clickarea(56,633,583,701);
+	local msgcode=textlocal(59,439,581,617);		
+	if(string.match(msgcode,"推送")=="推送") then			
+	clickarea(131,636,517,702);--点击好
 	end
 end
 
@@ -402,9 +402,23 @@ function ysmsleepadd(str,x,y,x1,y1)
 	textmsg=textlocal(x,y,x1,y1);	
 
 	if string.match(textmsg,str)~=str then
-		msleeprand(math.random(500,2000));
+		msleeprand(math.random(500,1000));
 		ysmsleepadd(str,x,y,x1,y1);
 	end
+end
+
+--增加延迟随机次数时间
+function ysmsleepaddnmb(str,x,y,x1,y1,n)
+	textmsg=textlocal(x,y,x1,y1);	
+	if string.match(textmsg,str)~=str then
+		n=n-1;
+		if n>0 then
+			msleeprand(math.random(500,1000));
+			ysmsleepaddnmb(str,x,y,x1,y1,n);	
+		end
+		
+	end
+
 end
 
 
@@ -584,23 +598,42 @@ end
     end
 
 
+    -- --向下拨动
+    -- function clickmovedom(id,x,y)
+    --     touchDown(0,math.random(80, 550),math.random(160, 300));
+    --     mSleep(100);
+    --     cs=math.random(1, 4);--拨动次数
+    --     -- notifyMessage(cs);   
+    
+    --     if cs>1 then
+    --         for i=1,cs do
+    --             touchMove(0,math.random(80, 550),math.random(680, 980));
+    --         end
+        
+    --     else
+    --         touchMove(0,math.random(80, 550),math.random(680, 980));
+    --     end
+
+    --     mSleep(100);
+    --     touchUp(0);
+    -- end
+
     --向下拨动
     function clickmovedom(id,x,y)
-        touchDown(0,math.random(80, 550),math.random(160, 300));
-        mSleep(100);
+        touchDown(0,320,160);
+        mSleep(800);
         cs=math.random(1, 4);--拨动次数
         -- notifyMessage(cs);   
     
         if cs>1 then
             for i=1,cs do
-                touchMove(0,math.random(80, 550),math.random(680, 980));
+                touchMove(0,320,960);
             end
         
         else
-            touchMove(0,math.random(80, 550),math.random(680, 980));
+            touchMove(0,320,960);
         end
 
-        mSleep(100);
         touchUp(0);
     end
 

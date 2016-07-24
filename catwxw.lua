@@ -68,6 +68,7 @@
 
     --发送朋友圈
     function filesend()
+    
     info=runparame();
     if info==nil or info=='' then
         notifyMessage('没有得到指令',2000);
@@ -80,19 +81,19 @@
         filesend();
     end
 
-    msleeprand(2000);
+    msleeprand(1000);
     clickarea(346,1050,480,1128);--点击发现
-    msleeprand(2000);
+    msleeprand(800);
     clickarea(10,164,630,234);--点击朋友圈
-    msleeprand(2000);
+    msleeprand(1000);
     clickarea(566,65,612,100);--右上角
-    msleeprand(2000);   
+    msleeprand(1500);   
     zdl();  --知道了
-    msleeprand(2000);
+    msleeprand(1500);
     clickarea(6,940,632,1024);--从手机相册选择
 
 
-    msleeprand(3000); --点击相册
+    msleeprand(2000); --点击相册
     if fphoparame=='1' then      
         clickarea(6,130,630,235)
     end
@@ -125,16 +126,16 @@
         clickarea(6,936,630,1040)
     end
 
-    msleeprand(3000); --点击移动
+    msleeprand(3500); --点击移动
     clickmovedom();
 
-    msleeprand(3500);
+    msleeprand(3000);
 
         tp=math.random(1, 9);--随机点击图片数量
         for i=1,tp do
-            st=(math.random(0, 10000)%4)*152-25;
-            if st<152 then
-                st=152;
+            st=(math.random(0, 10000)%4)*160-25;
+            if st<160 then
+                st=160;
             end
             dt=(math.random(0,10000)%6)*154-125;
             if dt<154 then
@@ -144,14 +145,14 @@
         end
 
 
-    msleeprand(3000);
+    msleeprand(2000);
     clickarea(520,1070,618,1108);--选好图片点击完成
 
-    msleeprand(2000);
+    msleeprand(1000);
     clickarea(40,154,584,186);--点击进入输入框
 
   
-     msleeprand(3000);
+     msleeprand(1500);
         cirstr=getcir();
         inputText(cirstr);
         -- a = {"666", 
@@ -1000,3 +1001,40 @@ end
 function btnright();
     clickrand(589,83);
 end
+
+
+--删除备份文件
+    function scbf();
+        appRun('com.workhard.hdfakerset');--启动配置hdFaker
+        msleeprand(2000);
+        clickarea(73,1053,131,1125);
+
+        msleeprand(1000);
+        click(300,770);
+
+        msleeprand(1500);
+        touchDown(0, 300, 178);
+        mSleep(1500);--按住1.5秒
+        touchUp(0);
+
+        -- msleeprand(1000);  --查找绿色点
+        -- x, y = findColorInRegionFuzzy(0x00b41f, 90, 4, 130, 514, 1034); -- 在区域范围找到第一个颜色为0x00b41f的点, 精确度为90%
+        -- if x ~= -1 and y ~= -1 then                                      -- 如果找到了
+        --     touchDown(0, x, y);                                          -- 点击那个点
+        --  msleeprand(1500); --按住1.5秒
+        --     touchUp(0);
+        -- end
+
+        msleeprand(1000);
+        x, y = findImageInRegionFuzzy("/var/touchelf/scripts/scriptfile/images/XSC.bmp", 80, 163, 131, 298, 1034, 0x25252a); 
+        if x ~= -1 and y ~= -1 then                                                           -- 如果找到了
+            touchDown(0, x, y);                                                               -- 点击那个点
+            touchUp(0);
+        end
+
+        msleeprand(1000);
+        codesc=textlocal(91,442,544,553);--删除备份文件
+        if(string.match(codesc,'分文')=='分文') then         
+         clickarea(112,585,523,635);--点击确定删除
+        end
+    end
