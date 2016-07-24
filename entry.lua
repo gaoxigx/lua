@@ -35,7 +35,7 @@ function main()
     for i,v in ipairs(k) do     	
     	sul=registerrcb(k[i]);
     	if sul==0 then
-    		return;
+    		break;
     	end
     end
     --]]
