@@ -194,12 +194,10 @@ function getmobile()
 		return mobile;
 	end
 	if c=='-1' then
-		notifyMessage('余额不足',2000);
-		msleeprand(3000);
+		notifyMessage('余额不足',2000);		
 	end
 	if c=='-2' then
-		notifyMessage('不存在可使用的手机号码',2000);
-		msleeprand(1000);
+		notifyMessage('不存在可使用的手机号码',1000);		
 	end
 	if c=='-6' then
 		notifyMessage('您正在使用的手机号超过限制的最大数',2000);
@@ -265,13 +263,11 @@ function getverify(mobile)
 	end
 	
 	if c=='-2' then
-		notifyMessage('号码存不在了',2000);
-		msleeprand(1000);
+		notifyMessage('号码存不在了',2000);		
 	end
-
+	
 	if c=='0' then
-		notifyMessage('平台未接收到验证码-请稍等',2000);
-		msleeprand(1000);
+		notifyMessage('平台未接收到验证码-请稍等',1500);		
 	end
 	if c=='-1' then
 		notifyMessage('余额不足',6000);
