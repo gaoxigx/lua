@@ -171,7 +171,7 @@ function registerweixi(cd)
 	weixiinfo['pwd']=strpwd;
 	saveweixiweb(weixiinfo);
 	
-	gerxi=mobile..'---'..strpwd..'---'..str;
+	gerxi=mobile..'---'..strpwd..'---'..weixiinfo['wn'];
 	writeonestr("/var/touchelf/scripts/scriptfile/pwd.txt",gerxi);
 	msleeprand(1000);
 	filepaw(strpwd);--创建密码
@@ -204,7 +204,7 @@ function saveweixiweb(weixiinfo)
 	end	
 	sult=httpGet(str);
 	if(sult=='1') then
-		notifyMessage('上传数据完成',1500);
+		notifyMessage('已上传数据',1000);
 	end
 end
 
@@ -231,7 +231,7 @@ function filepaw(pwdstr)
 		if(string.match(codexin,'我')~='我') then			
 			 filepaw(pwdstr)
 		end
-		
+
         msleeprand(400);
         clickarea(4,808,632,880);--点击设置
         msleeprand(400);
