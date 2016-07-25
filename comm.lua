@@ -540,7 +540,7 @@ end
 
 --写入一行进文档
 function writeonestr(filePath,str)
-	local file = io.open(filePath,"w")
+	local file = io.open(filePath,"a+")
     assert(file,"file open failed");
     file:write(str);
     file:write("\n");

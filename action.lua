@@ -87,7 +87,7 @@ function backuphd(mobile,pwd)
 end
 
 --注册入口
-function registerweixi(cd)
+function writeonestr(cd)
 	weixiinfo['cd']=cd;
 	openweixi();--打开微信
 	ysmsleepaddnmb('推送',59,439,581,617,3);	
@@ -174,6 +174,7 @@ function registerweixi(cd)
 	gerxi=mobile..'---'..strpwd..'---'..str;
 	writeonestr("/var/touchelf/scripts/scriptfile/pwd.txt",gerxi);
 	msleeprand(3000);
+	
 	filepaw(strpwd);--创建密码
 	filewxhao();--设置微信号
 	backuphd(mobile,strpwd);--开始备份
@@ -203,9 +204,8 @@ function saveweixiweb(weixiinfo)
 		str=str..'&wn='..weixiinfo['wn'];
 	end	
 	sult=httpGet(str);
-
 	if(sult=='1') then
-		notifyMessage('保存成功',5000);
+		notifyMessage('上传数据完成',1500);
 	end
 end
 
