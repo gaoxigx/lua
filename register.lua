@@ -1,5 +1,6 @@
 --注册所有方法程序
 function registerrcb(parame)
+
     ------更换IP---------
     if parame=='101' then   flymodel(); end --执行飞形模式
     if parame=='102' then   vpn(gsinfo);    end --执行vpn
@@ -14,7 +15,10 @@ function registerrcb(parame)
     -------备份信息---------
 
     ---------进入接口-------
-    if parame=='131' then   return registerweixi(getDeviceID());end --执行微信注册
+    if parame=='131' then  
+        local  did= getDeviceID();
+        return registerweixi(did);
+    end --执行微信注册
     if parame=='132' then   return loginweixi();   end --执行微信登入
     ---------进入接口-------
 
