@@ -73,15 +73,15 @@ function backuphd(mobile,pwd)
 	appRun('com.workhard.hdfakerset');
 	msleeprand(1000);	
 	click(139,1064);--操作
-	msleeprand(500);
+	msleeprand(1000);
 	click(293,675);--备份数据
-	msleeprand(500);
+	msleeprand(1000);
 	click(557,82);--开始备份
-	msleeprand(2000);
-	click(317,353);--开始备份
-	msleeprand(4500);
+	msleeprand(2000);	
+	click(313,302);--开始备份
+	msleeprand(6000);
 	click(323,657);--点完成
-	msleeprand(3000);
+	msleeprand(6000);
 end
 
 --注册入口
