@@ -173,7 +173,7 @@ function registerweixi(cd)
 	
 	gerxi=mobile..'---'..strpwd..'---'..str;
 	writeonestr("/var/touchelf/scripts/scriptfile/pwd.txt",gerxi);
-	msleeprand(3000);
+	msleeprand(1000);
 	filepaw(strpwd);--创建密码
 	filewxhao();--设置微信号
 	backuphd(mobile,strpwd);--开始备份
@@ -226,6 +226,12 @@ end
 function filepaw(pwdstr)
 		msleeprand(1000);
         clickarea(500,1046,624,1124);--点击我
+		-- ysmsleepaddnmb('信',191,52,440,113,3);
+		codexin=textlocal(191,52,450,113);
+		if(string.match(codexin,'我')~='我') then			
+			 filepaw(pwdstr)
+		end
+		
         msleeprand(400);
         clickarea(4,808,632,880);--点击设置
         msleeprand(400);
