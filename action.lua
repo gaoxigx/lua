@@ -63,7 +63,9 @@ end
 function reloaddata()
 	msleeprand(1000);	
 	appRun('com.workhard.hdfakerset');
-	msleeprand(1000);
+	msleeprand(1000);	
+	click(139,1064);--操作
+	msleeprand(500);
 	click(152,257);
 	msleeprand(6000);
 end
@@ -264,6 +266,7 @@ function filewxhao()
 
     msleeprand(3000);
     btnlefttop();
+
     msleeprand(1000);
     btnlefttop();
     msleeprand(1000);
@@ -286,6 +289,8 @@ function weixiinput()
 		clickarea(59,620,577,687);--点击确定
 		weixiinput();
 	end
+
+
 	
 end
 
