@@ -679,20 +679,21 @@ function zdl()
 end
 
 --随机生成字符串
-    function randomStr(str, num)
-        local reStr ='';
-        math.randomseed(tostring(os.time()):sub(5):reverse());
-        for i = 1, num do
-            local getStr = math.random(1, string.len(str));
-            reStr = reStr .. string.sub(str, getStr, getStr);
-        end
-        return reStr;
+function randomStr(str, num)
+    local reStr ='';
+    math.randomseed(tostring(os.time()):sub(5):reverse());
+    for i = 1, num do
+        local getStr = math.random(1, string.len(str));
+        reStr = reStr .. string.sub(str, getStr, getStr);
     end
+    return reStr;
+end
+function randomStrnum(num)
+	return 	randomStr("abcdefghijklmnopqrstuvwxyz23456789",num);
+end
+function randomStrnumzm(num)
+	return 	randomStr("abcdefghijklmnopqrstuvwxyz",num);
+end
 
-
-    function randomStrnum(num)
-    	return 	randomStr("abcdefghijklmnopqrstuvwxyz23456789",num);
-    	
-    end
 
 

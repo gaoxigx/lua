@@ -14,7 +14,7 @@ function registerrcb(parame)
     -------备份信息---------
 
     ---------进入接口-------
-    if parame=='131' then   registerweixi(getDeviceID());end --执行微信注册
+    if parame=='131' then   return registerweixi(getDeviceID());end --执行微信注册
     if parame=='132' then   return loginweixi();   end --执行微信登入
     ---------进入接口-------
 

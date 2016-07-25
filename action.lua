@@ -146,6 +146,12 @@ function registerweixi(cd)
 		clickarea(37,761,599,831);
 	end
 
+	msleeprand(1000);
+	textstryj=textlocal(25,421,622,557);	
+	if string.match(textstryj,'已')=='已' then
+		return 0;
+	end
+
 	ysmsleepadd('完善个人',23,134,628,289)--延时
 
 	--clickarea(245,346,394,497);
@@ -274,7 +280,8 @@ function filewxhao()
 end
 
 function weixiinput()
-	s = randomStrnum(8) --生成8位随机字母
+	local mz=randomStrnumzm(1);	
+	local s =mz..randomStrnum(7) --生成8位随机字母
     inputtextstr(s);
     
     msleeprand(2000);--保存
@@ -289,7 +296,6 @@ function weixiinput()
 		clickarea(59,620,577,687);--点击确定
 		weixiinput();
 	end
-
 
 	
 end
