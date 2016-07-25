@@ -251,11 +251,12 @@ function filepaw(pwdstr)
         msleeprand(800);
         inputtextstr(pwdstr);
         msleeprand(2500);
-
         clickarea(558,68,622,98);--点击完成
         msleeprand(1000);
         btnlefttop();
-        msleeprand(1000);
+        msleeprand(500);
+        btnlefttop();
+        msleeprand(500);
         btnlefttop();
 
 end    
