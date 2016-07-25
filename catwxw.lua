@@ -1,6 +1,5 @@
 --点赞和评论
     function filelike()
-        msleeprand(1000);
         clickarea(346,1050,480,1128);--点击发现
         msleeprand(1000);
         clickarea(10,164,630,234);--点击朋友圈
@@ -143,8 +142,7 @@
             end
             click(st,dt);
         end
-
-
+        
     msleeprand(2000);
     clickarea(520,1070,618,1108);--选好图片点击完成
 

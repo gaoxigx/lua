@@ -81,7 +81,7 @@ function backuphd(mobile,pwd)
 	click(317,353);--开始备份
 	msleeprand(4500);
 	click(323,657);--点完成
-	msleeprand(500);
+	msleeprand(3000);
 end
 
 --注册入口
@@ -89,8 +89,8 @@ function registerweixi(cd)
 	weixiinfo['cd']=cd;
 	openweixi();--打开微信
 	ysmsleepaddnmb('推送',59,439,581,617,3);	
-	clickarea(131,636,517,702)--点击好
-	-- openweiximsg();
+	--clickarea(131,636,517,702)--点击好
+	openweiximsg();
 	msleeprand(200);
 	seachcolor(0x06bf04,6,394,637,1037);--点注册
 
@@ -289,17 +289,17 @@ function weixiinput()
 	
 end
 
-
 --启动登入微信
 function loginweixi()
 	openweixi();--打开微信
-	msleeprand(3000);	
-	openweiximsg();--打开微信后弹框	
-	msleeprand(500);
-	codexin=textlocal(191,52,440,113);
-	if(string.match(codexin,'信')=='信') then			
+	ysmsleepaddnmb('推送',59,439,581,617,4);	
+	openweiximsg();
+	-- ysmsleepaddnmb('信',191,52,440,113,3);
+	codexin=textlocal(191,52,450,113);
+	if(string.match(codexin,'信')=='信') or (string.match(codexin,'盲')=='盲') then			
 		return 1;
 	end
+	
 	msleeprand(2000);
 	codedh=textlocal(60,406,580,640);--封号提示框
 	if(string.match(codedh,'圭寸')=='圭寸') then			
@@ -351,66 +351,7 @@ function dhfakei()
 end
 
 
-    --点赞和评论
-    function filelike()
-        msleeprand(2000);
-        clickrand(248,1028); --点击微信
-        msleeprand(2000);
-        clickrand(426,666); --点击好（使用推送通知）
-        msleeprand(2000);
-        clickrand(400,1076);--点击发现
-        msleeprand(2000);
-        clickrand(290,200);--点击朋友圈
-        msleeprand(2000); --点击移动
-        clickmove();
 
-        msleeprand(2000);
-            x, y = findImage("/mnt/sdcard/dz66.bmp"); -- 在全屏范围找到第一个路径为"/mnt/sdcar/a.bmp"的图片, 将其左上角坐标保存到变量x和y中
-            if x ~= -1 and y ~= -1 then            -- 如果找到了
-                touchDown(0, x, y);                -- 点击那个点
-                touchUp(0);
-            end  
-
-        -- msleeprand(3000);--点赞
-        --    x, y = findImageFuzzy("/mnt/sdcard/XX.bmp",0x4c5154); 
-        --     if x ~= -1 and y ~= -1 then            
-        --         touchDown(0, x+98, y+40);          -- 点击那个点
-        --         touchUp(0);
-        --         -- notifyMessage("msleeprand",3000);
-        --     end  
-
-        msleeprand(2000);--评论
-            x, y = findImageFuzzy("/mnt/sdcard/PP.bmp",0x4c5154); 
-            if x ~= -1 and y ~= -1 then            -- 如果找到了
-                touchDown(0, x, y);                -- 点击那个点
-                touchUp(0);
-                msleeprand(2000);
-                -- os.execute("input text \"asdasd\"");
-
-                a = {"666", 
-                    "哇", 
-                    "好像很厉害的样子",
-                    "长知识了",
-                    "32个赞",
-                    "我差点信了",
-                    "开鲁咯！",
-                    "哈哈哈",
-                }
-                a_num=math.random(1,#a);
-                inputText(a[a_num]);
-
-                
-
-                msleeprand(2000);
-                clickarea(170,1059,464,1120); --点击键盘空格键
-                msleeprand(2000);
-                clickarea(490,1060,626,1120); --点击发送   
-            end
-
-
-        msleeprand(2000);
-        btnlefttop();
-    end
 --检查手机号码是否则存在
 function datectionmobile()
 	msleeprand(3000);
@@ -475,7 +416,8 @@ function datefriendinfo()
         return datefriendinfo();
     end 
 
-
+	ysmsleepaddnmb('密石马',180,50,470,110,3);
+	
     local ifv = seachcolorreturn(0xf37e7d,169,173,635,316); 
     if ifv==1 then
            -- seachcolor(0x06bf04,6,394,637,1037);--增加到通讯录 按颜色查找通讯录
