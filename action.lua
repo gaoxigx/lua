@@ -251,11 +251,12 @@ function filepaw(pwdstr)
         msleeprand(800);
         inputtextstr(pwdstr);
         msleeprand(2500);
-
         clickarea(558,68,622,98);--点击完成
         msleeprand(1000);
         btnlefttop();
-        msleeprand(1000);
+        msleeprand(500);
+        btnlefttop();
+        msleeprand(500);
         btnlefttop();
 
 end    
@@ -266,6 +267,12 @@ end
 function filewxhao()
 	msleeprand(1000);
     clickarea(500,1046,624,1124);--点击我
+	-- ysmsleepaddnmb('信',191,52,440,113,3);
+	codexin=textlocal(191,52,450,113);
+	if(string.match(codexin,'我')~='我') then			
+		filewxhao();
+		return;
+	end
     msleeprand(1000);
     clickarea(4,808,632,880);--点击设置
     msleeprand(1000);
