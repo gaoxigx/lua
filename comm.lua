@@ -615,23 +615,29 @@ end
     -- end
 
     --向下拨动
-    function clickmovedom(id,x,y)
-        touchDown(0,320,160);
+    function clickmovedom()
+    	x=320;
+    	y=160;
+        
         mSleep(800);
-        cs=math.random(1, 4);--拨动次数
+        cs=math.random(1, 5);--拨动次数
         -- notifyMessage(cs);   
-    
         if cs>1 then
             for i=1,cs do
-                touchMove(0,320,960);
+            	touchDown(0,x,y);
+            	mSleep(1000);                
+                touchMove(0,x,y+495);
+                mSleep(100);                
+                touchUp(0);
             end
-        
         else
-            touchMove(0,320,960);
+            touchMove(0,x,y+495);
+            mSleep(100);                
+            touchUp(0);
         end
-
-        touchUp(0);
+        mSleep(5000);
     end
+
 
 
 	--获取手机号码
