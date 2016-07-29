@@ -2,9 +2,6 @@
 function vpn(gsinfo)		
 	vpnuser=getparame(gsinfo,'vpnuser');--得到对应的值
 	vpnpwd=getparame(gsinfo,'vpnpwd');
-
-
-
 	msleeprand(1000);
 	appRun('com.apple.Preferences');
 	msleeprand(1000);
@@ -378,11 +375,11 @@ end
 
 --检查手机号码是否则存在
 function datectionmobile()
-	msleeprand(3000);
+	msleeprand(500);
 	clickarea(190,1050,306,1128);
-    msleeprand(3000);
+    msleeprand(500);
     clickrand(311,196);
-    msleeprand(3000);
+    msleeprand(500);
 
     tt=datefriendinfo();    
 end
@@ -390,35 +387,36 @@ end
 function datefriendinfo()
 
 	ysmsleepadd('肖',544,56,632,106);
-   	msleeprand(1000);
+   	msleeprand(200);
     clickrand(296,79);
     str="\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b";
     mobile=friendmobiletype();
     if mobile=='0' or mobile==nil then
-        notifyMessage('没有手机号码',1000); 
+        notifyMessage('没有手机号码'); 
         return datefriendinfo();
-    end 
-   
+    end    
+ 
+
     mobile=string.sub(mobile,1,11);
     inputText(str..mobile);
 
-    msleeprand(1000);
+    msleeprand(500);
     clickarea(29,211,608,311);--搜索
-    msleeprand(1000);
+    msleeprand(500);
     
-    myjg=textlocal(136,397,472,467);
+--[[   myjg=textlocal(136,397,472,467);
     if string.match(myjg,'无结果')=='无结果' then     
         msleeprand(1000);
-        friendmobiletypeset(mobile,1);
-        
+        friendmobiletypeset(mobile,1);        
         return datefriendinfo();
     end
+--]] 
 
     msgfr=textlocal(89,470,557,683); 
     if string.match(msgfr,'不存在')=='不存在' then
       	friendmobiletypeset(mobile,1);
         clickrand(320,653);
-        msleeprand(1000);
+        msleeprand(200);
         return datefriendinfo();
     end
 
@@ -429,32 +427,32 @@ function datefriendinfo()
             return 5;
         end   
         clickrand(320,653);
-        msleeprand(1000);
-        friendmobiletypeset(mobile,1);
+        msleeprand(200);
+        friendmobiletypeset(mobile,1);--保存
         return datefriendinfo();
     end
-
+--[[
     findtext=textlocal(121,388,515,475);
     if string.match(findtext,'田')=='田' then
         notifyMessage('没有找着');        
         return datefriendinfo();
     end 
-
-	ysmsleepaddnmb('密石马',180,50,470,110,3);
+--]]
+	--ysmsleepaddnmb('密石马',180,50,470,110,3);
 	
     local ifv = seachcolorreturn(0xf37e7d,169,173,635,316); 
     if ifv==1 then
-           -- seachcolor(0x06bf04,6,394,637,1037);--增加到通讯录 按颜色查找通讯录
-           -- clickrand(374,734);--
             notifyMessage('女子');
-            friendmobiletypeset(mobile,3);
-            --msleeprand(3000);
-           -- frinedinfo();
+            friendmobiletypeset(mobile,3); 
+           	mSleep(300);
+		    btnlefttop();--返回
+		    return datefriendinfo();
     else
     		friendmobiletypeset(mobile,2);
     end
 
-	ysmsleepadd('田',222,58,425,110);
+	--ysmsleepadd('田',222,58,425,110);
+	mSleep(100);
     btnlefttop();--返回
     return datefriendinfo();
 end
