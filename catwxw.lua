@@ -39,13 +39,16 @@
                 -- os.execute("input text \"asdasd\"");
 
                 a = {"666", 
-                    "哇", 
-                    "好像很厉害的样子",
-                    "长知识了",
-                    "32个赞",
-                    "我差点信了",
-                    "开鲁咯！",
-                    "哈哈哈！",
+                    "哇/::B", 
+                    "好像很厉害的样子/:,@O",
+                    "长知识了/::d",
+                    "32个赞/::P",
+                    "我差点信了/:dig",
+                    "/::>",
+                    "哈哈哈！/:,@P",
+                    "/::d",
+                    "/::,@f",
+                    "/::D",
                 }
                 a_num=math.random(1,#a);
                 inputText(a[a_num]);
@@ -66,33 +69,48 @@
 
 
     --发送朋友圈
-    function filesend()
-    
+function friendsend()    
     info=runparame();
     if info==nil or info=='' then
         notifyMessage('没有得到指令',2000);
-        filesend();
+        friendsend();
+        return 1;
     end
 
     fphoparame=getparamecom(info,'mustt_fphoto');
     if fphoparame==nil or fphoparame=='' then
         notifyMessage('没有得到指令参数',2000);
-        filesend();
+        friendsend();
+        return 1;
     end
 
-    msleeprand(1000);
+
+   msleeprand(800);
     clickarea(346,1050,480,1128);--点击发现
-    msleeprand(800);
-    clickarea(10,164,630,234);--点击朋友圈
-    msleeprand(1000);
+    msleeprand(400);
+
+    codexin=textlocal(194,50,472,116);
+    if(string.match(codexin,'王')~='王') then 
+        friendsend();
+        return 1;
+    end
+
+    msleeprand(500);
+    clickarea(14,166,570,230);--点击朋友圈
+    msleeprand(500);
     clickarea(566,65,612,100);--右上角
-    msleeprand(1500);   
+    msleeprand(500);   
     zdl();  --知道了
-    msleeprand(1500);
+    msleeprand(500);
     clickarea(6,940,632,1024);--从手机相册选择
 
+    mSleep(1000);
+    code=textlocal(4,46,136,116,2)  --返回
+    if(string.match(code,'回')=='回') then            
+        btnlefttop();
+    end
 
-    msleeprand(2000); --点击相册
+    msleeprand(500); --点击相册
     if fphoparame=='1' then      
         clickarea(6,130,630,235)
     end
@@ -125,10 +143,10 @@
         clickarea(6,936,630,1040)
     end
 
-    msleeprand(3500); --点击移动
+    msleeprand(1000); --点击移动
     clickmovedom();
 
-    msleeprand(3000);
+    msleeprand(800);
 
         tp=math.random(1, 9);--随机点击图片数量
         for i=1,tp do
@@ -136,9 +154,9 @@
             if st<160 then
                 st=160;
             end
-            dt=(math.random(0,10000)%6)*154-125;
-            if dt<154 then
-                dt=154;
+            dt=(math.random(0,10000)%6)*153-122;
+            if dt<153 then
+                dt=153;
             end
             click(st,dt);
         end
@@ -147,38 +165,25 @@
     clickarea(520,1070,618,1108);--选好图片点击完成
 
     msleeprand(1000);
-    clickarea(40,154,584,186);--点击进入输入框
+    clickarea(68,159,257,181);--点击进入输入框
 
   
-     msleeprand(1500);
-        cirstr=getcir();
-        inputText(cirstr);
-        -- a = {"666", 
-        --     "哇", 
-        --     "好像很厉害的样子",
-        --     "长知识了",
-        --     "32个赞",
-        --     "我差点信了",
-        --     "开鲁咯！",
-        --     "上线5黑，赶紧的",
-        -- }
-        -- a_num=math.random(1,#a);
-        -- inputText(a[a_num]);
+    msleeprand(1500);
+    cirstr=getcir();
+    inputText(cirstr);
 
+    msleeprand(3000);
+    clickarea(554,62,622,98); --点击发送  
 
+    msleeprand(3000);
+    btnlefttop();--点击坐上角返回
 
-        msleeprand(3000);
-        clickarea(554,62,622,98); --点击发送  
-
-        msleeprand(3000);
-        btnlefttop();--点击坐上角返回
-
-    end
+end
 
 
 
     --头像设置
-    function friendmi()
+function friendmi()
 
     info=runparame();
     if info==nil or info=='' then
@@ -195,16 +200,16 @@
 
         msleeprand(2000);
         clickarea(510,1046,624,1124); --点击我
-        msleeprand(2000);
+        msleeprand(1000);
         clickarea(10,170,630,320);--点击头部栏信息
-        msleeprand(2000);
+        msleeprand(1000);
         clickarea(6,164,632,314);--点击头像
-        msleeprand(2000);
+        msleeprand(1000);
         btnrighttop();--点击个人头像右上角选择
-        msleeprand(3000);
+        msleeprand(2000);
         clickarea(6,840,632,924);--点击从手机相册选择
 
-        msleeprand(3000); --点击相册
+        msleeprand(2000); --点击相册
         if aphoparame=='1' then      
             clickarea(6,130,630,286)
         end
@@ -230,17 +235,17 @@
         end
 
         msleeprand(2000); --点击移动
-        clickmove();
+        clickmovedom();
 
-        msleeprand(4000);
+        msleeprand(2000);
     -- notifyMessage('sdfsdf',5000); 
-        st=(math.random(0, 10000)%4)*156-20;
-        if st<156 then
-            st=156;
+        st=(math.random(0, 10000)%4)*160-50;
+        if st<160 then
+            st=160;
         end
-        dt=(math.random(0,10000)%6)*156-20;
-        if dt<156 then
-            dt=156;
+        dt=(math.random(0,10000)%6)*153-50;
+        if dt<153 then
+            dt=153;
         end
         click(st,dt);--随机选择图片
 
@@ -252,7 +257,7 @@
 
         msleeprand(2000);
         btnlefttop();--点击坐上角返回
-    end
+end
 
     --设置朋友圈照片
     function friend()
@@ -269,19 +274,19 @@
         friend();
     end
 
-        msleeprand(2000);
+        msleeprand(1500);
         clickarea(346,1050,480,1128);--点击发现
-        msleeprand(2000);
+        msleeprand(1000);
         clickarea(10,164,630,234);--点击朋友圈
-        msleeprand(2000);
+        msleeprand(1000);
         clickarea(8,136,632,506);--轻触设置相册封面    
-        msleeprand(3000);
+        msleeprand(1200);
         clickarea(6,940,632,1020);--点击更改相册封面
-        msleeprand(2000);
+        msleeprand(1200);
         clickarea(6,164,632,240);--从手机相册选择
 
 
-        msleeprand(3000); --点击相册
+        msleeprand(1500); --点击相册
         if afphoparame=='1' then      
             clickarea(6,130,630,286)
         end
@@ -309,7 +314,7 @@
         msleeprand(2000); --点击移动
         clickmove();
 
-        msleeprand(4000);
+        msleeprand(2000);
     -- notifyMessage('sdfsdf',5000); 
         st=(math.random(0, 10000)%4)*157-20;
 
@@ -319,10 +324,10 @@
         end
         click(st,dt);--随机选择图片
 
-        msleeprand(3000);
+        msleeprand(2000);
         clickarea(540,1040,616,1076);--选取图片
 
-        msleeprand(3000);
+        msleeprand(2000);
         btnlefttop();
 
         msleeprand(2000);
@@ -622,6 +627,7 @@ function seachfrinedcodeone(mobileone)
         notifyMessage('没有找着');
         seachfrinedcode(mobileone);
     end 
+    
 
     local ifv = seachcolorreturn(0xf37e7d,169,173,635,316); 
     if ifv==1 and friendsex=='女' then
@@ -1141,3 +1147,44 @@ end
          clickarea(112,585,523,635);--点击确定删除
         end
     end
+
+
+
+--启动dhfakei恢复下一条前重命名
+function dhfakeiname()    
+    appRun('com.workhard.hdfakerset');--启动配置hdFaker
+    msleeprand(2000);--点击操作
+    clickarea(73,1053,131,1125);
+
+    msleeprand(800);--点击恢复数据
+    click(300,770);
+
+    msleeprand(1500);--按住第一条数据1.5秒
+    touchDown(0, 300, 178);
+    mSleep(1500);--按住1.5秒
+    touchUp(0);
+
+    msleeprand(1000);
+    x, y = findImageInRegionFuzzy("/var/touchelf/scripts/scriptfile/images/CMM.bmp", 80, 330, 131, 448, 1034, 0x29292a); 
+    if x ~= -1 and y ~= -1 then                                                           -- 如果找到了
+        touchDown(0, x, y);                                                               -- 点击那个点
+        touchUp(0);
+    end
+
+    --键盘输入汉字
+    msleeprand(800);
+    click(257,875);
+    msleeprand(800);
+    click(41,663);
+
+    msleeprand(800);--确认重命名
+    click(455,460);
+    msleeprand(300);--下一条
+    click(570,80);
+    msleeprand(800);--完整恢复
+    click(322,540);
+    mSleep(8000);   
+
+end
+
+

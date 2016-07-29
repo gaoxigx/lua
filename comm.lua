@@ -2,8 +2,8 @@
 --打开微信弹出信息按钮 
 function openweiximsg()	
 	local msgcode=textlocal(59,439,581,617);		
-	if(string.match(msgcode,"推送")=="推送") then			
-	clickarea(131,636,517,702);--点击好
+	if(string.match(msgcode,'推送')=='推送') or (string.match(msgcode,'矢口')=='矢口') then			
+	clickarea(94,638,523,690);--点击好
 	end
 end
 
@@ -46,6 +46,13 @@ end
 --验证原密码
 function getpwd(moblie)
 	sul=httpGet("http://g.7gu.cn/index.php?g=api&m=Wxwapi&a=getpwd&pn"..mobile);
+	return sul;
+end
+
+
+--获取IP地址
+function getrecoip()
+	sul=httpGet("http://g.7gu.cn/index.php?g=api&m=Wxwapi&a=getip");
 	return sul;
 end
 
@@ -168,7 +175,7 @@ function getmobile()
 		notifyMessage('网速太慢或已断网',2000);
 		getmobile();
 	end
-	joinary={};	
+	local joinary={};	
 	joinary['abcuser']=getparamecom(hpone,'abcuser')--平台用户名
 	joinary['abcpwd']=getparamecom(hpone,'abcpwd')--平台密码
 	joinary['joinbusi']=getparamecom(hpone,'joinbusi');--对接码;
@@ -244,9 +251,20 @@ end
 
 --得到验证码
 function getverify(mobile)
+
+	hpone=runparame();
+	if hpone==nil or hpone=='' then
+		notifyMessage('网速太慢或已断网',2000);
+		getmobile();
+	end
+	local joinary={};	
+	joinary['abcuser']=getparamecom(hpone,'abcuser')--平台用户名
+	joinary['abcpwd']=getparamecom(hpone,'abcpwd')--平台密码
+	joinary['joinbusi']=getparamecom(hpone,'joinbusi');--对接码;
+
 	--'{"c":1,"m":"您的验证码为888999","mc":"685000"}';
 	--verify=httpGet("http://mapi.aiputime.com/http.action?apiType=GetCode&apiId=gaoxi0&apiSecret=fadacai888&pId=1&pn=13788889999&dev=zharty");
-	strverify=httpGet("http://mapi.aiputime.com/http.action?apiType=GetCode&apiId=gaoxi&apiSecret=fadacai888&pId=1&pn="..mobile.."&dev=zharty");
+	strverify=httpGet("http://mapi.aiputime.com/http.action?apiType=GetCode&apiId="..joinary["abcuser"].."&apiSecret="..joinary["abcpwd"].."&pId=1&pn="..mobile.."&dev=zharty");
 	if 	strverify==nil or strverify=='' then
 		return getverify(mobile);
 	end
@@ -574,45 +592,30 @@ end
 
 -----------------------------------
     --向上拨动
-    function clickmove(id,x,y)
-        touchDown(0,math.random(80, 550),math.random(786, 1020));
-        mSleep(100);
-        cs=math.random(1, 4);--拨动次数
+    function clickmove()
+    	x=320;
+    	y=900;
+        
+        mSleep(800);
+        cs=math.random(1, 5);--拨动次数
         -- notifyMessage(cs);   
-    
         if cs>1 then
             for i=1,cs do
-                touchMove(0,math.random(80, 550),math.random(100, 500));
+            	touchDown(0,x,y);
+            	mSleep(500);                
+                touchMove(0,x,y-495);
+                mSleep(100);                
+                touchUp(0);
             end
-        
         else
-            touchMove(0,math.random(80, 550),math.random(100, 500));
+            touchMove(0,x,y-495);
+            mSleep(100);                
+            touchUp(0);
         end
-
-        mSleep(100);
-        touchUp(0);
+        mSleep(5000);
     end
 
 
-    -- --向下拨动
-    -- function clickmovedom(id,x,y)
-    --     touchDown(0,math.random(80, 550),math.random(160, 300));
-    --     mSleep(100);
-    --     cs=math.random(1, 4);--拨动次数
-    --     -- notifyMessage(cs);   
-    
-    --     if cs>1 then
-    --         for i=1,cs do
-    --             touchMove(0,math.random(80, 550),math.random(680, 980));
-    --         end
-        
-    --     else
-    --         touchMove(0,math.random(80, 550),math.random(680, 980));
-    --     end
-
-    --     mSleep(100);
-    --     touchUp(0);
-    -- end
 
     --向下拨动
     function clickmovedom()
@@ -672,7 +675,7 @@ end
 
 
 function zdl()
-	mSleep(3000);
+	mSleep(2000);
 	code=textlocal(250,718,388,788)	
 	if(string.match(code,'矢口道了')=='矢口道了') then			
 		clickarea(50,716,590,798);
