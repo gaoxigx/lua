@@ -377,7 +377,7 @@ function dhfakei()
 	click(106,1076);
 	mSleep(800);
 	click(215,774);
-	mSleep(800);
+	mSleep(1200);
 	click(572,80);
 	mSleep(800);
 	click(323,538);
@@ -434,7 +434,7 @@ function datefriendinfo()
         msleeprand(200);
         return datefriendinfo();
     end
-
+--[[
     dingbbd=textlocal(55,365,580,684); --别人顶号
     if string.match(dingbbd,'冻结')=='冻结' or string.match(dingbbd,'石马')=='石马' then
         clickrand(320,737);
@@ -446,7 +446,7 @@ function datefriendinfo()
         clickrand(316,716);
 		return baopass();
     end
-
+--]]
 
     if string.match(msgfr,'失败')=='失败' then     --操作过于频繁
     	if string.match(msgfr,'过于')=='过于' then
