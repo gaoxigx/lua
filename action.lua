@@ -441,12 +441,8 @@ function datefriendinfo()
 	--ysmsleepaddnmb('密石马',180,50,470,110,3);
 	
     local ifv = seachcolorreturn(0xf37e7d,169,173,635,316); 
-    if ifv==1 then
-            notifyMessage('女子');
+    if ifv==1 then           
             friendmobiletypeset(mobile,3); 
-           	mSleep(300);
-		    btnlefttop();--返回
-		    return datefriendinfo();
     else
     		friendmobiletypeset(mobile,2);
     end
