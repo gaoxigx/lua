@@ -456,9 +456,9 @@ end
 --检查手机号码是否则存在
 function datectionmobile()
 	msleeprand(500);
-	clickarea(190,1050,306,1128);
+	clickarea(190,1050,306,1128);--点击通讯录
     msleeprand(500);
-    clickrand(311,196);
+    clickrand(311,169);-- 点击通讯录页面的搜索框
     msleeprand(500);
 
     tt=datefriendinfo();    
@@ -466,9 +466,9 @@ end
 --运行手机号码是否则存在
 function datefriendinfo()
 
-	ysmsleepadd('肖',544,56,632,106);
+	ysmsleepadd('肖',544,56,632,106);--空白页面搜索框
    	msleeprand(200);
-    clickrand(296,79);
+    clickrand(420,74);
     str="\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b";
     mobile=friendmobiletype();
     if mobile=='0' or mobile==nil then
@@ -481,8 +481,8 @@ function datefriendinfo()
     inputText(str..mobile);
 
     msleeprand(500);
-    clickarea(29,211,608,311);--搜索
-    msleeprand(900);
+    clickarea(29,223,600,316);--搜索手机/QQ
+    msleeprand(1000);
     
 --[[   myjg=textlocal(136,397,472,467);
     if string.match(myjg,'无结果')=='无结果' then     
