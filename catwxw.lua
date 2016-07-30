@@ -67,7 +67,7 @@
 
     --发送朋友圈
     function filesend()
-    
+
     info=runparame();
     if info==nil or info=='' then
         notifyMessage('没有得到指令',2000);
@@ -82,15 +82,20 @@
 
     msleeprand(1000);
     clickarea(346,1050,480,1128);--点击发现
-    msleeprand(800);
+    
+    msleeprand(1000);   
     clickarea(10,164,630,234);--点击朋友圈
-    msleeprand(1000);
-    clickarea(566,65,612,100);--右上角
-    msleeprand(1500);   
-    zdl();  --知道了
-    msleeprand(1500);
-    clickarea(6,940,632,1024);--从手机相册选择
 
+    msleeprand(800);
+    clickrand(589,83);--点击右上角
+ 
+    zdl();  --知道了
+
+    msleeprand(500);
+    clickarea(6,940,632,1014);--从手机相册选择
+
+    ysmsleepaddnmb('回',4,53,131,112,1);
+    click(62,82);--点击返回
 
     msleeprand(2000); --点击相册
     if fphoparame=='1' then      
@@ -125,10 +130,10 @@
         clickarea(6,936,630,1040)
     end
 
-    msleeprand(3500); --点击移动
+    msleeprand(1500); --点击移动
     clickmovedom();
 
-    msleeprand(3000);
+    msleeprand(1000);
 
         tp=math.random(1, 9);--随机点击图片数量
         for i=1,tp do
@@ -142,39 +147,49 @@
             end
             click(st,dt);
         end
-        
+
+
     msleeprand(2000);
     clickarea(520,1070,618,1108);--选好图片点击完成
 
     msleeprand(1000);
-    clickarea(40,154,584,186);--点击进入输入框
+    clickarea(35,155,263,184);--点击进入输入框
 
-  
-     msleeprand(1500);
-        cirstr=getcir();
-        inputText(cirstr);
-        -- a = {"666", 
-        --     "哇", 
-        --     "好像很厉害的样子",
-        --     "长知识了",
-        --     "32个赞",
-        --     "我差点信了",
-        --     "开鲁咯！",
-        --     "上线5黑，赶紧的",
-        -- }
-        -- a_num=math.random(1,#a);
-        -- inputText(a[a_num]);
+    msleeprand(1000);
+    signpyq=string.gsub(getcir(),' ','');--去除空格
+    if signpyq==0 then
+        notifyMessage('数据库里的朋友圈语录已用完',2000);
+        os.exit();
+    end    
 
-
-
-        msleeprand(3000);
-        clickarea(554,62,622,98); --点击发送  
-
-        msleeprand(3000);
-        btnlefttop();--点击坐上角返回
-
+    if signpyq==nil or signpyq=='' then
+        notifyMessage('网络已断开!无法得到数据',2000);
+    else
+        inputText(signpyq);
     end
 
+     -- msleeprand(1500);
+     --    a = {"666", 
+     --        "哇", 
+     --        "好像很厉害的样子",
+     --        "长知识了",
+     --        "32个赞",
+     --        "我差点信了",
+     --        "开鲁咯！",
+     --        "上线5黑，赶紧的",
+     --    }
+     --    a_num=math.random(1,#a);
+     --    inputText(a[a_num]);
+
+
+    msleeprand(2000);
+    clickarea(554,62,622,98); --点击发送  
+
+    msleeprand(3000);
+    btnlefttop();--点击坐上角返回
+
+
+    end
 
 
     --头像设置
@@ -251,7 +266,7 @@
         btnlefttop();
 
         msleeprand(2000);
-        btnlefttop();--点击坐上角返回
+        btnlefttop();--点击左上角返回
     end
 
     --设置朋友圈照片

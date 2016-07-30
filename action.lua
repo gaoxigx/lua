@@ -64,7 +64,7 @@ function flyunit()
         notifyMessage('这个IP地址已经用过');
         return flyunit();
     end  
-	msleeprand(1600);
+	msleeprand(1500);
 end
 
 
@@ -389,11 +389,13 @@ function loginweixi()
 		msleeprand(1000);
 		if rsul~='0' and rsul~=nil then
 			notifyMessage('异常号码已保存',1000);
+
+		
+			msleeprand(2400);
+			dhfakeiname();	
+			return 0;
 		end
-		return 0;
-	end
-	msleeprand(2000);
-	dhfakeiname();
+	end	
 	return 1;
 
 end
@@ -403,55 +405,67 @@ end
 function dhfakei()    
 	appRun('com.workhard.hdfakerset');
 	mSleep(1000);
-	click(106,1076);
+	click(106,1076);--操作
+	mSleep(400);
+	click(106,1076);--操作
+	mSleep(400);
+	click(227,773);--恢复数据
 	mSleep(800);
-	click(230,774);
-	mSleep(1200);
-	click(572,80);
+	click(572,82);--下一条
 	mSleep(1500);
-	click(323,538);
+	click(316,535);
 	mSleep(8000);
 end
+ 
+--启动dhfakei恢复下一条前重命名
+function dhfakeiname()    
+	appRun('com.workhard.hdfakerset');--启动配置hdFaker
+    msleeprand(2000);--点击操作
+    clickarea(73,1053,131,1125);
 
-    --启动dhfakei恢复下一条前重命名
-    function dhfakeiname()    
-        appRun('com.workhard.hdfakerset');--启动配置hdFaker
-        msleeprand(2000);--点击操作
-        clickarea(73,1053,131,1125);
+    msleeprand(800);--点击恢复数据
+    click(300,770);
 
-        msleeprand(800);--点击恢复数据
-        click(300,770);
-
-        msleeprand(1000);  --查找绿色点
-        x, y = findColorInRegion(0x00b41f, 4, 130, 120, 1034); -- 在区域范围找到第一个颜色为0x00b41f的点, 精确度为90%
-        if x ~= -1 and y ~= -1 then                                      -- 如果找到了
-            touchDown(0, x, y);                                          -- 点击那个点
-         msleeprand(1500); --按住1.5秒
-            touchUp(0);
-        end
-
-        msleeprand(1000);
-        x, y = findImageInRegionFuzzy("/var/touchelf/scripts/scriptfile/images/CMM.bmp", 80, 330, 131, 448, 1034, 0x29292a); 
-        if x ~= -1 and y ~= -1 then                                                           -- 如果找到了
-            touchDown(0, x, y);                                                               -- 点击那个点
-            touchUp(0);
-        end
-
-        --键盘输入汉字
-        msleeprand(1000);
-        click(257,875);
-        msleeprand(800);
-        click(41,663);
-
-        msleeprand(1000);--确认重命名
-        click(455,460);
-        msleeprand(800);--下一条
-        click(570,80);
-        msleeprand(1400);--完整恢复
-        click(322,540);
-        mSleep(8000);   
-
+    msleeprand(1000);  --查找绿色点
+    x, y = findColorInRegion(0x00b41f, 4, 130, 120, 1034); -- 在区域范围找到第一个颜色为0x00b41f的点, 精确度为90%
+    if x ~= -1 and y ~= -1 then                                      -- 如果找到了
+        touchDown(0, x, y);                                          -- 点击那个点
+     msleeprand(1500); --按住1.5秒
+        touchUp(0);
     end
+
+    msleeprand(1000);
+    x, y = findImageInRegionFuzzy("/var/touchelf/scripts/scriptfile/images/CMM.bmp", 80, 330, 131, 448, 1034, 0x29292a); 
+    if x ~= -1 and y ~= -1 then                                                           -- 如果找到了
+        touchDown(0, x, y);                                                               -- 点击那个点
+        touchUp(0);
+    end
+
+    ysmsleepaddnmb('亲斤',83,466,559,533,1);--请输入一个新的名字
+    click(457,575);--点击输入框
+
+	msleeprand(500);
+    ysmsleepaddnmb('亲斤',97,209,559,283,1);--请输入一个新的名字
+    -- click(487,320);--点击输入框
+
+	msleeprand(500);
+    click(257,875); --键盘输入F
+
+	msleeprand(800);
+	click(41,663);--输入第一个汉字
+
+	msleeprand(800);--确认重命名
+	click(455,440);
+
+	msleeprand(1200);--下一条
+	click(570,80);
+	
+	msleeprand(1400);--完整恢复
+	click(322,540);
+	mSleep(8000);	
+
+end
+
 
 --检查手机号码是否则存在
 function datectionmobile()
@@ -509,6 +523,8 @@ function datefriendinfo()
         clickrand(320,653);
         msleeprand(200);
         friendmobiletypeset(mobile,1);--保存
+        msleeprand(500);
+		btnlefttop();
         return datefriendinfo();
     end
 --[[
