@@ -29,31 +29,70 @@ function vpn(gsinfo)
 	vpn(gsinfo);
 end
 
+
 --飞行模式
 function flymodel()
 	msleeprand(1000);
 	appRun('com.apple.Preferences');
 	msleeprand(2000);
+	flyunit();
+	-- ip=flyunit();
+	-- notifyMessage(ip,1200);
+end
+
+--检测IP 是否重复
+function flyunit()
 	flstrclick=textlocal(101,292,418,359);
 	if string.match(flstrclick,'飞')=='飞' then
 	 	click(530,329);	
-	 	msleeprand(2000);
+	 	msleeprand(500);
 	 	click(530,329);
 	else
 	 	click(530,235);
-	 	msleeprand(2000);
+	 	msleeprand(500);
 	 	click(530,235);
 	end
-	msleeprand(2000);
-	--[[
-	existscolor=seachcolorreturn('x04cd964',458,188,637,373);	
-	notifyMessage(existscolor,5000);
-	if existscolor==0 then		
-		return 1;
-	end
-	flymodel();
-	--]]
+	notifyMessage('正在连接网络...',12500);	
+	ggipt=getrecoip();--获取IP
+
+	if ggipt==nil or ggipt=='' then
+        notifyMessage('未检测到网络');	
+		return flyunit();        	
+	end	
+
+    if ggipt==0 then
+        notifyMessage('这个IP地址已经用过');
+        return flyunit();
+    end  
+	msleeprand(1600);
 end
+
+
+-- --飞行模式
+-- function flymodel()
+-- 	msleeprand(1000);
+-- 	appRun('com.apple.Preferences');
+-- 	msleeprand(2000);
+-- 	flstrclick=textlocal(101,292,418,359);
+-- 	if string.match(flstrclick,'飞')=='飞' then
+-- 	 	click(530,329);	
+-- 	 	msleeprand(2000);
+-- 	 	click(530,329);
+-- 	else
+-- 	 	click(530,235);
+-- 	 	msleeprand(2000);
+-- 	 	click(530,235);
+-- 	end
+-- 	msleeprand(2000);
+-- 	--[[
+-- 	existscolor=seachcolorreturn('x04cd964',458,188,637,373);	
+-- 	notifyMessage(existscolor,5000);
+-- 	if existscolor==0 then		
+-- 		return 1;
+-- 	end
+-- 	flymodel();
+-- 	--]]
+-- end
 
 
 --一键新机 hd
@@ -87,10 +126,10 @@ end
 function registerweixi(cd)
 	weixiinfo['cd']=cd;
 	openweixi();--打开微信
-	ysmsleepaddnmb('推送',59,439,581,617,2);		
+	ysmsleepaddnmb('推送',59,439,581,617,3);	
+	--clickarea(131,636,517,702)--点击好
 	openweiximsg();
-
-	msleeprand(500);
+	msleeprand(200);
 	seachcolor(0x06bf04,6,394,637,1037);--点注册
 
 
@@ -120,8 +159,8 @@ function registerweixi(cd)
 	inputtextstr(mboile,209,385,623,455,11);
 	weixiinfo['pn']=mobile;
 	--点注册按钮
-	msleeprand(1500);
-	clickarea(38,545,568,603);
+	msleeprand(1000);
+	clickarea(47,526,568,608);
 
 	--确认发送手机短信
 	msleeprand(500);
@@ -138,16 +177,15 @@ function registerweixi(cd)
 	msleeprand(1000);
 	clickarea(35,497,602,568);
 	--seachcolor(0x06bd04,6,394,637,1037);--点提交	
-	textmsg=textlocal(37,765,599,831)
-	if string.match(textmsg,'不')=='不' or string.match(textmsg,'主')=='主' then --不是我的，继续注册
-		reloaddata();
-		return registerweixi(cd);
+	textmsg=textlocal(37,761,599,831)
+	if string.match(textmsg,'不')=='不' then
+		clickarea(37,761,599,831);
 	end
 
 	msleeprand(1000);
 	textstryj=textlocal(25,421,622,557);	
 	if string.match(textstryj,'已')=='已' then
-		click(313,798);
+		return 0;
 	end
 
 	ysmsleepadd('完善个人',23,134,628,289)--延时
@@ -158,6 +196,7 @@ function registerweixi(cd)
 	str=getweixiname();	
 	weixiinfo['wn']=str;
 	reigistinputwxname(str)--输入昵称
+	
 	
 	msleeprand(2000);
 	reigistselect()--选择不添加通讯里的朋友
@@ -171,7 +210,6 @@ function registerweixi(cd)
 	gerxi=mobile..'---'..strpwd..'---'..weixiinfo['wn'];
 	writeonestr("/var/touchelf/scripts/scriptfile/pwd.txt",gerxi);
 	msleeprand(1000);
-
 	filepaw(strpwd);--创建密码
 	filewxhao();--设置微信号
 	backuphd(mobile,strpwd);--开始备份
@@ -206,21 +244,19 @@ function saveweixiweb(weixiinfo)
 	end
 end
 
---查找你的微信朋友
 function reigistselect()
-	ysmsleepaddnmb('查',59,403,581,653,2);--查看微信朋友
-	clickarea(337,677,569,729);
-	-- ysmsleepaddnmb('月友',103,131,518,238,2);--加好友以后再说
-	-- click(319,1076);
+	msleeprand(2000);
+	clickarea(58,669,293,732);--查找你的微信朋友
+	msleeprand(1000);
+	clickarea(244,1056,386,1100);--查找你的微信朋友
+	msleeprand(1000);
 end
-
 --注册时输入昵称
 function reigistinputwxname(str)
 	clickarea(125,568,586,639);
 	msleeprand(500);
 	--inputtexterror();
-	inputtextstr(str);--输入昵称
-	msleeprand(1000);		
+	inputtextstr(str);--输入昵称	
 end
 --设备密码
 function filepaw(pwdstr)
@@ -266,29 +302,29 @@ end
 --设置微信号
 function filewxhao()
 	msleeprand(1000);
-    clickarea(510,1046,624,1124);--点击我
+    clickarea(500,1046,624,1124);--点击我
 	-- ysmsleepaddnmb('信',191,52,440,113,3);
 	codexin=textlocal(191,52,450,113);
 	if(string.match(codexin,'我')~='我') then			
 		filewxhao();
 		return;
 	end
-    msleeprand(800);
-    clickarea(10,808,632,880);--点击设置
-    msleeprand(500);
+    msleeprand(1000);
+    clickarea(4,808,632,880);--点击设置
+    msleeprand(1000);
     clickarea(6,160,629,235);--点击帐号与安全
-    msleeprand(800);
+    msleeprand(1000);
     clickarea(6,160,634,236);--微信号
     msleeprand(1000);
 
     weixiinput();--输入微信号
 
-    msleeprand(2500);
+    msleeprand(3000);
     btnlefttop();
 
-    msleeprand(800);
+    msleeprand(1000);
     btnlefttop();
-    msleeprand(800);
+    msleeprand(1000);
     btnlefttop();
 end
 
@@ -316,57 +352,50 @@ end
 --启动登入微信
 function loginweixi()
 	openweixi();--打开微信
-	ysmsleepaddnmb('推送',59,439,581,617,2);
+	ysmsleepaddnmb('推送',59,439,581,617,4);	
 	openweiximsg();
 	-- ysmsleepaddnmb('信',191,52,440,113,3);
 	codexin=textlocal(191,52,450,113);
-
 	if(string.match(codexin,'信')=='信') or (string.match(codexin,'盲')=='盲') then			
 		return 1;
 	end
 	
 	msleeprand(2000);
 	codedh=textlocal(60,406,580,640);--封号提示框
-	if(string.match(codedh,'圭寸')=='圭寸') or (string.match(codedh,'封')=='封') then			
+	if(string.match(codedh,'圭寸')=='圭寸') or (string.match(codedh,'封')=='封') or (string.match(codedh,'角军')=='角军')then			
 		clickarea(60,662,312,734);--点击取消
-		return baopass();
 	end
 
 	codecx=textlocal(64,482,572,572);--登录错误
-	if(string.match(codecx,'重亲斤')=='重亲斤') or (string.match(codecx,'青重亲')=='青重亲') then			
-		clickarea(85,597,541,657);--点击取消
-		return baopass();
+	if(string.match(codecx,'重亲斤')=='重亲斤') then			
+		clickarea(64,597,575,662);--点击取消
 	end
 
 	codecw=textlocal(60,478,572,572);--密码错误
 	if(string.match(codecw,'密石马')=='密石马') then			
 		clickarea(56,600,576,668);--点击确定
-		return baopass();
 	end
 
-	return 1;
-end
-
-
---弹框后的输入密码页面，保存异常号码重启dhfakei
-function baopass()
 	msleeprand(1000);
-	codestr=textlocal(16,487,106,538);--封号后保存异常页面
-	if(string.match(codestr,'密石马')=='密石马') then	
+	codestr=textlocal(7,487,119,541);--封号后保存异常页面
+	if(string.match(codestr,'密石马')=='密石马') or (string.match(codestr,'石马')=='石马') then	
 		msleeprand(1000);
-		code=textlocalnmb(248,370,470,410);
+		code=textlocalnmb(244,360,475,410);
 		if code==nil or code=='' then
-			return 1;
+			return;
 		end
 		mobile=string.gsub(code,' ','');	
 		rsul=setmobilestatus(mobile);
 		msleeprand(1000);
 		if rsul~='0' and rsul~=nil then
-			notifyMessage('异常号码已保存',2000);
+			notifyMessage('异常号码已保存',1000);
 		end
-		dhfakei();
-		return loginweixi();
+		return 0;
 	end
+	msleeprand(2000);
+	dhfakeiname();
+	return 1;
+
 end
 
 
@@ -377,18 +406,55 @@ function dhfakei()
 	click(106,1076);
 	mSleep(800);
 	click(215,774);
-	mSleep(1200);
-	click(572,80);
 	mSleep(800);
+	click(572,80);
+	mSleep(1400);
 	click(323,538);
 	mSleep(8000);
 end
 
+    --启动dhfakei恢复下一条前重命名
+    function dhfakeiname()    
+        appRun('com.workhard.hdfakerset');--启动配置hdFaker
+        msleeprand(2000);--点击操作
+        clickarea(73,1053,131,1125);
 
+        msleeprand(800);--点击恢复数据
+        click(300,770);
+
+        msleeprand(1000);  --查找绿色点
+        x, y = findColorInRegion(0x00b41f, 4, 130, 120, 1034); -- 在区域范围找到第一个颜色为0x00b41f的点, 精确度为90%
+        if x ~= -1 and y ~= -1 then                                      -- 如果找到了
+            touchDown(0, x, y);                                          -- 点击那个点
+         msleeprand(1500); --按住1.5秒
+            touchUp(0);
+        end
+
+        msleeprand(1000);
+        x, y = findImageInRegionFuzzy("/var/touchelf/scripts/scriptfile/images/CMM.bmp", 80, 330, 131, 448, 1034, 0x29292a); 
+        if x ~= -1 and y ~= -1 then                                                           -- 如果找到了
+            touchDown(0, x, y);                                                               -- 点击那个点
+            touchUp(0);
+        end
+
+        --键盘输入汉字
+        msleeprand(1000);
+        click(257,875);
+        msleeprand(800);
+        click(41,663);
+
+        msleeprand(1000);--确认重命名
+        click(455,460);
+        msleeprand(800);--下一条
+        click(570,80);
+        msleeprand(1400);--完整恢复
+        click(322,540);
+        mSleep(8000);   
+
+    end
 
 --检查手机号码是否则存在
 function datectionmobile()
-
 	msleeprand(500);
 	clickarea(190,1050,306,1128);
     msleeprand(500);
@@ -401,7 +467,6 @@ end
 function datefriendinfo()
 
 	ysmsleepadd('肖',544,56,632,106);
-
    	msleeprand(200);
     clickrand(296,79);
     str="\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b";
@@ -416,7 +481,7 @@ function datefriendinfo()
     inputText(str..mobile);
 
     msleeprand(500);
-    clickarea(29,226,600,326);--搜索手机/QQ号
+    clickarea(29,211,608,311);--搜索
     msleeprand(500);
     
 --[[   myjg=textlocal(136,397,472,467);
@@ -427,28 +492,15 @@ function datefriendinfo()
     end
 --]] 
 
-    msgfr=textlocal(61,443,583,610); --该用户不存在
-    if string.match(msgfr,'不存在')=='不存在' or string.match(msgfr,'用户')=='用户' then
+    msgfr=textlocal(89,470,557,683); 
+    if string.match(msgfr,'不存在')=='不存在' then
       	friendmobiletypeset(mobile,1);
         clickrand(320,653);
         msleeprand(200);
         return datefriendinfo();
     end
---[[
-    dingbbd=textlocal(55,365,580,684); --别人顶号
-    if string.match(dingbbd,'冻结')=='冻结' or string.match(dingbbd,'石马')=='石马' then
-        clickrand(320,737);
-		return baopass();
-    end
-    
-    dinghzzd=textlocal(50,395,575,659); --自己人顶号
-    if string.match(dinghzzd,'当前')=='当前' or string.match(dinghzzd,'石马')=='石马' then
-        clickrand(316,716);
-		return baopass();
-    end
---]]
 
-    if string.match(msgfr,'失败')=='失败' then     --操作过于频繁
+    if string.match(msgfr,'失败')=='失败' then     
     	if string.match(msgfr,'过于')=='过于' then
             clickrand(320,653);            
 		    btnlefttop();--返回		
@@ -479,43 +531,4 @@ function datefriendinfo()
 	mSleep(100);
     btnlefttop();--返回
     return datefriendinfo();
-end
-
-
-
---启动dhfakei恢复下一条前重命名
-function dhfakeiname()    
-    appRun('com.workhard.hdfakerset');--启动配置hdFaker
-    msleeprand(2000);--点击操作
-    clickarea(73,1053,131,1125);
-
-    msleeprand(800);--点击恢复数据
-    click(300,770);
-
-    msleeprand(1500);--按住第一条数据1.5秒
-    touchDown(0, 300, 178);
-    mSleep(1500);--按住1.5秒
-    touchUp(0);
-
-    msleeprand(1000);
-    x, y = findImageInRegionFuzzy("/var/touchelf/scripts/scriptfile/images/CMM.bmp", 80, 330, 131, 448, 1034, 0x29292a); 
-    if x ~= -1 and y ~= -1 then                                                           -- 如果找到了
-        touchDown(0, x, y);                                                               -- 点击那个点
-        touchUp(0);
-    end
-
-    --键盘输入汉字
-    msleeprand(800);
-    click(257,875);
-    msleeprand(800);
-    click(41,663);
-
-    msleeprand(800);--确认重命名
-    click(455,460);
-    msleeprand(300);--下一条
-    click(570,80);
-    msleeprand(800);--完整恢复
-    click(322,540);
-    mSleep(8000);   
-
 end

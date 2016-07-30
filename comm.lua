@@ -52,8 +52,9 @@ end
 
 --获取IP地址
 function getrecoip()
-	sul=httpGet("http://g.7gu.cn/index.php?g=api&m=Wxwapi&a=getip");
-	return sul;
+	sulip=httpGet("http://g.7gu.cn/index.php?g=api&m=Wxwapi&a=getip");
+	notifyMessage(sulip,500);
+	return sulip;
 end
 
 
