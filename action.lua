@@ -126,7 +126,7 @@ end
 function registerweixi(cd)
 	weixiinfo['cd']=cd;
 	openweixi();--打开微信
-	ysmsleepaddnmb('推送',59,439,581,617,3);	
+	ysmsleepaddnmb('推送',59,439,581,617,2);	
 	--clickarea(131,636,517,702)--点击好
 	openweiximsg();
 	msleeprand(200);
@@ -352,7 +352,7 @@ end
 --启动登入微信
 function loginweixi()
 	openweixi();--打开微信
-	ysmsleepaddnmb('推送',59,439,581,617,4);	
+	ysmsleepaddnmb('推送',59,439,581,617,2);	
 	openweiximsg();
 	-- ysmsleepaddnmb('信',191,52,440,113,3);
 	codexin=textlocal(191,52,450,113);
@@ -441,8 +441,12 @@ function dhfakeiname()
         touchUp(0);
     end
 
-    ysmsleepaddnmb('亲斤',83,466,559,533,1);--请输入一个新的名字
-    click(457,575);--点击输入框
+
+    ysmsleepaddnmb('亲斤',83,466,559,533,2);--请输入一个新的名字
+	local msgcomm=textlocal(83,466,559,533);		
+	if(string.match(msgcomm,'亲斤')=='亲斤') then			
+    	click(457,575);--点击输入框
+	end
 
 	msleeprand(500);
     ysmsleepaddnmb('亲斤',97,209,559,283,1);--请输入一个新的名字

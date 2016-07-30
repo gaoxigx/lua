@@ -101,8 +101,12 @@
     msleeprand(500);
     clickarea(6,940,632,1014);--从手机相册选择
 
-    ysmsleepaddnmb('回',4,53,131,112,1);
-    click(62,82);--点击返回
+    ysmsleepaddnmb('回',4,53,131,112,2);
+    local fanhui=textlocal(4,53,131,112);        
+    if(string.match(fanhui,'回')=='回') then           
+        click(62,82);--点击返回
+    end
+
 
     msleeprand(2000); --点击相册
     if fphoparame=='1' then      
