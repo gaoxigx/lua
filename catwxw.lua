@@ -1,67 +1,74 @@
 --点赞和评论
     function filelike()
-        clickarea(346,1050,480,1128);--点击发现
         msleeprand(1000);
+        clickarea(346,1050,480,1128);--点击发现
+
+     --    ysmsleepaddnmb('王',256,58,397,112,1);
+        -- clickarea(10,164,630,234);--点击朋友圈
+
+        msleeprand(800);
         clickarea(10,164,630,234);--点击朋友圈
 
-        msleeprand(2000); --点击移动
+        msleeprand(800); --点击移动
         clickmove();
 
-        msleeprand(2000);
+        msleeprand(500);
             x, y = findImage("/var/touchelf/scripts/scriptfile/images/dz66.bmp"); -- 在全屏范围找到第一个路径为"/mnt/sdcar/a.bmp"的图片, 将其左上角坐标保存到变量x和y中
             if x ~= -1 and y ~= -1 then            -- 如果找到了
                 touchDown(0, x, y);                -- 点击那个点
                 touchUp(0);
             end  
     end
+
 --点赞
     function dianzan()
         filelike();
-        msleeprand(3000);--点赞
+        msleeprand(1000);--点赞
             x, y = findImageFuzzy("/var/touchelf/scripts/scriptfile/images/XX.bmp",0x4c5154); 
              if x ~= -1 and y ~= -1 then            
                  touchDown(0, x+98, y+40);          -- 点击那个点
                  touchUp(0);
                  -- notifyMessage("msleeprand",3000);
              end  
-        msleeprand(2000);
+        msleeprand(1500);
         btnlefttop();
-    end
+    end    
+
 --评论
     function plinfo()
         filelike();
-          msleeprand(3000);--评论
+          msleeprand(1000);--评论
             x, y = findImageFuzzy("/var/touchelf/scripts/scriptfile/images/PP.bmp",0x4c5154); 
             if x ~= -1 and y ~= -1 then            -- 如果找到了
                 touchDown(0, x, y);                -- 点击那个点
                 touchUp(0);
-                msleeprand(2000);
+                msleeprand(800);
                 -- os.execute("input text \"asdasd\"");
 
                 a = {"666", 
-                    "哇", 
+                    "哇/::B", 
                     "好像很厉害的样子",
-                    "长知识了",
-                    "32个赞",
-                    "我差点信了",
-                    "开鲁咯！",
-                    "哈哈哈！",
+                    "长知识了/::d",
+                    "32个赞/::P",
+                    "我差点信了/:dig",
+                    "/::>",
+                    "哈哈哈！/:,@P",
+                    "/::/",
+                    "/:,@P",
+                    "/::B",
                 }
                 a_num=math.random(1,#a);
                 inputText(a[a_num]);
 
+                msleeprand(2500);
+                click(350,1089); --点击键盘空格键
                 msleeprand(2000);
-                clickarea(170,1059,464,1120); --点击键盘空格键
-                msleeprand(2000);
-                clickarea(490,1060,626,1120); --点击发送   
+                click(560,1089); --点击发送   
             end
 
         msleeprand(2000);
         btnlefttop();
     end
-
-
-
 
 
 
@@ -133,7 +140,7 @@
     msleeprand(1500); --点击移动
     clickmovedom();
 
-    msleeprand(1000);
+    msleeprand(2000);
 
         tp=math.random(1, 9);--随机点击图片数量
         for i=1,tp do
