@@ -482,7 +482,7 @@ function datefriendinfo()
 
     msleeprand(500);
     clickarea(29,211,608,311);--搜索
-    msleeprand(500);
+    msleeprand(900);
     
 --[[   myjg=textlocal(136,397,472,467);
     if string.match(myjg,'无结果')=='无结果' then     
