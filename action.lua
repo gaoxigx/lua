@@ -405,10 +405,10 @@ function dhfakei()
 	mSleep(1000);
 	click(106,1076);
 	mSleep(800);
-	click(215,774);
-	mSleep(800);
+	click(230,774);
+	mSleep(1200);
 	click(572,80);
-	mSleep(1400);
+	mSleep(1500);
 	click(323,538);
 	mSleep(8000);
 end
