@@ -115,6 +115,26 @@ function backuphd(mobile,pwd)
 	click(293,675);--备份数据
 	msleeprand(1000);
 	click(557,82);--开始备份
+
+    --键盘输入注册
+	msleeprand(1000);
+	click(128,980);--输入Z键
+
+	msleeprand(500);
+	click(385,873);--输入H键
+
+	msleeprand(500);
+	click(416,764);--输入U键
+
+	msleeprand(500);
+	click(256,980);--输入C键
+
+	msleeprand(500);
+	click(158,765);--输入E键
+
+	msleeprand(800);
+	click(44,668);--点击第一个字
+	
 	msleeprand(2000);	
 	click(313,302);--开始备份
 	msleeprand(6000);
@@ -211,7 +231,6 @@ function registerweixi(cd)
 	writeonestr("/var/touchelf/scripts/scriptfile/pwd.txt",gerxi);
 	msleeprand(1000);
 	filepaw(strpwd);--创建密码
-	filewxhao();--设置微信号
 	backuphd(mobile,strpwd);--开始备份
 end
 
@@ -244,13 +263,23 @@ function saveweixiweb(weixiinfo)
 	end
 end
 
+
 function reigistselect()
-	msleeprand(2000);
-	clickarea(58,669,293,732);--查找你的微信朋友
-	msleeprand(1000);
-	clickarea(244,1056,386,1100);--查找你的微信朋友
-	msleeprand(1000);
+	msleeprand(800);
+	ysmsleepaddnmb('友',146,410,515,478,2);	
+	local msgcolj=textlocal(146,410,515,478);		
+	if(string.match(msgcolj,'朋友')=='朋友') or (string.match(msgcolj,'友')=='友') then			
+		clickarea(73,678,293,723);--了解更多
+	end
+
+	msleeprand(800);
+	ysmsleepaddnmb('友',190,142,445,227,2);	
+	local msgcopy=textlocal(190,142,445,227);		
+	if(string.match(msgcopy,'月友')=='月友') or (string.match(msgcopy,'月')=='月') then			
+		clickarea(260,1060,383,1094);--以后再说
+	end
 end
+
 --注册时输入昵称
 function reigistinputwxname(str)
 	clickarea(125,568,586,639);
@@ -288,12 +317,20 @@ function filepaw(pwdstr)
         inputtextstr(pwdstr);
         msleeprand(2500);
         clickarea(558,68,622,98);--点击完成
-        msleeprand(1000);
-        btnlefttop();
-        msleeprand(500);
-        btnlefttop();
-        msleeprand(500);
-        btnlefttop();
+
+	    msleeprand(1000);
+		ysmsleepaddnmb('安',256,58,397,113,2)--判断是否在帐号与安全页面
+	    clickarea(6,160,634,236);--微信号
+	    msleeprand(1000);
+
+	    weixiinput();--输入微信号
+
+	    msleeprand(3000);
+	    btnlefttop();
+	    msleeprand(1000);
+	    btnlefttop();
+	    msleeprand(1000);
+	    btnlefttop();
 
 end    
 
@@ -364,40 +401,44 @@ function loginweixi()
 	codedh=textlocal(60,406,580,640);--封号提示框
 	if(string.match(codedh,'圭寸')=='圭寸') or (string.match(codedh,'封')=='封') or (string.match(codedh,'角军')=='角军')then			
 		clickarea(60,662,312,734);--点击取消
+		return baopass();
 	end
 
 	codecx=textlocal(64,482,572,572);--登录错误
 	if(string.match(codecx,'重亲斤')=='重亲斤') then			
 		clickarea(64,597,575,662);--点击取消
+		return baopass();
 	end
 
 	codecw=textlocal(60,478,572,572);--密码错误
 	if(string.match(codecw,'密石马')=='密石马') then			
 		clickarea(56,600,576,668);--点击确定
+		return baopass();
 	end
 
+end
+
+
+--弹框后的输入密码页面，保存异常号码重启dhfakei
+function baopass()
 	msleeprand(1000);
-	codestr=textlocal(7,487,119,541);--封号后保存异常页面
-	if(string.match(codestr,'密石马')=='密石马') or (string.match(codestr,'石马')=='石马') then	
+	ysmsleepaddnmb('密石马',16,487,106,538,3);	
+	codestr=textlocal(16,487,106,538);--封号后保存异常页面
+	if(string.match(codestr,'密石马')=='密石马') then	
 		msleeprand(1000);
-		code=textlocalnmb(244,360,475,410);
+		code=textlocalnmb(248,370,470,410);
 		if code==nil or code=='' then
-			return;
+			return 1;
 		end
 		mobile=string.gsub(code,' ','');	
 		rsul=setmobilestatus(mobile);
 		msleeprand(1000);
 		if rsul~='0' and rsul~=nil then
-			notifyMessage('异常号码已保存',1000);
-
-		
-			msleeprand(2400);
-			dhfakeiname();	
-			return 0;
+			notifyMessage('异常号码已保存',2000);
 		end
-	end	
-	return 1;
-
+		dhfakeiname();
+		return loginweixi();
+	end
 end
 
 
@@ -417,6 +458,7 @@ function dhfakei()
 	mSleep(8000);
 end
  
+
 --启动dhfakei恢复下一条前重命名
 function dhfakeiname()    
 	appRun('com.workhard.hdfakerset');--启动配置hdFaker
@@ -469,7 +511,6 @@ function dhfakeiname()
 	mSleep(8000);	
 
 end
-
 
 --检查手机号码是否则存在
 function datectionmobile()
