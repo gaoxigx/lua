@@ -73,121 +73,22 @@ function insetinfo()
 	end
 	newfolder();--创建文件
 	flag=true;
-
-	--comm--
-	if file_exists("/var/touchelf/scripts/scriptfile/comm.lua") then	else
-		flag = ftpGet("ftp://121.40.140.16:/script/public/script/scriptfile/comm.lua", "/var/touchelf/scripts/scriptfile/comm.lua", "productconsole", "T4t8u0p1");	
-	end
-	filetime=string.gsub(getparame(strfile,'comm'),' ','');
-	path="/var/touchelf/scripts/scriptfile/comm.lua";
-	f=io.file(path);
-	fit=string.gsub(f.time(),' ','');
-	if string.sub(filetime,1,string.len(filetime)-1)~=string.sub(fit,1,string.len(fit)-1) then
-		flag = ftpGet("ftp://121.40.140.16:/script/public/script/scriptfile/comm.lua", "/var/touchelf/scripts/scriptfile/comm.lua", "productconsole", "T4t8u0p1");
-		notifyMessage('加截文件中...1');
-	end
-	--comm--
-
-	--action--
-	if file_exists("/var/touchelf/scripts/scriptfile/action.lua") then  	else 		
-	   flag = ftpGet("ftp://121.40.140.16:/script/public/script/scriptfile/action.lua", "/var/touchelf/scripts/scriptfile/action.lua", "productconsole", "T4t8u0p1");	     
-	end
-	filetime=string.gsub(getparame(strfile,'action'),' ','');
-	path="/var/touchelf/scripts/scriptfile/action.lua";
-	f=io.file(path);
-	fit=string.gsub(f.time(),' ','');
-	if string.sub(filetime,1,string.len(filetime)-1)~=string.sub(fit,1,string.len(fit)-1) then
-		flag = ftpGet("ftp://121.40.140.16:/script/public/script/scriptfile/action.lua", "/var/touchelf/scripts/scriptfile/action.lua", "productconsole", "T4t8u0p1");	     
-		notifyMessage('加截文件中...2');
-	end
-	--action--
-
-
-	--loadfun--
-	if file_exists("/var/touchelf/scripts/scriptfile/loadfun.lua") then  	else 		
-	   flag = ftpGet("ftp://121.40.140.16:/script/public/script/scriptfile/loadfun.lua", "/var/touchelf/scripts/scriptfile/loadfun.lua", "productconsole", "T4t8u0p1");	     
-	end
-	filetime=string.gsub(getparame(strfile,'loadfun'),' ','');
-	path="/var/touchelf/scripts/scriptfile/loadfun.lua";
-	f=io.file(path);
-	fit=string.gsub(f.time(),' ','');
-	if string.sub(filetime,1,string.len(filetime)-1)~=string.sub(fit,1,string.len(fit)-1) then
-		flag = ftpGet("ftp://121.40.140.16:/script/public/script/scriptfile/loadfun.lua", "/var/touchelf/scripts/scriptfile/loadfun.lua", "productconsole", "T4t8u0p1");	     
-		notifyMessage('加截文件中...3');
-	end
-	--loadfun--
-
-
-	--path="/var/touchelf/scripts/scriptfile/action.lua"
-    --f=io.file(path)  --获取文件
-    --notifyMessage(f:size())  --显示文件大小    
-    --notifyMessage(f:time(),5000)  --显示文件修改时间
-    
-    --[[
-    if file_exists("/var/touchelf/scripts/tessdata/eng.cube.fold")~=nil then    
-    	if file_exists("/var/touchelf/scripts/scriptfile/tessdata.zip")~=nil then
-    		notifyMessage('解压脚本中');
-    		unzip(); 
-    	else
-    		notifyMessage('下载脚本库中',2000);
-	    	flag = ftpGet("ftp://121.40.140.16:/script/public/script/scriptfile/tessdata.zip", "/var/touchelf/scripts/scriptfile/tessdata.zip", "productconsole", "T4t8u0p1");	
-    	 	unzip(); 
-    	end	    	
-	end	
-	--]]
-
- 
-
-	--post--
-	if file_exists("/var/touchelf/scripts/scriptfile/post.lua") then else
-		flag = ftpGet("ftp://121.40.140.16:/script/public/script/scriptfile/post.lua", "/var/touchelf/scripts/scriptfile/post.lua", "productconsole", "T4t8u0p1");	
-	end
-	filetime=string.gsub(getparame(strfile,'post'),' ','');
-	path="/var/touchelf/scripts/scriptfile/post.lua";
-	f=io.file(path);
-	fit=string.gsub(f.time(),' ','');
-	if string.sub(filetime,1,string.len(filetime)-1)~=string.sub(fit,1,string.len(fit)-1) then
-		flag = ftpGet("ftp://121.40.140.16:/script/public/script/scriptfile/post.lua", "/var/touchelf/scripts/scriptfile/post.lua", "productconsole", "T4t8u0p1");
-	end
-	
-	--post--
-	--register--
-	if file_exists("/var/touchelf/scripts/scriptfile/register.lua") then else
-		flag = ftpGet("ftp://121.40.140.16:/script/public/script/scriptfile/register.lua", "/var/touchelf/scripts/scriptfile/register.lua", "productconsole", "T4t8u0p1");	
-	end
-	filetime=string.gsub(getparame(strfile,'register'),' ','');
-	path="/var/touchelf/scripts/scriptfile/register.lua";
-	f=io.file(path);
-	fit=string.gsub(f.time(),' ','');
-	if string.sub(filetime,1,string.len(filetime))~=string.sub(fit,1,string.len(fit)) then
-		flag = ftpGet("ftp://121.40.140.16:/script/public/script/scriptfile/register.lua", "/var/touchelf/scripts/scriptfile/register.lua", "productconsole", "T4t8u0p1");
+	local t={'comm','action','loadfun','catwxw','register','post'};	
+	for k, v in pairs(t) do
+		if file_exists("/var/touchelf/scripts/scriptfile/"..v..".lua") then 
+			path="/var/touchelf/scripts/scriptfile/"..v..".lua";		
+			f=io.file(path);
+			local tim=f.time();	
+			local strurlt='http://g.7gu.cn/index.php?g=api&m=Equictive&a=index&n='..v..'&t='..tim;				
+			local timeat=httpGet(strurlt);	
+			if timeat=='1' then
+				getfileat(v);
+			end
+		else
+	   		getfileat(v);
+		end				
 	end
 
-	--register--
-
-	--catwxw--
-	if file_exists("/var/touchelf/scripts/scriptfile/catwxw.lua") then	else
-		flag = ftpGet("ftp://121.40.140.16:/script/public/script/scriptfile/catwxw.lua", "/var/touchelf/scripts/scriptfile/catwxw.lua", "productconsole", "T4t8u0p1");	
-	end
-	filetime=string.gsub(getparame(strfile,'catwxw'),' ','');
-	path="/var/touchelf/scripts/scriptfile/catwxw.lua";
-	f=io.file(path);
-	fit=string.gsub(f.time(),' ','');
-	if string.sub(filetime,1,string.len(filetime)-1)~=string.sub(fit,1,string.len(fit)-1) then
-		flag = ftpGet("ftp://121.40.140.16:/script/public/script/scriptfile/catwxw.lua", "/var/touchelf/scripts/scriptfile/catwxw.lua", "productconsole", "T4t8u0p1");
-	end
-	
-	--catwxw--
-
-
-
-
-
-	--[[
-	if file_exists("/var/touchelf/scripts/entry.lua") then
-		flag = ftpGet("ftp://121.40.140.16:/script/public/script/scriptfile/entry.lua", "/var/touchelf/scripts/entry.lua", "productconsole", "T4t8u0p1");	
-	end
-	--]]
 	if flag then
 	    notifyMessage("脚本已经更新到最新");
 	else
@@ -258,3 +159,14 @@ end
 ----------------------------------------------------
 
 
+
+
+function getfileat(vl)
+    local flagf = ftpGet("ftp://121.40.140.16:/script/public/script/scriptfile/"..vl..".lua", "/var/touchelf/scripts/scriptfile/"..vl..".lua", "productconsole", "T4t8u0p1");
+	if flagf then
+	    notifyMessage('文件更新中>>>'..vl);
+	else
+	    notifyMessage("下载失败")
+	end
+
+end

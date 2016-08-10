@@ -56,6 +56,12 @@ function getrecoip()
 	return sulip;
 end
 
+--获取手机设备的运行状态
+function getrun(nmb,runstatus)
+	cd=getDeviceID();	
+	sul=httpGet("http://g.7gu.cn/index.php?g=api&m=Wxwapi&a=setmobsbzt&cdkey="..cd.."&run="..runstatus.."&nmb="..nmb);
+	return sul;
+end	
 
 --获取朋友圈语录
 function getcir()
@@ -518,6 +524,8 @@ function seachcolorreturn(color,x,y,x1,y1)
 	return t;
 end
 
+
+
 function websavemoble(url)
 end
 
@@ -698,5 +706,21 @@ function randomStrnumzm(num)
 	return 	randomStr("abcdefghijklmnopqrstuvwxyz",num);
 end
 
-
-
+--设备运行状态
+tmy=0;
+function runError(nmb,tm)		
+	if tmy~=0 then
+		--notifyMessage("t:"..tmy.."--"..(os.time()-tm*60),5000);
+		if tonumber(tmy)<=(os.time()-tm*60) then		
+			getrun(nmb,0);
+		else 
+			getrun(nmb,1);
+		end
+		--if(flag>=os.time()-tm*60)
+			--httpGet('http://g.7gu.cn/index.php?g=api&m=Mobile&a=setmobiletype&mobile='..mobile..'&st='..stratu);
+		--end	    
+	else
+		tmy=os.time();
+		--notifyMessage(tmy,5000);
+	end
+end

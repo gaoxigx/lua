@@ -295,19 +295,19 @@
         friend();
     end
 
-        msleeprand(2000);
+        msleeprand(800);
         clickarea(346,1050,480,1128);--点击发现
-        msleeprand(2000);
+        msleeprand(800);
         clickarea(10,164,630,234);--点击朋友圈
-        msleeprand(2000);
+        msleeprand(800);
         clickarea(8,136,632,506);--轻触设置相册封面    
-        msleeprand(3000);
+        msleeprand(800);
         clickarea(6,940,632,1020);--点击更改相册封面
-        msleeprand(2000);
+        msleeprand(1000);
         clickarea(6,164,632,240);--从手机相册选择
 
 
-        msleeprand(3000); --点击相册
+        msleeprand(800); --点击相册
         if afphoparame=='1' then      
             clickarea(6,130,630,286)
         end
@@ -332,26 +332,28 @@
             clickarea(6,950,630,1120)
         end
 
-        msleeprand(2000); --点击移动
+        msleeprand(1200); --点击移动
         clickmove();
 
-        msleeprand(4000);
+        msleeprand(800);
     -- notifyMessage('sdfsdf',5000); 
-        st=(math.random(0, 10000)%4)*157-20;
-
-        dt=(math.random(0,10000)%6)*157-20;
-        if dt<145 then
-            dt=176;
+        st=(math.random(0, 10000)%4)*160-25;
+        if st<160 then
+            st=160;
+        end
+        dt=(math.random(0,10000)%6)*154-125;
+        if dt<154 then
+            dt=154;
         end
         click(st,dt);--随机选择图片
 
-        msleeprand(3000);
-        clickarea(540,1040,616,1076);--选取图片
+        msleeprand(1200);
+        click(578,1061);--选取图片
 
-        msleeprand(3000);
+        msleeprand(1500);
         btnlefttop();
 
-        msleeprand(2000);
+        msleeprand(800);
         btnlefttop();--点击坐上角返回
     end
 
@@ -749,51 +751,49 @@ end
 
 
     --绑定邮箱
-    function emailvfun()
-        rotateScreen(0);
-        msleeprand(2000);
+    function emailvfun()        
+        msleeprand(400);
         clickarea(510,1046,624,1124)--点击我
-        msleeprand(2000);
+        msleeprand(600);
         clickarea(10,808,630,880)--点击设置
-
-        msleeprand(1523);
+        msleeprand(700);
         clickarea(6,160,629,235)--点击帐号与安全
         -- notifyMessage('asdasd',8000);
         -- os.exit();
-
-        msleeprand(2038);
+        msleeprand(500);
         clickarea(6,466,634,540)--点击邮箱地址
-
-
         msleeprand(1000);
         emailfunsave();
-        msleeprand(5000);
+        msleeprand(600);
         btnlefttop();
+        msleeprand(400);
         btnlefttop();
+        msleeprand(400);
         btnlefttop();
+        msleeprand(400);
         btnlefttop();
     end
     --邮箱保存
     function emailfunsave()
-        msleeprand(2000);
+        runError(1,3);
+
+        msleeprand(700);
         emailinfostr=getemail();
         if emailinfostr==nil or emailinfostr=='' then 
             notifyMessage('没有找着数据',2000);
             emailfunsave();
         end 
-        emailary=string.sub(emailinfostr,1,string.find(emailinfostr,',')-1);
-        pwd=string.sub(emailinfostr,string.find(emailinfostr,',')+1,string.len(emailinfostr)-2);
+        emailinfostr=string.gsub(emailinfostr,' ','');
+        emailary=string.sub(emailinfostr,1,string.find(emailinfostr,',')-1);      
+        pwd=string.sub(emailinfostr,string.find(emailinfostr,',')+1,string.len(emailinfostr));
 
         if emailary=='' or emailary==nil then
             notifyMessage('数据有错误',2000);
             emailfunsave();
         end        
-
-        
-                
         --emailcount=UBound(emailary);
         emainb=1;
-        msleeprand(3000);
+        msleeprand(1000);
         code=textlocal(53,365,563,422);
         qtt=string.match(code,'重亲');
         if qtt=='重亲' then       
@@ -807,10 +807,10 @@ end
             msleeprand(1000);
             code=textlocal(67,484,566,562); 
             msleeprand(1000);
-            if string.match(code,"青")=="青" then 
+            if string.match(code,"青")=="青" then --一封邮箱已发送...请登录
                 click(317,672);--点确认按钮
                 msleeprand(1000);
-                notifyMessage(emailary);
+                -- notifyMessage(emailary);
                 email163(emailary,pwd);
                 btnlefttop();
             else            
@@ -855,8 +855,7 @@ end
         msleeprand(1000);
 
         str=("\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b"); 
-        --(math.random(1,10000)%emailcount)+1
-        
+        --(math.random(1,10000)%emailcount)+1        
         inputText(str..emailary);
         msleeprand(1000);
         btnrighttop();
@@ -898,61 +897,72 @@ end
             emailfunsave();
         end
     end
+
     --验证163邮箱
     function email163(emailarytow,pwd)
-        msleeprand(2000);
-        appRun('com.netease.mailmaster');
-        msleeprand(1000);   
-        goinfo();
+        runError(2,3);
+        appRun('com.netease.mailmaster'); 
+        ysmsleepaddnmb('矢口',59,439,581,617,2);       
+        openweiximsg();--推送框
+
+        runError(3,3);
+        msleeprand(700);
         email163login(emailarytow,pwd);
-        emailjs();
-        msleeprand(5000);
-        --notifyMessage('开始页面',5000);
-        click(338,209);--收件箱第一个邮箱
 
-        msleeprand(6000);
-        emailreg();
-     
-        msleeprand(6000);
-        click(322,559);--点确认
-        msleeprand(6000);
-
-        if nt==1 then
-          click(80,8);--返回
-          msleeprand(1000);
+        msleeprand(1000);
+        ysmsleepaddnmb('点击',91,626,523,741,2);--点击好及时收到新邮件提醒
+        local msgcodj=textlocal(91,626,523,741);        
+        if(string.match(msgcodj,'点击')=='点击') then           
+            click(466,861);--好
         end
-        click(80,8);--返回
-        
-        
-        click(80,8);--返回
-        
-        
-        click(556,1085);--我
-        
-        
-        click(400,677);--设置
-        
-        
-        click(326,220);--账号
-        
-        
-        click(326,220);--删除账号
-        
-        msleeprand(500)
-        
-        click(317,974);--删除账号
 
-        msleeprand(1000)
+        emailjs();--收件箱中点击微信团队
+
+        msleeprand(800);
+        emailqr();--微信注册确认多封信的情况
+
+        msleeprand(800);
+        emailqrss();--点开邮箱后微信注册确认
+
+        msleeprand(2000)
+        click(88,82);--返回
+
+        msleeprand(600);
+        local msgcohui=textlocal(10,53,140,107);        
+        if(string.match(msgcohui,'回')=='回') then           
+            click(88,82);--返回
+        end
+
+        msleeprand(600);
+        local msgcosjx=textlocal(10,56,179,112);
+        if(string.match(msgcosjx,'牛')=='牛') then           
+            click(90,83);--左上角收件箱
+        end
+
+        msleeprand(800)
+        click(556,1080);--我
+        msleeprand(1200)       
+        click(185,668);--设置
+        msleeprand(800)        
+        click(240,220);--账号
+        msleeprand(1200)        
+        click(130,220);--删除账号        
+        msleeprand(800)        
+        click(317,974);--删除账号
+        msleeprand(1200)
 
         kill_app("com.netease.mailmaster"); -- 关闭163
         msleeprand(1000);
-        appRun("com.tencent.xin");--打开微信
-        msleeprand(700);
 
-        msleeprand(3000);           
-        --duyihang('/var/touchelf/scripts/luafile/email.lua','/var/touchelf/scripts/luafile/emails.lua',1);
+        runError(4,3);
+        appRun("com.tencent.xin");--打开微信
+
         msleeprand(3000);
-        --]]
+        local msgcobzts=textlocal(68,457,586,626);        
+        if(string.match(msgcobzts,'矢口')=='矢口') or (string.match(msgcobzts,'亲')=='亲') then         
+        click(182,681);--不再提示
+        end
+
     end
 
 
@@ -973,69 +983,81 @@ function loginys()
     end
 end
 
+--收件箱中点击微信团队
 function emailjs()
-    code=textlocal(140,53,442,107); 
+    codeyx=textlocal(220,53,442,107); 
     --notifyMessage(code,5000);
-    if string.match(code,"牛")=='牛' then
-        return;
+    if string.match(codeyx,"牛")=='牛' then
+        click(230,196);
     end
-    msleeprand(2000);
 end
+
+
+--微信注册确认多封信的情况
+function emailqr()
+    codeqr=textlocal(101,254,334,353); 
+    if string.match(codeqr,"团")=='团' then
+        click(235,307);
+    end
+end
+
+
+--点开邮箱后微信注册确认
+function emailqrss()
+    codeqrss=textlocal(10,170,313,232); 
+    --notifyMessage(code,5000);
+    if string.match(codeqrss,"石角")=='石角' then
+        click(332,588);--点击确认
+    end
+end
+
+
 function delS(s)
     assert(type(s)=="string")
     return s:match("^%s+(.-)%s+$")
 end
-    --登入163
-function email163login(emailarytow,pwd)
-    --[[
-    if emailarytow==nil then
-        return
-    end
-    --]]
-
-
-    code=textlocal(140,53,442,107); 
-    if string.match(code,"牛")=='牛' then
+--登入163
+function email163login(emailarytowe,pwd)
+    msleeprand(800);
+    coden=textlocal(140,53,442,107); 
+    if string.match(coden,"牛")=='牛' then
         return;
     end
 
-    msleeprand(2000);   
-        
-    click(310,353);
-    click(310,353);
+    click(424,364);--点击邮箱输入框
+    msleeprand(600);
+    click(485,364);--点击两次
 
-    str="\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b";   
-  
+    str="\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b";     
     --notifyMessage(emailname);
-    inputText(str..emailarytow);
-    msleeprand(3000);
-    
-    click(310,450); 
-    str="\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b";   
-   
-    inputText(str..pwd);
-    --notifyMessage(emailpwd,1000);
-    msleeprand(3000);
-    
-    click(320,590);--登陆
-    msleeprand(8000);
+    inputText(str..emailarytowe);--输入邮箱地址
+    msleeprand(1500);
 
+    click(436,450); --点击密码输入框
+    msleeprand(600);
+    click(436,450);  
+    str="\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b";      
+    inputText(str..pwd);----输入邮箱密码
+    --notifyMessage(emailpwd,1000);
+    msleeprand(800);    
+    click(320,590);--点击登录
+    msleeprand(8000);
     loginemailjs();
-    code=textlocal(140,53,442,107); 
-    loginys();
-    if string.match(code,"牛")=='牛' then
+
+    codeniu=textlocal(140,53,442,107); 
+    if string.match(codeniu,"牛")=='牛' then
         return;
     end
 
     click(181,620);
     notifyMessage('重新登入',2000);
-    email163login(emailarytow,pwd);
+    email163login(emailarytowe,pwd);
 end
 function loginemailjs()
     logincode=textlocal(235,166,547,235);   
     --notifyMessage(logincode);
     if string.match(logincode,"正")=='正' then
-        msleeprand(1000);
+        msleeprand(500);
         loginemailjs();
     end
 end
