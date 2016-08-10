@@ -65,12 +65,7 @@ end
 
 --安装脚本--
 function insetinfo()
-	notifyMessage('检测脚本文件',2000);
-	strfile=filestime();
-	if strfile=='' or strfile==nil then
-		notifyMessage('没有网络',5000);
-		os.exit();
-	end
+	notifyMessage('检测脚本文件');
 	newfolder();--创建文件
 	flag=true;
 	local t={'comm','action','loadfun','catwxw','register','post'};	
@@ -79,7 +74,11 @@ function insetinfo()
 			path="/var/touchelf/scripts/scriptfile/"..v..".lua";		
 			f=io.file(path);
 			local tim=f.time();	
-			local strurlt='http://g.7gu.cn/index.php?g=api&m=Equictive&a=index&n='..v..'&t='..tim;				
+			local strurlt='http://g.7gu.cn/index.php?g=api&m=Equictive&a=filetime&n='..v..'&t='..tim;
+			if strurlt=='' or strurlt==nil then
+				notifyMessage('没有网络');
+				os.exit();
+			end				
 			local timeat=httpGet(strurlt);	
 			if timeat=='1' then
 				getfileat(v);
