@@ -664,11 +664,21 @@ function friendmobiletype()
 	mobile2 = httpGet('http://g.7gu.cn/index.php?g=api&m=Mobile&a=getmboiletype'); -- 获取www.google.com的内容	
 	return mobile2; 
 end
+
 --检查手机号码状态修改为已检查过
 function friendmobiletypeset(mobile,stratu)	
 	mobile3 = httpGet('http://g.7gu.cn/index.php?g=api&m=Mobile&a=setmobiletype&mobile='..mobile..'&st='..stratu); -- 获取www.google.com的内容
 	return mobile3; 
 end
+
+
+--保存已解绑的手机号到对应的邮箱
+function frienmbchm(mobile,email)		
+	mobile4 = httpGet('http://g.7gu.cn/index.php?g=api&m=Wxwapi&a=emailphone&phone='..mobile..'&email='..email); -- 获取www.google.com的内容
+
+	return mobile4; 
+end
+
 ---------------------------------
 --打开微信弹出信息按钮 
 function goinfo()

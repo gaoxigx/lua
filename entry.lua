@@ -6,7 +6,6 @@ package.path=package.path .. ";/var/touchelf/scripts/scriptfile/?.lua";
 gsinfo='';
 weixiinfo={};
 function main()
-
 	insetinfo();
 	require "comm";
 	require "action";	
@@ -14,9 +13,8 @@ function main()
 	require "register";
 	require "catwxw";
 	require "loadfun";
-	
 	loadfunction();	
-
+    notifyMessage('数据加载完成');
 	gsinfo=runparame();--得到指令23,134,628,289		
 	if gsinfo==nil or gsinfo=='' then
 		notifyMessage('请连接网络再运行',5000);
@@ -43,24 +41,6 @@ function main()
     end
     --]]
  end
-
-function backuphdhd(mobile,pwd)
-	mSleep(1000);	
-	appRun('com.workhard.hdfakerset');
-	mSleep(1000);	
-	click(139,1064);--操作
-	mSleep(1000);
-	click(293,675);--备份数据
-	mSleep(1000);
-	click(557,82);--开始备份
-	mSleep(3000);
-	inputtextstr(mobile..'-'..pwd);--更改名字
-	mSleep(4000);
-	mSleep(2000); 
-	click(326,304);--开始备份
-	mSleep(3000);
-	click(323,657);--点完成
-end
 
 
 --安装脚本--

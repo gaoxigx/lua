@@ -53,7 +53,6 @@
                     "我差点信了/:dig",
                     "/::>",
                     "哈哈哈！/:,@P",
-                    "/::/",
                     "/:,@P",
                     "/::B",
                 }
@@ -108,7 +107,7 @@
     end
 
 
-    msleeprand(2000); --点击相册
+    msleeprand(1500); --点击相册
     if fphoparame=='1' then      
         clickarea(6,130,630,235)
     end
@@ -144,7 +143,7 @@
     msleeprand(1500); --点击移动
     clickmovedom();
 
-    msleeprand(2000);
+    msleeprand(1500);
 
         tp=math.random(1, 9);--随机点击图片数量
         for i=1,tp do
@@ -159,12 +158,11 @@
             click(st,dt);
         end
 
-
-    msleeprand(2000);
+    msleeprand(1500);
     clickarea(520,1070,618,1108);--选好图片点击完成
 
     msleeprand(1000);
-    clickarea(35,155,263,184);--点击进入输入框
+    click(262,164);--点击进入输入框
 
     msleeprand(1000);
     signpyq=string.gsub(getcir(),' ','');--去除空格
@@ -221,16 +219,16 @@
 
         msleeprand(2000);
         clickarea(510,1046,624,1124); --点击我
-        msleeprand(2000);
+        msleeprand(800);
         clickarea(10,170,630,320);--点击头部栏信息
-        msleeprand(2000);
+        msleeprand(1200);
         clickarea(6,164,632,314);--点击头像
-        msleeprand(2000);
-        btnrighttop();--点击个人头像右上角选择
-        msleeprand(3000);
-        clickarea(6,840,632,924);--点击从手机相册选择
+        -- msleeprand(2000);
+        -- btnrighttop();--点击个人头像右上角选择
+        msleeprand(1200);
+        clickarea(182,954,460,1005);--点击从手机相册选择
 
-        msleeprand(3000); --点击相册
+        msleeprand(1500); --点击相册
         if aphoparame=='1' then      
             clickarea(6,130,630,286)
         end
@@ -258,25 +256,25 @@
         msleeprand(2000); --点击移动
         clickmove();
 
-        msleeprand(4000);
+        msleeprand(1500);
     -- notifyMessage('sdfsdf',5000); 
         st=(math.random(0, 10000)%4)*156-20;
         if st<156 then
             st=156;
         end
-        dt=(math.random(0,10000)%6)*156-20;
+        dt=(math.random(0,10000)%6)*156-125;
         if dt<156 then
             dt=156;
         end
         click(st,dt);--随机选择图片
 
-        msleeprand(3000);
+        msleeprand(1500);
         clickarea(540,1040,616,1076);--选取图片
 
-        msleeprand(3000);
+        msleeprand(1500);
         btnlefttop();
 
-        msleeprand(2000);
+        msleeprand(800);
         btnlefttop();--点击左上角返回
     end
 
@@ -304,7 +302,7 @@
         msleeprand(800);
         clickarea(6,940,632,1020);--点击更改相册封面
         msleeprand(1000);
-        clickarea(6,164,632,240);--从手机相册选择
+        clickarea(34,185,271,218);--从手机相册选择
 
 
         msleeprand(800); --点击相册
@@ -332,25 +330,25 @@
             clickarea(6,950,630,1120)
         end
 
-        msleeprand(1200); --点击移动
+        msleeprand(1500); --点击移动
         clickmove();
 
         msleeprand(800);
     -- notifyMessage('sdfsdf',5000); 
-        st=(math.random(0, 10000)%4)*160-25;
-        if st<160 then
-            st=160;
+        st=(math.random(0, 10000)%4)*155-25;
+        if st<155 then
+            st=155;
         end
-        dt=(math.random(0,10000)%6)*154-125;
-        if dt<154 then
-            dt=154;
+        dt=(math.random(0,10000)%6)*157-125;
+        if dt<157 then
+            dt=157;
         end
         click(st,dt);--随机选择图片
 
         msleeprand(1200);
         click(578,1061);--选取图片
 
-        msleeprand(1500);
+        msleeprand(1200);
         btnlefttop();
 
         msleeprand(800);
@@ -372,10 +370,10 @@
 
     msleeprand(1000);
     clickrand(632,310);--点击进入输入框
-    msleeprand(2000);
+    msleeprand(800);
     str="\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b";
 
-    msleeprand(2000);
+    msleeprand(1200);
 --[[
         a = {"今天天气很不错", 
             "这鬼天气，晒成狗了", 
@@ -763,34 +761,76 @@ end
         msleeprand(500);
         clickarea(6,466,634,540)--点击邮箱地址
         msleeprand(1000);
-        emailfunsave();
-        msleeprand(600);
+
+        msleeprand(800);
+
+        saveemailinfo();
+
+        msleeprand(800);
+        click(485,416);--点击手机号
+
+        msleeprand(800);
+        click(589,83);--点击右上角三个点解绑
+
+        msleeprand(800);
+        click(319,975);--解绑
+
+        msleeprand(800);
+        click(185,677);--停用
+
+        msleeprand(1000);
+        local msgcoty=textlocal(61,440,580,608);        
+        if(string.match(msgcoty,'号')=='号') or (string.match(msgcoty,'立')=='立') then         
+        click(320,665);--不再提示
+        end
+
+        msleeprand(2000);
+        click(89,83);--点击返回帐号与安全页面
+
+        msleeprand(800);
         btnlefttop();
-        msleeprand(400);
-        btnlefttop();
-        msleeprand(400);
-        btnlefttop();
-        msleeprand(400);
+
+        msleeprand(800);
         btnlefttop();
     end
-    --邮箱保存
-    function emailfunsave()
-        runError(1,3);
 
+    function saveemailinfo()
         msleeprand(700);
         emailinfostr=getemail();
         if emailinfostr==nil or emailinfostr=='' then 
             notifyMessage('没有找着数据',2000);
-            emailfunsave();
+            saveemailinfo();
+            return;
         end 
         emailinfostr=string.gsub(emailinfostr,' ','');
         emailary=string.sub(emailinfostr,1,string.find(emailinfostr,',')-1);      
         pwd=string.sub(emailinfostr,string.find(emailinfostr,',')+1,string.len(emailinfostr));
 
         if emailary=='' or emailary==nil then
-            notifyMessage('数据有错误',2000);
-            emailfunsave();
-        end        
+            notifyMessage('数据有错误',2000); 
+            saveemailinfo();  
+            return;        
+        end 
+
+        emailfunsave(emailary,pwd);
+
+        --解绑手机号保存到邮箱管理模块
+        msleeprand(1500);
+        local msgcodeqx=textlocal(7,56,107,110);        
+        if(string.match(msgcodeqx,'肖')=='肖') or (string.match(msgcodeqx,'取')=='取') then     
+          click(52,83);--点击返回帐号与安全页面
+        end
+
+        msleeprand(2500);
+        codesz=textlocalnmb(344,392,587,440); --获取手机号码保存到邮箱管理
+        msleeprand(2000);
+        frienmbchm(codesz,emailary);
+    end
+
+    --邮箱保存
+    function emailfunsave(emailary,pwd)
+        runError(1,3);
+       
         --emailcount=UBound(emailary);
         emainb=1;
         msleeprand(1000);
@@ -812,6 +852,7 @@ end
                 msleeprand(1000);
                 -- notifyMessage(emailary);
                 email163(emailary,pwd);
+                msleeprand(1200);
                 btnlefttop();
             else            
                 btnlefttop();
@@ -877,7 +918,8 @@ end
             click(446,197);--点击编辑
             msleeprand(2000);   
             click(500,200);
-            emailfunsave()
+            emailfunsave(emailary,pwd)
+            return;
         end
         
         if(string.match(code,"青")=='青') then    
@@ -885,6 +927,7 @@ end
             --notifyMessage('请确认邮箱验证');
             msleeprand(1000);
             email163(emailary,pwd);
+            return;
         end
         
         if(string.match(code,"已")=='已') then        
@@ -894,7 +937,8 @@ end
             --duyihang('/var/touchelf/scripts/luafile/email.lua','/var/touchelf/scripts/luafile/emails.lua',1);
             msleeprand(3000);   
             click(500,200);
-            emailfunsave();
+            saveemailinfo();
+            return;
         end
     end
 
@@ -957,12 +1001,13 @@ end
         runError(4,3);
         appRun("com.tencent.xin");--打开微信
 
-        msleeprand(3000);
+        msleeprand(1000);
         local msgcobzts=textlocal(68,457,586,626);        
         if(string.match(msgcobzts,'矢口')=='矢口') or (string.match(msgcobzts,'亲')=='亲') then         
         click(182,681);--不再提示
         end
 
+ 
     end
 
 

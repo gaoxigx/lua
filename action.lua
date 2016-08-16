@@ -116,11 +116,13 @@ function reloaddata()
 	click(152,257);
 	msleeprand(6000);
 end
+
+
 --备份注册 hd
-function backuphd(mobile,pwd)
+function backuphdbfzc(mobile,pwd)
 	msleeprand(1000);	
 	appRun('com.workhard.hdfakerset');
-	msleeprand(1000);	
+	msleeprand(2400);	
 	click(139,1064);--操作
 	msleeprand(1000);
 	click(293,675);--备份数据
@@ -128,19 +130,19 @@ function backuphd(mobile,pwd)
 	click(557,82);--开始备份
 
     --键盘输入注册
-	msleeprand(1000);
+	msleeprand(1800);
 	click(128,980);--输入Z键
 
-	msleeprand(500);
+	msleeprand(600);
 	click(385,873);--输入H键
 
-	msleeprand(500);
+	msleeprand(600);
 	click(416,764);--输入U键
 
-	msleeprand(500);
+	msleeprand(600);
 	click(256,980);--输入C键
 
-	msleeprand(500);
+	msleeprand(600);
 	click(158,765);--输入E键
 
 	msleeprand(800);
@@ -148,15 +150,16 @@ function backuphd(mobile,pwd)
 	
 	msleeprand(1000);	
 	click(320,400);--开始备份
-	msleeprand(8000);
+
+	msleeprand(10000);
 	click(323,654);--点完成
 end
 
 --备份数据 hd
-function backuphdss(mobile,pwd)
+function backuphd(mobile,pwd)
 	msleeprand(1000);	
 	appRun('com.workhard.hdfakerset');
-	msleeprand(1000);	
+	msleeprand(2400);	
 	click(139,1064);--操作
 	msleeprand(1000);
 	click(293,675);--备份数据
@@ -164,7 +167,7 @@ function backuphdss(mobile,pwd)
 	click(557,82);--开始备份	
 	msleeprand(1000);	
 	click(320,400);--开始备份
-	msleeprand(8000);
+	msleeprand(9000);
 	click(323,654);--点完成
 end
 
@@ -177,7 +180,6 @@ function registerweixi(cd)
 	openweiximsg();
 	msleeprand(200);
 	seachcolor(0x06bf04,6,394,637,1037);--点注册
-
 
 	--msleeprand(2000);
 	--[[
@@ -257,7 +259,7 @@ function registerweixi(cd)
 	writeonestr("/var/touchelf/scripts/scriptfile/pwd.txt",gerxi);
 	msleeprand(1000);
 	filepaw(strpwd);--创建密码
-	backuphd(mobile,pwd);--开始备份
+	backuphdbfzc(mobile,pwd);--开始备份
 	msleeprand(1000);
 end
 
