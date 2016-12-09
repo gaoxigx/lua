@@ -2,8 +2,9 @@
 function loadfunction()
 	newfiles('/var/touchelf/scripts/scriptfile/images/');
     loadimg();    
-    loadfile
+    loadfile();
 end
+require "tantan";
 
 function newfiles(path)    
     return os.execute("mkdir "..path);
