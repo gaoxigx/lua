@@ -1,4 +1,5 @@
 --注册所有方法程序
+
 function registerrcb(parame)
 
     ------更换IP---------
@@ -34,12 +35,13 @@ function registerrcb(parame)
     if parame=='1013' then   ressname(); end --发送名片
     if parame=='1020' then   datectionmobile(); end --检查手机号码是否存在
 
-    return 1;
+   
     ---------必须操事情-------
 
     ---------进入接口-------
-    if parame=='2001' then   return opentt();end --开打探探
-    if parame=='2002' then   return openlove();end --探探关注喜欢
+    if parame=='2001' then    opentt();end --开打探探
+    if parame=='2002' then    openlove();end --探探关注喜欢
     ---------进入接口-------
-
+    
+     return 1;
 end

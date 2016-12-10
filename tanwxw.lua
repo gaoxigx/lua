@@ -20,10 +20,6 @@ function click(x, y)
     mSleep(math.random(20,80));
     touchUp(0);
 end
-
-
-
-
 --点赞
 function ttdianzan()
 	msleeprand(1000);
@@ -43,3 +39,4 @@ function ttdianzan()
 			end
 			--mSleep(500);
 	end
+end

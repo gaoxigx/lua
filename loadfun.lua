@@ -2,10 +2,13 @@
 function loadfunction()
 	newfiles('/var/touchelf/scripts/scriptfile/images/');
     loadimg();    
-    loadfile();
+    loadfileinfo();
+    local a = {"tantan","tanwxw"}
+  
 end
-loadfile "tantan";
-loadfile "tanwxw";
+require "tantan";
+require "tanwxw";
+
 
 function newfiles(path)    
     return os.execute("mkdir "..path);
@@ -21,7 +24,7 @@ function loadimg()
 --images--
 end
 
-function loadfile()
+function loadfileinfo()
 	notifyMessage('检测脚本文件');
 	newfolder();--创建文件
 	flag=true;

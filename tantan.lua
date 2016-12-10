@@ -1,10 +1,9 @@
 --打开探探
-function opentt(){
+function opentt()
 	appRun("com.yaymedialabs.putong");
-}
+end
 
-function openlover(){
-
+function openlover()
 	for sim = 100, 50, -1 do  
 			x, y = findColorInRegionFuzzy(0x007aff, sim, 301, 650, 336, 684); 
 			if x ~= -1 and y ~= -1 then   --如果在指定区域找到某点符合条件
@@ -15,6 +14,6 @@ function openlover(){
 			end
 			--mSleep(500);
 	end
-}
+end
 
 
