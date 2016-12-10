@@ -4,8 +4,8 @@ function loadfunction()
     loadimg();    
     loadfile();
 end
-require "tantan";
-require "tanwxw";
+loadfile "tantan";
+loadfile "tanwxw";
 
 function newfiles(path)    
     return os.execute("mkdir "..path);
