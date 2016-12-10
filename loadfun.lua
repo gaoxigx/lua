@@ -5,6 +5,7 @@ function loadfunction()
     loadfile();
 end
 require "tantan";
+require "tanwxw";
 
 function newfiles(path)    
     return os.execute("mkdir "..path);
@@ -24,7 +25,7 @@ function loadfile()
 	notifyMessage('检测脚本文件');
 	newfolder();--创建文件
 	flag=true;
-	local t={'tantan'};	
+	local t={'tantan','tanwxw'};	
 	for k, v in pairs(t) do
 		if file_exists("/var/touchelf/scripts/scriptfile/"..v..".lua") then 
 			path="/var/touchelf/scripts/scriptfile/"..v..".lua";		
