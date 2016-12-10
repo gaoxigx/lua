@@ -40,7 +40,7 @@ function registerrcb(parame)
 
     ---------进入接口-------
     if parame=='2001' then    opentt();end --开打探探
-    if parame=='2002' then    openlove();end --探探关注喜欢
+    if parame=='2002' then    openlover();end --探探关注喜欢
     ---------进入接口-------
     
      return 1;
