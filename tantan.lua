@@ -14,6 +14,20 @@ function openlover()
 			end
 			--mSleep(500);
 	end
+
+	mSleep(1000);
+	click(416,1046);
+	mSleep(1000);
+	click(416,1046);
+	mSleep(1000);
+	click(416,1046);
+	mSleep(1000);
+	click(416,1046);
+	mSleep(1000);	
+end
+
+function closett()
+	appKill("com.yaymedialabs.putong");
 end
 
 
