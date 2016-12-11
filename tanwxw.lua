@@ -20,13 +20,16 @@ function click(x, y)
     mSleep(math.random(20,80));
     touchUp(0);
 end
---点赞
+--探探点赞
 function ttdianzan()
-	msleeprand(1000);
-	btnlefttop();--左上角
+    appRun("com.yaymedialabs.putong");--打开探探
 
-	msleeprand(600);
+    msleeprand(5000);
+    click(37,82);--左上角
+
+	msleeprand(1500);
 	click(226,388);--探探
+
 
 	msleeprand(1200);
 	for sim = 100, 50, -1 do  
