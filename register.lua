@@ -1,7 +1,7 @@
 --注册所有方法程序
-
+jgtime=0;
 function registerrcb(parame)
-
+   
     ------更换IP---------
     if parame=='101' then   flymodel(); end --执行飞形模式
     if parame=='102' then   vpn(gsinfo);    end --执行vpn
@@ -35,7 +35,20 @@ function registerrcb(parame)
     if parame=='1013' then   ressname(); end --发送名片
     if parame=='1020' then   datectionmobile(); end --检查手机号码是否存在
 
-   
+    --微信摇一摇
+  
+    if parame=='1030' then  
+        if tonumber(os.time())>jgtime then
+            info=runparame();
+            local ytime=getparamecom(info,'mustt_ytime');
+            jgtime= tonumber(os.time())+tonumber(ytime)*60;
+            weixiyaoyao(); 
+        end
+    end
+    --摇一摇--
+
+    --摇一摇--
+
     ---------必须操事情-------
 
     ---------探探进入接口-------
@@ -43,6 +56,15 @@ function registerrcb(parame)
     if parame=='2002' then    openlover();end --探探关注喜欢
     if parame=='2003' then    closett();end --关闭探探
     ---------探探进入接口-------
-    
+
+    ---------陌陌-------------
+    if parame=='3001' then    findmm();end --陌陌关注如果有聊天即时回复一句话
+
+
+
+    ---------陌陌-------------
+
      return 1;
 end
+
+

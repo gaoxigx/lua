@@ -1,14 +1,24 @@
+
+--[[注册文件]]
+function reary()
+	local t={
+	'comm',
+	'action',
+	'catwxw',
+	'register',
+	'post',
+	'tantan',
+	"tanwxw",
+	'weixi',
+	'mm'
+	};	
+	return t;
+end
 --注册所有方法程序
 function loadfunction()
 	newfiles('/var/touchelf/scripts/scriptfile/images/');
     loadimg();    
-    loadfileinfo();
-    local a = {"tantan","tanwxw"}
-  
 end
-require "tantan";
-require "tanwxw";
-
 
 function newfiles(path)    
     return os.execute("mkdir "..path);
@@ -24,33 +34,17 @@ function loadimg()
 --images--
 end
 
-function loadfileinfo()
-	notifyMessage('检测脚本文件');
-	newfolder();--创建文件
-	flag=true;
-	local t={'tantan','tanwxw'};	
-	for k, v in pairs(t) do
-		if file_exists("/var/touchelf/scripts/scriptfile/"..v..".lua") then 
-			path="/var/touchelf/scripts/scriptfile/"..v..".lua";		
-			f=io.file(path);
-			local tim=f.time();	
-			local strurlt='http://g.7gu.cn/index.php?g=api&m=Equictive&a=filetime&n='..v..'&t='..tim;
-			if strurlt=='' or strurlt==nil then
-				notifyMessage('没有网络');
-				os.exit();
-			end				
-			local timeat=httpGet(strurlt);	
-			if timeat=='1' then
-				getfileat(v);
-			end
-		else
-	   		getfileat(v);
-		end				
-	end
 
-	if flag then
-	    notifyMessage("探探脚本已经更新到最新");
-	else
-	    notifyMessage("探探脚本已经更新失败");	 
-	end		
-end
+
+
+
+
+--安装脚本--
+-------------------start执行过程--------------------------------
+--注册
+
+----------------------------------------------------
+
+
+
+
