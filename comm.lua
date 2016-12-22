@@ -20,6 +20,23 @@ function getparamecom(sul,str)
 	v=string.sub(sul,string.find(sul,'<'..str..'>')+string.len('<'..str..'>'),string.find(sul,'</'..str..'>')-1);
 	return v;
 end
+--得到相应的命令+4位数据字
+function getparamezb(sul,str)
+	if sul==nil or sul=='' then
+		return nil;
+	end
+	local strinfo=string.find(sul,str);
+	if strinfo==nil or strinfo=='' then
+		return nil;
+	end
+	v=string.sub(sul,string.find(sul,'<'..str..'>')+string.len('<'..str..'>'),string.find(sul,'</'..str..'>')-1);
+	if tonumber(v)==0 then
+		return 0;
+	else
+		return tonumber(v)+(tonumber(math.random(1000, 9999))*0.000001);
+	end
+	
+end
 
 --确认发送手机短信
 function sendmobile()

@@ -9,10 +9,11 @@ function findmm()
 	runApp();
 	homePage();--弹出异常
 
-    mSleep(500);
+    mSleep(800);
     local i = 0;
     local jt = 1;
     click(62,1083);
+    mSleep(500);
     while true do
     	if(i==0) then
     		homelist();
@@ -31,8 +32,17 @@ function findmm()
     	if(listcolorinfo(0x77cee5,95,175,185,320,238)==false and listcolor90(0x7394ff, 199, 168, 292, 296)==false and listcolor90(0xf52156, 103, 250, 138, 285)==false and listcolorinfo(0xe81f1f,80, 175, 141, 416, 200)==false) then
     		  		
 			click(97,229);--点列表进入
-			if followinfo()==true then
+			local fl = followinfo();
+			if fl==1 then
 				i=i+1; 
+			end
+
+			if fl==2 then
+				mSleep(100)
+				blockinfo();
+				mSleep(100)
+				blockinfo();
+				break; 
 			end
 	    	--关注 
 	    	mSleep(100)
@@ -48,9 +58,88 @@ function findmm()
     end
 	
 end
+function sendMsgInfo()
+	local txtmsg=getparamecom(gsinfo,'mustt_txtmsg');
+	--sendMsg();
+	mSleep(1000);
+	if(listcolorinfo(0141414,90,407,1078,431,1101)==false and listcolorinfo(0x00c0ff,95,48,1066,98,1111)==false) then
+		blockinfo();
+		mSleep(500);
+		return 0;
+	end
+
+	click(299,1094); --点对话
+	mSleep(600);
+
+	if(listcolorinfo(0x0c0c0c,90,407,1078,431,1101)==true and listcolorinfo(0x007399,95,48,1066,98,1111)==true and listcolorinfo(0x7e0c0c,90,443,1066,496,1121)) then
+		click(188,629);
+		mSleep(300);
+
+		blockinfo();
+		mSleep(500);
+		return 1;
+	end
+
+	if listcolorinfo(0x3462ff,90,544,1061,616,1121)==false then
+		blockinfo();
+		mSleep(300);
+		return 0;
+	end
+	--click(322,1073);
+	--[[
+	local x = 1;
+	mSleep(1000);
+
+	while true do
+		if(x==1) then
+			infomovedow(305,549,250);
+			mSleep(300);
+			infomove(305,549,100);
+			--infomove(305,549,250);
+		end
+		x=x+1;
+		
+		mSleep(400);
+				click(286,205);--进入聊天框
+				mSleep(800);
+   --]]
+				click(109,1013);
+				mSleep(100);
+
+				inputText(txtmsg);--输入字信息
+				mSleep(100);
+
+				click(560,1092);
+				mSleep(500);
+
+				blockinfo();
+				mSleep(1000);
+
+		infomove(305,549,160);
+	
+		--[[		delemove();
+
+		mSleep(300);
+		--click(566,439);
+		click(584,350);
+		mSleep(300);
+		
+		if(x>3) then
+			break;
+		end	
+
+		
+
+	end
+	--]]
+	mSleep(500);
+	click(62,1083);
+	mSleep(500);
+	return 0;
+end
 
 
---发送信息
+--发送回复信息
 function sendMsg()	
 
 	local txtmsg=getparamecom(gsinfo,'mustt_txtmsg');
@@ -114,8 +203,7 @@ function sendMsg()
 end
 --关注
 function followinfo()
-	if(listcolorinfo(0x141414,90,407,1078,431,1101)==true and listcolorinfo(0xffffff,90,492,1066,623,1114)==true and listcolorinfo(0x00c0ff,95,48,1066,98,1111)==true and listcolorinfo(0xd21515,90,443,1066,496,1121)) then
-
+	if(listcolorinfo(0x141414,90,407,1078,431,1101)==true and listcolorinfo(0x00c0ff,95,48,1066,98,1111)==true and listcolorinfo(0xd21515,90,443,1066,496,1121)) then
 	
 		mSleep(500);
 		click(299,1094); --点关注
@@ -126,6 +214,14 @@ function followinfo()
 		mSleep(2000);
 		click(556,373)--点赞
 		mSleep(500);
+		--notifyMessage(gsinfo,7000);
+		
+		issendmsg=getparamecom(gsinfo,"mustt_issendmsg");
+		if issendmsg=="2" then
+			if sendMsgInfo()==1 then
+				return 2;
+			end
+		end
 		blockinfo(); --关注之后返回
 		mSleep(500)
 		if(listcolorinfo(0x00c0ff,80,31,1063,161,1122)==false) then
@@ -135,9 +231,9 @@ function followinfo()
 		
 		mSleep(500)
 		blockinfo();
-		return true;
+		return 1;
 	end
-	return false;
+	return 0;
 end
 
 --点返回
@@ -243,7 +339,11 @@ end
 
 function runApp()
 	appRun("com.wemomo.momoappdemo1");
-	--fakeGPS("com.tencent.xin",x ,y);
+	local x=getparamezb(gsinfo,'phonex');
+    local y=getparamezb(gsinfo,'phoney');
+    notifyMessage(x,2000);
+    	notifyMessage(y,2000);
+	fakeGPS("com.wemomo.momoappdemo1",x ,y);
 end
 --第一页首页
 function homePage()

@@ -6,8 +6,8 @@ end
 
 function openlover()
 	info=runparame();
-    local xzb=getparamecom(info,'mustt_xzb');
-    local yzb=getparamecom(info,'mustt_yzb');
+    local xzb=getparamezb(gsinfo,'phonex');
+    local yzb=getparamezb(gsinfo,'phoney');
     appRun("com.yaymedialabs.putong");
 	fakeGPS("com.yaymedialabs.putong", xzb, yzb); 
 	for sim = 100, 50, -1 do  
