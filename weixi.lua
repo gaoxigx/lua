@@ -34,7 +34,7 @@ function weixiyaoyao()
         click(154,416);--点摇一摇
         mSleep(100);
         shakeDevice();--摇一摇
-        mSleep(2000);
+        mSleep(3000);
         --mSleep(1000*60*tonumber(ytime));
         
         click(34,89);--返回

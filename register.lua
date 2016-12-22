@@ -5,9 +5,10 @@ function registerrcb(parame)
 
     --微信摇一摇
     if string.match(gsinfo,'1030')=="1030" then
-         local ytime=getparamecom(info,'mustt_ytime');
-         if getweixiyaotime(ytime)==1 then
-            weixiyaoyao()
+         local ytime=getparamecom(gsinfo,'mustt_ytime');
+         notifyMessage('网速太慢或已断网',2000);
+         if getweixiyaotime(ytime)=="1" or getweixiyaotime(ytime)==1 then
+            weixiyaoyao();
         end
     end
     --摇一摇--

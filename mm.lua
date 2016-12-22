@@ -28,7 +28,7 @@ function findmm()
 			sendMsg();
 		end
 
-    	if(listcolor90(0x7394ff, 199, 168, 292, 296)==false and listcolor90(0xf52156, 103, 250, 138, 285)==false and listcolorinfo(0xe81f1f,80, 175, 141, 416, 200)==false) then
+    	if(listcolorinfo(0x77cee5,95,175,185,320,238)==false and listcolor90(0x7394ff, 199, 168, 292, 296)==false and listcolor90(0xf52156, 103, 250, 138, 285)==false and listcolorinfo(0xe81f1f,80, 175, 141, 416, 200)==false) then
     		  		
 			click(97,229);--点列表进入
 			if followinfo()==true then
@@ -114,7 +114,9 @@ function sendMsg()
 end
 --关注
 function followinfo()
-	if(listcolorinfo(0x141414,90,407,1078,431,1101) and listcolorinfo(0xffffff,90,492,1066,623,1114) and listcolorinfo(0xd21515,95,443,1066,496,1121)  ) then
+	if(listcolorinfo(0x141414,90,407,1078,431,1101)==true and listcolorinfo(0xffffff,90,492,1066,623,1114)==true and listcolorinfo(0x00c0ff,95,48,1066,98,1111)==true and listcolorinfo(0xd21515,90,443,1066,496,1121)) then
+
+	
 		mSleep(500);
 		click(299,1094); --点关注
 
