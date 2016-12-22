@@ -124,6 +124,11 @@ function getweixiname()
 	wxname=httpGet("http://g.7gu.cn/index.php?g=api&m=mobile&a=wxname");
 	return wxname;
 end
+--得到是否摇一摇
+function getweixiyaotime(ytime)
+	yaoyao=httpGet("http://g.7gu.cn/index.php?g=api&m=yaoyaoapi&a=index&id=".getDeviceID()."&now=".ytime);
+	return yaoyao；
+end
 
 
 
