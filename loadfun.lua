@@ -14,6 +14,10 @@ function reary()
 	};	
 	return t;
 end
+
+function 
+
+	
 --注册所有方法程序
 function loadfunction()
 	newfiles('/var/touchelf/scripts/scriptfile/images/');
@@ -33,12 +37,6 @@ function loadimg()
    end
 --images--
 end
-
-
-
-
-
-
 --安装脚本--
 -------------------start执行过程--------------------------------
 --注册
