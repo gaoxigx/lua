@@ -216,7 +216,6 @@
         friendmi();
     end
 
-
         msleeprand(2000);
         clickarea(510,1046,624,1124); --点击我
         msleeprand(800);
@@ -537,6 +536,8 @@ function seachfrinedcode(addparame)
     end
 
 
+
+
     msgfr=textlocal(89,470,557,683);    
 
     if string.match(msgfr,'失败')=='失败' then
@@ -555,6 +556,14 @@ function seachfrinedcode(addparame)
         return 1;
         --btnrighttop();--取消
         --msleeprand(2000);
+    end
+
+    --微信账号因登录环境异常，已被限制登录
+    msgtbt=textlocal(89,470,557,683);  
+    if string.match(msgtbt,'可申')=='可申' then
+        click(185,683);
+        msleep(1000);
+        return 0;
     end
 
     findtext=textlocal(121,388,515,475);

@@ -1,7 +1,18 @@
 --注册所有方法程序
-
+jgtime=0;
 function registerrcb(parame)
 
+
+    --微信摇一摇
+    if string.match(gsinfo,'1030')=="1030" then
+         local ytime=getparamecom(gsinfo,'mustt_ytime');
+         notifyMessage('网速太慢或已断网',2000);
+         if getweixiyaotime(ytime)=="1" or getweixiyaotime(ytime)==1 then
+            weixiyaoyao();
+        end
+    end
+    --摇一摇--
+   
     ------更换IP---------
     if parame=='101' then   flymodel(); end --执行飞形模式
     if parame=='102' then   vpn(gsinfo);    end --执行vpn
@@ -33,15 +44,21 @@ function registerrcb(parame)
     if parame=='1011' then   finame(); end --修改名字
     if parame=='1012' then   sexb(); end --修改性别
     if parame=='1013' then   ressname(); end --发送名片
-    if parame=='1020' then   datectionmobile(); end --检查手机号码是否存在
+    if parame=='1020' then   datectionmobile(); end --检查手机号码是否存在    
+    --摇一摇--
 
-   
     ---------必须操事情-------
 
-    ---------进入接口-------
+    ---------探探进入接口-------
     if parame=='2001' then    opentt();end --开打探探
     if parame=='2002' then    openlover();end --探探关注喜欢
-    ---------进入接口-------
-    
+    if parame=='2003' then    closett();end --关闭探探
+    ---------探探进入接口-------
+
+    ---------陌陌-------------
+    if parame=='3001' then    findmm();end --陌陌关注如果有聊天即时回复一句话
+    ---------陌陌-------------
      return 1;
 end
+
+
