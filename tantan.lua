@@ -37,6 +37,7 @@ end
 function closett()
 	appKill("com.yaymedialabs.putong");
 end
+
 --探探
 
 

@@ -340,15 +340,6 @@ function homePage()
 			return;
 		end
 	end
-	--[[
-	if(getColor(31,82)==15527403 or (getColor(31,82)==x0f7f7f7 or getColor(31,82)==16250871)and(getColor(496,92)==x0f7f7f7 or getColor(496,92)==16250871)) then
-		mSleep(1500);
-		if(getColor(31,82)==15527403 or (getColor(31,82)==x0f7f7f7 or getColor(31,82)==16250871)and(getColor(496,92)==x0f7f7f7 or getColor(496,92)==16250871)) then
-   	   		return;
-   		end
-   	end
-	--]]
-
    	mSleep(400);
    	homePage();
    	--]]

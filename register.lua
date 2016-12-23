@@ -58,6 +58,10 @@ function registerrcb(parame)
     ---------陌陌-------------
     if parame=='3001' then    findmm();end --陌陌关注如果有聊天即时回复一句话
     ---------陌陌-------------
+
+    --定时关机--
+    if parame=="4001" then haltinfo();end--定时关机
+    --定时关机
      return 1;
 end
 
