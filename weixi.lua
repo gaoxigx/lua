@@ -7,7 +7,7 @@ function weixiyaoyao()
         mSleep(1100)
         local x=getparamezb(gsinfo,'phonex');
     	local y=getparamezb(gsinfo,'phoney');
-    	
+
         fakeGPS("com.tencent.xin",x,y);
         mSleep(1000); 
         appRun("com.tencent.xin");
@@ -38,11 +38,11 @@ function weixiyaoyao()
         click(154,416);--点摇一摇
         mSleep(100);
         shakeDevice();--摇一摇
-        mSleep(3000);
+        mSleep(5000);
 
         --if(getweixiyaotime(60)) then end;
         --mSleep(1000*60*tonumber(ytime));
-        
+        --[[
         click(34,89);--返回
         click(34,89);--返回
         click(34,89);--返回
@@ -55,17 +55,10 @@ end
 function startbox()
     local tj = 1;
     while true do
-
-    	if(listcolorinfo(0xf4f5f7,97,158, 1066, 177, 1076)==true and listcolorinfo(0xf4f5f7,95,218, 1072, 330, 1090)==true ) then
-			mSleep(1500);
-			if(listcolorinfo(0xf4f5f7,97,158, 1066, 177, 1076)==true and listcolorinfo(0xf4f5f7,95,218, 1072, 330, 1090)==true ) then
-				return 1;
-			end
-		end
-
         for sim = 100, 92, -1 do  
             x, y = findColorInRegionFuzzy(0x007aff, sim, 304, 654, 345, 700); 
             if x ~= -1 and y ~= -1 then   --如果在指定区域找到某点符合条件
+            	
                 mSleep(200);
                 click(318,668);--好
                 mSleep(200);
@@ -74,6 +67,14 @@ function startbox()
                 --break;   --并跳出循环
             end
         end
+
+        if(listcolorinfo(0xf4f5f7,97,158, 1066, 177, 1076)==true and listcolorinfo(0xf4f5f7,95,218, 1072, 330, 1090)==true ) then
+			mSleep(1500);
+			if(listcolorinfo(0xf4f5f7,97,158, 1066, 177, 1076)==true and listcolorinfo(0xf4f5f7,95,218, 1072, 330, 1090)==true ) then
+				
+				return 1;
+			end
+		end
 
         msgfr=textlocal(89,470,557,683);  
 	    if string.match(msgfr,'可申')=='可申' then
