@@ -305,6 +305,8 @@ function click(x, y)
 end
 
 function runApp()
+	appKill("com.wemomo.momoappdemo1");
+    mSleep(1100);
 	appRun("com.wemomo.momoappdemo1");
 	local x=getparamezb(gsinfo,'phonex');
     local y=getparamezb(gsinfo,'phoney');
