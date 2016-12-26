@@ -305,6 +305,8 @@ function click(x, y)
 end
 
 function runApp()
+	appKill("com.wemomo.momoappdemo1");
+    mSleep(1100);
 	appRun("com.wemomo.momoappdemo1");
 	local x=getparamezb(gsinfo,'phonex');
     local y=getparamezb(gsinfo,'phoney');
@@ -340,15 +342,6 @@ function homePage()
 			return;
 		end
 	end
-	--[[
-	if(getColor(31,82)==15527403 or (getColor(31,82)==x0f7f7f7 or getColor(31,82)==16250871)and(getColor(496,92)==x0f7f7f7 or getColor(496,92)==16250871)) then
-		mSleep(1500);
-		if(getColor(31,82)==15527403 or (getColor(31,82)==x0f7f7f7 or getColor(31,82)==16250871)and(getColor(496,92)==x0f7f7f7 or getColor(496,92)==16250871)) then
-   	   		return;
-   		end
-   	end
-	--]]
-
    	mSleep(400);
    	homePage();
    	--]]

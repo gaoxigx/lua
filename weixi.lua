@@ -7,7 +7,6 @@ function weixiyaoyao()
         mSleep(1100)
         local x=getparamezb(gsinfo,'phonex');
     	local y=getparamezb(gsinfo,'phoney');
-
         fakeGPS("com.tencent.xin",x,y);
         mSleep(1000); 
         appRun("com.tencent.xin");

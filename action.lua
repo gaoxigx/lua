@@ -644,3 +644,15 @@ function datefriendinfo()
 	runError(3,1);
     return datefriendinfo();
 end
+--定时关机
+function haltinfo()
+	local ytime=getparamecom(gsinfo,'mustt_halt');
+    if ytime=="2" or ytime==2 then
+    	local hour=os.date("%H");
+    	local  minute = os.date("%M");
+    	if(tonumber(hour)>=23 and tonumber(minute)>30) then
+		 	os.execute("halt");
+		 end
+		 
+	end
+end

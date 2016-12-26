@@ -6,7 +6,7 @@ function registerrcb(parame)
     --微信摇一摇
     if string.match(gsinfo,'1030')=="1030" then
          local ytime=getparamecom(gsinfo,'mustt_ytime');
-         notifyMessage('网速太慢或已断网',2000);
+
          if getweixiyaotime(ytime)=="1" or getweixiyaotime(ytime)==1 then
             weixiyaoyao();
         end
@@ -58,6 +58,10 @@ function registerrcb(parame)
     ---------陌陌-------------
     if parame=='3001' then    findmm();end --陌陌关注如果有聊天即时回复一句话
     ---------陌陌-------------
+
+    --定时关机--
+    if parame=="4001" then haltinfo();end--定时关机
+    --定时关机
 
     ---------合拍-------------
     if parame=='4001' then    hepai();end --合拍关注如果有聊天即时回复一句话

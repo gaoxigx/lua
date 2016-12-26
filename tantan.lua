@@ -1,5 +1,7 @@
 --探探
 function opentt()
+	closett()
+	mSleep(10000);
 	appRun("com.yaymedialabs.putong");
 	fakeGPS("com.yaymedialabs.putong", 40.0234512958, 116.2185668045); 
 end
@@ -37,6 +39,7 @@ end
 function closett()
 	appKill("com.yaymedialabs.putong");
 end
+
 --探探
 
 
