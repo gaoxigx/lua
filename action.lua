@@ -53,6 +53,10 @@ function flyunit()
 	 	click(530,329);	
 	 	msleeprand(1000);
 	 	click(530,329);
+	 	msleeprand(2000);
+	 	click(530,329);
+	 	msleeprand(1000);
+	 	click(530,329);
 	else
 	 	click(530,235);
 	 	msleeprand(1000);
@@ -417,7 +421,6 @@ end
 
 --启动登入微信
 function loginweixi()
-	runError(1,2); 
 	openweixi();--打开微信
 	ysmsleepaddnmb('推送',59,439,581,617,2);	
 	openweiximsg();
@@ -428,32 +431,42 @@ function loginweixi()
 	end
 	
 	msleeprand(2000);
-	runError(2,3); 
 	codedh=textlocal(60,406,580,640);--封号提示框
 	if(string.match(codedh,'圭寸')=='圭寸') or (string.match(codedh,'封')=='封') or (string.match(codedh,'角军')=='角军') then			
 		clickarea(60,662,312,734);--点击取消
 		return baopass();
 	end
 
-	runError(2,3); 
+	--微信账号因登录环境异常，已被限制登录
+    msgtbt=textlocal(89,470,557,683);  
+    if string.match(msgtbt,'可申')=='可申' then
+        click(185,683);
+       
+        return baopass();
+    end
+
 	codecx=textlocal(64,482,572,572);--登录错误
-	if(string.match(codecx,'重亲斤')=='重亲斤') then			
+	if(string.match(codecx,'重')=='重') or (string.match(codecx,'登录')=='登录') then			
 		clickarea(64,597,575,662);--点击取消
 		return baopass();
 	end
 
-	runError(2,3); 
 	codesr=textlocal(61,397,574,662);--骚扰用户封号提示框
 	if(string.match(codesr,'户木勾')=='户木勾') or (string.match(codesr,'角军')=='角军') then			
 		clickarea(65,696,304,756);--点击取消
 		return baopass();
 	end
 
-	runError(2,3); 
 	codecw=textlocal(60,478,572,572);--密码错误
 	if(string.match(codecw,'密石马')=='密石马') then			
 		clickarea(56,600,576,668);--点击确定
 		return baopass();
+	end
+
+	codebcd=textlocal(68,380,577,681);--被顶号
+	if(string.match(codebcd,'不是')=='不是') or (string.match(codebcd,'石马')=='石马') then			
+		clickarea(272,716,380,761);--点击确定
+		return dhfakeiname();
 	end
 
 end
@@ -478,8 +491,7 @@ function baopass()
 			notifyMessage('异常号码已保存',2000);
 		end
 		dhfakeiname();
-		
-		runError(5,1); 			
+
 		return loginweixi();
 	end
 end
@@ -504,7 +516,6 @@ end
 
 --启动dhfakei恢复下一条前重命名
 function dhfakeiname()   
-	runError(4,3);  
 	appRun('com.workhard.hdfakerset');--启动配置hdFaker
     msleeprand(2000);--点击操作
     clickarea(73,1053,131,1125);

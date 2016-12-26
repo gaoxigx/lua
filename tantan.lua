@@ -40,4 +40,32 @@ end
 --探探
 
 
+--合拍
+   
 
+function hepai()
+
+   appRun("com.HePai.HePaiiOS");--打开合拍
+
+	msleeprand(3000);
+
+    local msgcodeqx=textlocal(420,1100,476,1131);        
+    if(string.match(msgcodeqx,'发王见')=='发王见') then     
+		click(448,1076);--发现
+
+		msleeprand(1500);
+		click(300,680);--附近的人
+	end
+	
+	msleeprand(3000);
+		local msgcodexqxt= textlocal(415,1037,551,1080);
+		if(string.match(msgcodexqxt,'兴趣')=='兴趣') or (string.match(msgcodexqxt,'目')=='目') then
+
+        	for i=1,66 do
+				click(359,1059);--通过
+			    mSleep(1000);
+			end
+		end
+end	
+
+ --合拍
