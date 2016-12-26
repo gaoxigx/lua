@@ -441,7 +441,6 @@ function loginweixi()
     msgtbt=textlocal(89,470,557,683);  
     if string.match(msgtbt,'可申')=='可申' then
         click(185,683);
-       
         return baopass();
     end
 

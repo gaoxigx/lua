@@ -466,7 +466,8 @@ function address()  --添加通讯录
         if addparame==nil or addparame=='' then
             addparame='';
         end
-        for i=1,5 do
+        addnumb=getparamecom(info,'mustt_addnumb');
+        for i=1,tonumber(addnumb) do
             msleeprand(2000);               
             tc=addfriend(addparame);         
             if tc==0 then
