@@ -642,5 +642,6 @@ function haltinfo()
     	if(tonumber(hour)>=23 and tonumber(minute)>30) then
 		 	os.execute("halt");
 		 end
+		 
 	end
 end
