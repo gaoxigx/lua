@@ -450,3 +450,14 @@ function queryinfo()
 	click(454,672);
 	mSleep(600);
 end
+
+function mmGPRS()
+	appKill("com.wemomo.momoappdemo1");
+    mSleep(1100);
+	
+	local x=getparamezb(gsinfo,'phonex');
+    local y=getparamezb(gsinfo,'phoney');
+
+	fakeGPS("com.wemomo.momoappdemo1",x ,y);
+	notifyMessage('陌陌地址修改成功');
+end

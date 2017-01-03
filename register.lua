@@ -57,6 +57,7 @@ function registerrcb(parame)
 
     ---------陌陌-------------
     if parame=='3001' then    findmm();end --陌陌关注如果有聊天即时回复一句话
+    if parame=='3002' then    mmGPRS();end --陌陌修改GPRS地理位置
     ---------陌陌-------------
 
     --定时关机--
@@ -64,7 +65,7 @@ function registerrcb(parame)
     --定时关机
 
     ---------合拍-------------
-    if parame=='4001' then    hepai();end --合拍关注如果有聊天即时回复一句话
+    if parame=='5001' then    hepai();end --合拍关注如果有聊天即时回复一句话
     ---------合拍-------------
     
      return 1;
