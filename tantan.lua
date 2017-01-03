@@ -39,6 +39,16 @@ end
 function closett()
 	appKill("com.yaymedialabs.putong");
 end
+--探探GPRS修改成功
+function ttGPRS()
+	appKill("com.yaymedialabs.putong");
+	mSleep(2000);
+	info=runparame();
+    local xzb=getparamezb(gsinfo,'phonex');
+    local yzb=getparamezb(gsinfo,'phoney');
+	fakeGPS("com.yaymedialabs.putong", xzb, yzb); 
+	notifyMessage("探探GPRS地址修改成功");
+end
 
 --探探
 
