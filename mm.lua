@@ -460,4 +460,6 @@ function mmGPRS()
 
 	fakeGPS("com.wemomo.momoappdemo1",x ,y);
 	notifyMessage('陌陌地址修改成功');
+
+	appRun("com.wemomo.momoappdemo1");
 end

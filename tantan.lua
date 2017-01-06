@@ -48,6 +48,7 @@ function ttGPRS()
     local yzb=getparamezb(gsinfo,'phoney');
 	fakeGPS("com.yaymedialabs.putong", xzb, yzb); 
 	notifyMessage("探探GPRS地址修改成功");
+	appRun("com.yaymedialabs.putong")
 end
 
 --探探
