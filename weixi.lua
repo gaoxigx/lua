@@ -85,5 +85,42 @@ function startbox()
         tj=tj+1;
         mSleep(400);
     end
-
 end
+--微信通讯录检测数据--必须安插件
+function wxtxlfriend()
+          addressbook();
+      appRun("com.tencent.xin");
+   -- if findcolor(0x1aad19,522,287,604,341) then
+      mSleep(500);
+      click(26,83);
+      mSleep(500);
+      click(26,83);
+      mSleep(500);
+      click(26,83);
+      mSleep(500);
+      click(26,83);
+      mSleep(500);
+      click(26,83);
+
+      mSleep(500);
+      click(238,1079);
+      mSleep(500);
+
+      click(218,274);
+      mSleep(800);
+
+      click(161,290);
+      mSleep(10000);
+       --[[      for i=1,4 do
+
+        if fuzzycolor(0x1aad19,494,256,637,1130)==false then
+          mSleep(1000);
+        else
+          break;
+        end
+      end
+     --]]
+
+      mSleep(2500);
+end
+
