@@ -10,6 +10,7 @@ function main()
 	insetinfo();
 	require "loadfun";
 	loadfileinfofile();
+	
 	local tl=reary();;	
 	for i,v in ipairs(tl) do 
 		require(tl[i]);

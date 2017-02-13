@@ -1,5 +1,6 @@
 --切换vpn
-function vpn(gsinfo)		
+function vpn(gsinfo)	
+
 	vpnuser=getparame(gsinfo,'vpnuser');--得到对应的值
 	vpnpwd=getparame(gsinfo,'vpnpwd');
 	msleeprand(1000);
@@ -26,12 +27,16 @@ function vpn(gsinfo)
 		msleeprand(4000);		
 		return 1;
 	end
+
+	openURL("prefs:root=AIRPLANE_MODE");
+
 	vpn(gsinfo);
 end
 
 
 --飞行模式
 function flymodel()
+	
 	msleeprand(1000);
 	appRun('com.apple.Preferences');
 	msleeprand(1000);
@@ -41,8 +46,14 @@ function flymodel()
 	mSleep(500);            --延时100毫秒
 	touchUp(0);        	
 	flyunit();
+
 	-- ip=flyunit();
 	-- notifyMessage(ip,1200);
+	--[[
+	msleeprand(1000);
+	openURL("prefs:root=AIRPLANE_MODE");
+	msleeprand(1000);
+	--]]
 end
 
 --检测IP 是否重复
@@ -67,7 +78,8 @@ function flyunit()
 	msleeprand(2000);
 	notifyMessage('正在连接网络...');	
 	msleeprand(2000);
-	notifyMessage('正在连接网络...',5000);		
+	notifyMessage('正在连接网络...',5000);	
+	--[[	
 	ggipt=getrecoip();--获取IP
 
 	if ggipt==nil or ggipt=='' then
@@ -79,6 +91,7 @@ function flyunit()
         notifyMessage('这个IP地址已经用过');
         return flyunit();
     end  
+    --]]
 	msleeprand(1500);
 end
 
@@ -123,7 +136,7 @@ end
 
 
 --备份注册 hd
-function backuphdbfzc(mobile,pwd)
+function backuphdbfzc()
 	msleeprand(1000);	
 	appRun('com.workhard.hdfakerset');
 	msleeprand(2400);	
@@ -132,7 +145,8 @@ function backuphdbfzc(mobile,pwd)
 	click(293,675);--备份数据
 	msleeprand(1000);
 	click(557,82);--开始备份
-
+	msleeprand(1800);
+	--[[
     --键盘输入注册
 	msleeprand(1800);
 	click(128,980);--输入Z键
@@ -151,9 +165,9 @@ function backuphdbfzc(mobile,pwd)
 
 	msleeprand(800);
 	click(50,668);--点击第一个字
-	
+	--]]
 	msleeprand(1000);	
-	click(320,400);--开始备份
+	click(320,313);--开始备份
 
 	msleeprand(10000);
 	click(323,654);--点完成
@@ -175,50 +189,86 @@ function backuphd(mobile,pwd)
 	click(323,654);--点完成
 end
 
+--好推送消息
+function startbox()
+    local tj = 1;
+    while true do
+        for sim = 100, 92, -1 do  
+            x, y = findColorInRegionFuzzy(0x007aff, sim, 304, 654, 345, 700); 
+            if x ~= -1 and y ~= -1 then   --如果在指定区域找到某点符合条件
+            	
+                mSleep(200);
+                click(318,668);--好
+                mSleep(200);
+                --notifyMessage('检测脚本文件');
+                return 1;
+                --break;   --并跳出循环
+            end
+        end
+
+        if(listcolorinfo(0xf4f5f7,97,158, 1066, 177, 1076)==true and listcolorinfo(0xf4f5f7,95,218, 1072, 330, 1090)==true ) then
+			mSleep(1500);
+			if(listcolorinfo(0xf4f5f7,97,158, 1066, 177, 1076)==true and listcolorinfo(0xf4f5f7,95,218, 1072, 330, 1090)==true ) then
+				
+				return 1;
+			end
+		end
+
+        msgfr=textlocal(89,470,557,683);  
+	    if string.match(msgfr,'可申')=='可申' then
+	        click(185,683);
+	        msleep(1000);
+	        return 2;
+	    end
+
+        tj=tj+1;
+        mSleep(400);
+    end
+end
+
 --注册入口
 function registerweixi(cd)
+	reloaddata();
 	weixiinfo['cd']=cd;
 	openweixi();--打开微信
-	ysmsleepaddnmb('推送',59,439,581,617,2);	
-	--clickarea(131,636,517,702)--点击好
-	openweiximsg();
-	msleeprand(200);
-	seachcolor(0x06bf04,6,394,637,1037);--点注册
-
-	--msleeprand(2000);
-	--[[
-	--是否进入微信号
-	textmsg=textlocal(20,121,622,275);
-	if string.match(textmsg,'手木凡号')~='手木凡号' then		
-		msleeprand(5000);	
-	    clickrand(320,1074);--点更多
-		msleeprand(500);	
-		clickrand(320,885);--点注册
-		msleeprand(500);
+	while true do
+		click(316,673);
+		mSleep(500);
+		click(473,1020);
+		mSleep(500);
+		if seachcolorreturn(0xffffff,340,931,345,935)==1 then
+			break;
+		end
 	end
-    --]]
-
-    ysmsleepadd('手木',43,118,599,245)--延时
 
 	msleeprand(500);
 	click(436,420);
-	msleeprand(1000);
-	--inputtextnumberror();
-	--得到手机号码
-
+	msleeprand(500);
 	mboile=getmobile();
+
 	--输入手机号码
 	inputtextstr(mboile,209,385,623,455,11);
 	weixiinfo['pn']=mobile;
 	--点注册按钮
-	msleeprand(1000);
+	msleeprand(500);
 	clickarea(47,526,568,608);
+	
+	--确认发送手机短信	
+	while true do
+		if findseachcolor(0x007aff,340,931,345,935,80)==true then
+			mSleep(500);
+			click(453,671);
+			break;
+		end
+		mSleep(500);
+	end
 
-	--确认发送手机短信
+	--[[
 	msleeprand(500);
 	ysmsleepadd('发送',60,442,576,600)--延时
  	clickarea(325,626,580,700);
 	msleeprand(3000);
+	--]]
 	--ysmsleepadd('正石马',23,120,628,266)--延时
 	--输入验证码	
 	verifyinfo=getverify(mboile);	
@@ -235,39 +285,65 @@ function registerweixi(cd)
 	end
 
 	msleeprand(1000);
-	textstryj=textlocal(25,421,622,557);	
-	if string.match(textstryj,'已')=='已' then
-		return 0;
-	end
-
-	ysmsleepadd('完善个人',23,134,628,289)--延时
-
+	--textstryj=textlocal(25,421,622,557);	
+	--if string.match(textstryj,'已')=='已' then
+		click(317,831);
+	--end
+	mSleep(2000);
+	--ysmsleepadd('人',23,134,628,289)--延时
 	--clickarea(245,346,394,497);
+	--click(271,629);
+	--mSleep(500);
 	--runcodenmb=getparame(gsinfo,'photo');--得到对应的值
 	--selectphoto(tonumber(runcodenmb));--选择图片
 	str=getweixiname();	
 	weixiinfo['wn']=str;
 	reigistinputwxname(str)--输入昵称
-	
-	
-	msleeprand(2000);
-	reigistselect()--选择不添加通讯里的朋友
-    
-	msleeprand(2000);
-	
-	strpwd='asd168168';	
-	weixiinfo['pwd']=strpwd;
-	saveweixiweb(weixiinfo);
-	
-	gerxi=mobile..'---'..strpwd..'---'..weixiinfo['wn'];
-	writeonestr("/var/touchelf/scripts/scriptfile/pwd.txt",gerxi);
-	msleeprand(1000);
-	filepaw(strpwd);--创建密码
-	backuphdbfzc(mobile,pwd);--开始备份
-	msleeprand(1000);
+	mSleep(500);
+	click(314,597);
+	mSleep(500);
+    click(325,740);
+	--msleeprand(2000);
+	--reigistselect()--选择不添加通讯里的朋友
+	--msleeprand(2000);
+	--strpwd='fadacai888';	
+	--weixiinfo['pwd']=strpwd;
+	--saveweixiweb(weixiinfo);	
+	--gerxi=mobile..'---'..strpwd..'---'..weixiinfo['wn'];
+	--writeonestr("/var/touchelf/scripts/scriptfile/pwd.txt",gerxi);
+   
+    mSleep(1000);
+    while true do
+		textstryjm=textlocal(70,434,577,612);	
+		if string.match(textstryjm,'已')=='已' then	
+			mSleep(50);
+			click(317,680);
+			mSleep(800);
+			click(77,83);	
+			return 0;		
+		end	
+
+		textstryjt=textlocal(70,479,553,565);	
+		if string.match(textstryjt,'回')=='回' then	
+			mSleep(50);
+			click(433,650);
+			return 0;		
+		end	
+
+		if seachcolorreturn(0x157efb,387,765,527,833)==1 then
+			mSleep(50);
+			click(458,715);
+			break;
+		end
+		mSleep(100);
+	end
+	--msleeprand(3000);
+	--filepaw(strpwd);--创建密码
+	--backuphdbfzc();--开始备份
+	msleeprand(1000);	
+
+	--]]
 end
-
-
 
 --保存微信号到网站
 function saveweixiweb(weixiinfo)
@@ -355,14 +431,17 @@ function filepaw(pwdstr)
 		ysmsleepaddnmb('安',256,58,397,113,2)--判断是否在帐号与安全页面
 	    clickarea(6,160,634,236);--微信号
 	    msleeprand(1000);
-
-	    weixiinput();--输入微信号
+	    --[[
+	    --weixiinput();--输入微信号
 
 	    msleeprand(3000);
 	    btnlefttop();
 	    msleeprand(1000);
 	    btnlefttop();
 	    msleeprand(1000);
+	    --]]
+	    btnlefttop();
+	    msleeprand(500);
 	    btnlefttop();
 
 end    
@@ -424,6 +503,12 @@ function loginweixi()
 	openweixi();--打开微信
 	ysmsleepaddnmb('推送',59,439,581,617,2);	
 	openweiximsg();
+	--[[
+	while true do
+		seachcolor(0x007aff,222,631,526,707);--点好
+		seachcolor(0x1aad19,222,631,526,707);--点好
+	end
+	--]]
 	-- ysmsleepaddnmb('信',191,52,440,113,3);
 	codexin=textlocal(191,52,450,113);
 	if(string.match(codexin,'信')=='信') or (string.match(codexin,'盲')=='盲') then			
@@ -468,6 +553,13 @@ function loginweixi()
 		return dhfakeiname();
 	end
 
+	codebctx=textlocal(85,395,565,681);--被顶号
+	if string.match(codebctx,'已')=='已' then
+		seachcolor(0x007aff,150,693,562,836);			
+		--click(331,743);--点击确定
+		return baopass();
+	end
+
 end
 
 
@@ -510,8 +602,7 @@ function dhfakei()
 	mSleep(1500);
 	click(316,535);
 	mSleep(8000);
-end
- 
+end 
 
 --启动dhfakei恢复下一条前重命名
 function dhfakeiname()   

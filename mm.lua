@@ -463,3 +463,181 @@ function mmGPRS()
 
 	appRun("com.wemomo.momoappdemo1");
 end
+
+    --通讯录检测手机号码，检测男女
+function wxtxlfriend()
+	appRun("com.tencent.xin");
+
+	local i = 1;
+      mSleep(3000);
+   	  while true do
+			x, y = findColorInRegionFuzzy(0x007aff, 90, 277, 627, 355, 700); 
+			if x ~= -1 and y ~= -1 then  --如果在指定区域找到某点符合条件
+				click(317,668);--好
+				mSleep(200);
+				break;   --并跳出循环
+			end
+			i=i+1;
+			mSleep(200);
+			if i>40 then
+				break;
+			end
+	  end 
+	  mSleep(500);
+	  click(451,705);
+	  mSleep(500);
+	while true do
+      if txlfrind()==false then
+		mSleep(1000);
+		if selan()==false then
+			return;
+		end
+        
+      end
+  end
+end
+function txlfrind()     
+      
+      appRun("com.tencent.xin");
+   -- if findcolor(0x1aad19,522,287,604,341) then
+      mSleep(500);
+      click(26,83);
+      mSleep(500);
+      click(26,83);
+      mSleep(500);
+      click(26,83);
+      mSleep(500);
+      click(26,83);
+      mSleep(500);
+      click(26,83);
+  
+      mSleep(500);
+      click(238,1079);
+      mSleep(500);
+
+      mSleep(5000);
+
+      click(218,274);
+      mSleep(500);
+
+      local i = 0;
+      while true do
+        mSleep(500);
+        --[[
+          for sim = 100, 92, -1 do  
+        x, y = findColorInRegionFuzzy(0xff3b30, sim, 529, 445, 627, 523); 
+        if x ~= -1 and y ~= -1 then   --如果在指定区域找到某点符合条件
+          click(x,y);
+          --click(184,686);--升级
+          mSleep(200);
+          break;   --并跳出循环
+        end
+      end
+      clickMove(320,482,180,482,20);
+          mSleep(100);
+        --]]
+          --for sim = 100, 92, -1 do  
+        x, y = findColorInRegionFuzzy(0x71d01d, 90, 24, 259, 90, 361); 
+        if x ~= -1 and y ~= -1 then   --如果在指定区域找到某点符合条件
+			
+          return false;         
+         -- break;   --并跳出循环
+        else
+          if i>3 then
+             break;
+          end
+        end
+        i=i+1;
+    --end
+     end
+     mSleep(5000);
+
+     mSleep(500);
+     click(26,83);
+     mSleep(1000);
+     addressbook();
+     return true;
+  	 --[[
+      local t = true;
+      for i=1,6 do
+        if fuzzycolor(0x1aad19,494,256,637,1130)==false then
+          mSleep(1000);
+          t=false;
+        else
+          break;
+        end
+      end
+      if t==true then
+        addressbook();
+      end
+    return t;
+    ----]]
+end
+
+function selan()
+	click(250,288);
+	mSleep(8000);
+	local xt=false;
+	if fuzzycolor(0x1aad19,480,261,624,997)==true then
+		xt= true;
+
+	end
+	mSleep(500);
+    click(26,83);
+    mSleep(500);
+    addressbook();
+	return xt;
+	
+end
+
+function fuzzycolor(color,x,y,x1,y1)
+  local sul = false;
+  for sim = 100, 98, -1 do           --使用 for 循环不断降低精确度(建议精确度不低于50%)
+      x, y = findColorInRegionFuzzy(color, sim, x, y, x1, y1); 
+      if x ~= -1 and y ~= -1 then   --如果在指定区域找到某点符合条件
+          sul= true;
+          break;                    --并跳出循环
+      end
+  end
+  return sul;
+end
+
+function remove(path)
+    return os.execute("rm -rf "..path);
+end
+
+--修改通讯录
+function addressbook()
+  appRun("feibiao.WriteAddressbook");
+  mSleep(1000);
+  --[[
+  click(322,106);
+  inputText("\b\b\b\b\b");
+  --inputText("20");
+ --]]
+  click(548,289);
+  inputText("\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b");
+  mSleep(200);
+  inputText("http://g.7gu.cn/book.php?");
+  mSleep(1000);
+  click(293,475);
+  mSleep(2000);
+end
+
+--通用修改GPRS
+function addressapp()
+	local codeid=getparamecom(gsinfo,'codeid');
+
+	appKill(codeid);
+    mSleep(1100);
+	
+	local x=getparamecom(gsinfo,'phonex');
+    local y=getparamecom(gsinfo,'phoney');
+
+
+
+	fakeGPS("com.wemomo.momoappdemo1",x ,y);
+	notifyMessage('陌陌地址修改成功');
+
+	appRun("com.wemomo.momoappdemo1");
+end

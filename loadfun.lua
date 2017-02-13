@@ -48,8 +48,6 @@ function locafebiao()
 	local t={'feibiao'};	
 	for k, v in pairs(t) do
 		if file_exists("/var/touchelf/scripts/"..v..".lua") then 
-
-	
 		else
 	   		getfilestart(v);
 	   		notifyMessage('请运行feibiao.lua文件');

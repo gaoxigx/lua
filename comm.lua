@@ -218,6 +218,7 @@ function getmobile()
 		getmobile();
 	end	
 	findval=string.find(strmobile,',');
+
 	if findval==nil then
 		c=string.sub(strmobile,string.find(strmobile,':')+1,string.len(strmobile)-1);		
 	else
@@ -524,17 +525,19 @@ end
 
 --查找当前屏幕颜色值并点击
 function  seachcolor(color,x,y,x1,y1)	
-	x,y=findColorInRegionFuzzy(color,80,x,y,x1,y1); -- 在全屏范围找到第一个颜色为0x0000ff的点, 精确度为90%, 将其坐标保存到变量x和y中
-	if x ~= -1 and y ~= -1 then          -- 如果找到了
-		mSleep(1000);
-	    click(x,y);
-	else
-		mSleep(1000);		
-		seachcolor(color,x,y,x1,y1);
+	for sim = 100, 80, -1 do   
+		x,y=findColorInRegionFuzzy(color,sim,x,y,x1,y1); -- 在全屏范围找到第一个颜色为0x0000ff的点, 精确度为90%, 将其坐标保存到变量x和y中
+		if x ~= -1 and y ~= -1 then          -- 如果找到了
+			mSleep(200);
+		    click(x,y);
+		else
+			mSleep(1000);		
+			seachcolor(color,x,y,x1,y1);
+		end
 	end
 end
 
---查找当前屏幕颜色值并点击
+--查找当前屏幕颜色值并返回int 1 0
 function seachcolorreturn(color,x,y,x1,y1)
 	local t = 1;
 	x,y=findColorInRegionFuzzy(color,80,x,y,x1,y1); -- 在全屏范围找到第一个颜色为0x0000ff的点, 精确度为90%, 将其坐标保存到变量x和y中
@@ -542,6 +545,20 @@ function seachcolorreturn(color,x,y,x1,y1)
 		t = 1;
 	else
 		t=0;
+	end
+	return t;
+end
+--查找当前屏幕颜色值并点击 bool;
+function  findseachcolor(color,x,y,x1,y1,n)	
+	local t = false;
+	for sim = 100, n, -1 do   
+		x,y=findColorInRegionFuzzy(color,sim,x,y,x1,y1); -- 在全屏范围找到第一个颜色为0x0000ff的点, 精确度为90%, 将其坐标保存到变量x和y中
+		if x ~= -1 and y ~= -1 then          -- 如果找到了
+			t=true;
+			break;
+		else
+			t=false;
+		end
 	end
 	return t;
 end

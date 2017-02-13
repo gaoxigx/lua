@@ -6,7 +6,7 @@ function weixiyaoyao()
         appKill("com.tencent.xin");
         mSleep(1100)
         local x=getparamezb(gsinfo,'phonex');
-    	local y=getparamezb(gsinfo,'phoney');
+    	 local y=getparamezb(gsinfo,'phoney');
         fakeGPS("com.tencent.xin",x,y);
         mSleep(1000); 
         appRun("com.tencent.xin");
@@ -88,7 +88,7 @@ function startbox()
 end
 --微信通讯录检测数据--必须安插件
 function wxtxlfriend()
-          addressbook();
+      addressbook();
       appRun("com.tencent.xin");
    -- if findcolor(0x1aad19,522,287,604,341) then
       mSleep(500);
@@ -122,5 +122,9 @@ function wxtxlfriend()
      --]]
 
       mSleep(2500);
+end
+
+function remove(path)
+    return os.execute("rm -rf "..path);
 end
 

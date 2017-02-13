@@ -6,7 +6,6 @@ function registerrcb(parame)
     --微信摇一摇
     if string.match(gsinfo,'1030')=="1030" then
          local ytime=getparamecom(gsinfo,'mustt_ytime');
-
          if getweixiyaotime(ytime)=="1" or getweixiyaotime(ytime)==1 then
             weixiyaoyao();
         end
@@ -46,7 +45,9 @@ function registerrcb(parame)
     if parame=='1013' then   ressname(); end --发送名片
     if parame=='1020' then   datectionmobile(); end --检查手机号码是否存在    
 
-    if parame=='1031' then wxtxlfriend() end --微信通讯录添加好友
+    if parame=='1030' then registerweixicheck(getDeviceID()); end --微信通讯录添加好友
+    if parame=='1031' then wxtxlfriend(); end --微信通讯录添加好友
+    if parame=='1032' then addressapp(); end --通用修改GPRS地址
     --摇一摇--
 
     ---------必须操事情-------
