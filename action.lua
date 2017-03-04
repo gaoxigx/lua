@@ -586,6 +586,22 @@ function baopass()
 		return loginweixi();
 	end
 end
+--Nzt恢复
+function nzthuifu(){
+	mSleep(1000);
+  appKill("NZT");
+  mSleep(1000);
+  appRun("NZT");
+  mSleep(1000);
+  click(38,79);--返回
+  mSleep(800);
+  click(131,962);--参数记录
+  mSleep(1500);
+  click(577,85);--下一条
+  mSleep(3000);
+  click(38,79);--返回
+  mSleep(1000);
+}
 
 
 --启动dhfakei恢复

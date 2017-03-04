@@ -44,7 +44,6 @@
                 touchUp(0);
                 msleeprand(800);
                 -- os.execute("input text \"asdasd\"");
-
                 a = {"666", 
                     "哇/::B", 
                     "好像很厉害的样子",
@@ -71,9 +70,8 @@
 
 
 
-    --发送朋友圈
-    function filesend()
-
+--发送朋友圈
+function filesend()
     info=runparame();
     if info==nil or info=='' then
         notifyMessage('没有得到指令',2000);
@@ -85,6 +83,90 @@
         notifyMessage('没有得到指令参数',2000);
         filesend();
     end
+    
+
+    --[[返回首页]]
+    click(25,88);mSleep(300);
+    click(25,88);mSleep(300);
+    click(25,88);mSleep(300);
+    click(25,88);mSleep(300);
+    click(25,88);mSleep(300);
+    click(83,1086);
+    mSleep(800);
+    --[[返回首页]]
+    local mobilecode=textlocalnmb(128,224,338,283);  
+    notifyMessage(string.gsub(mobilecode," ","").."手机号码");  
+
+    while true do
+       if sendfriendfun(mobilecode)==false then
+            break;
+       end
+    end
+
+    --[[得到手机号码--]]  
+    --[[
+    click(565,1089);
+    mSleep(800);
+    click(220,966);
+    mSleep(800);
+
+    for sim = 100, 90, -1 do           --使用 for 循环不断降低精确度(建议精确度不低于50%)
+        x, y = findColorInRegionFuzzy(0x1aad19, sim, 520, 1048, 601, 1109); 
+        if x ~= -1 and y ~= -1 then   --如果在指定区域找到某点符合条件
+            click(220,851); --找到就点上面设置
+            break;                    --并跳出循环
+        end
+    end
+    --
+    mSleep(800);
+    click(253,197);
+    mSleep(800);
+    click(331,406);
+    mSleep(800);    
+
+   
+    mSleep(500);   
+    click(25,88);mSleep(300);
+    click(25,88);mSleep(300);
+    click(25,88);mSleep(300);
+    click(25,88);mSleep(300);
+    click(25,88);mSleep(300);
+    
+    --]] 
+    --[[得到手机号码--]]
+
+end
+
+function sendfriendfun(mobilecode)
+    
+    local par= httpGet("http://g.7gu.cn/index.php?g=api&m=Friends&a=friendnew&id="..getDeviceID().."&mobile="..mobilecode);
+    if par==nil or apr=="" or getparamecom(par,'status')=="0" then
+        notifyMessage("请设置微信号朋友圈信息",3000);
+        return false ;
+    end
+    
+    local imgnum=getparamecom(par,'imagnum');
+    local  dxnum = 0;
+   
+    if tonumber(imgnum)>0 then
+        notifyMessage("下载图片中");
+        for i=0,tonumber(imgnum)-1 do       
+            mSleep(1000);
+              --flag = ftpGet("ftp://192.168.1.100:/a.txt", "/var/touchelf/a.txt", "user", "pass") -- 将FTP服务器192.168.1.100上路径为/a.txt的文件下载到/var/touchelf/a.txt
+            local imgname=getparamecom(par,'imga'..i);
+            local path="ftp://121.40.140.16:/script"..imgname;  
+            local savepath="/var/touchelf/scripts/scriptfile/images/tupian"..i..'.'..getparamecom(par,'ximga'..i);
+            local getdata=ftpGet(path, savepath, "productconsole", "T4t8u0p1");
+            if getdata then
+                dxnum=dxnum+1;     
+            end
+            mSleep(1000);
+            saveImageToAlbum(savepath);
+            mSleep(1000);
+        end
+        notifyMessage("成功下载图片"..dxnum.."个");
+    end
+   
 
     msleeprand(1000);
     clickarea(346,1050,480,1128);--点击发现
@@ -92,113 +174,159 @@
     msleeprand(1000);   
     clickarea(10,164,630,234);--点击朋友圈
 
-    msleeprand(800);
-    clickrand(589,83);--点击右上角
- 
-    zdl();  --知道了
+    if tonumber(imgnum)<=0 then
+         mSleep(1230);
+          touchDown(2, 630, 54)
+          mSleep(1600);
+          touchUp(2)
 
-    msleeprand(500);
-    clickarea(6,940,632,1014);--从手机相册选择
+        mSleep(800);
 
-    ysmsleepaddnmb('回',4,53,131,112,2);
-    local fanhui=textlocal(4,53,131,112);        
-    if(string.match(fanhui,'回')=='回') then           
-        click(62,82);--点击返回
-    end
+        signpyq=string.gsub(getparamecom(par,'friendtext'),' ','');--去除空格
+        inputText(signpyq);
+        mSleep(800);
+
+        touchDown(0, 589, 83);
+        mSleep(200);
+        touchUp(0);
+
+    else
+        msleeprand(800);
+        clickrand(589,83);--点击右上角
+     
+        zdl();  --知道了
+
+        msleeprand(500);
+        clickarea(6,940,632,1014);--从手机相册选择
 
 
-    msleeprand(1500); --点击相册
-    if fphoparame=='1' then      
-        clickarea(6,130,630,235)
-    end
-
-    if fphoparame=='2' then      
-        clickarea(6,245,630,350)
-    end
-
-    if fphoparame=='3' then      
-        clickarea(6,360,630,468)
-    end
-
-    if fphoparame=='4' then      
-        clickarea(6,475,630,580)
-    end
-
-    if fphoparame=='5' then      
-        clickarea(6,590,630,698)
-    end
-
-    if fphoparame=='6' then      
-        clickarea(6,706,630,810)
-    end
-
-    if fphoparame=='7' then      
-        clickarea(6,820,630,926)
-    end
-
-    if fphoparame =='8' then      
-        clickarea(6,936,630,1040)
-    end
-
-    msleeprand(1500); --点击移动
-    clickmovedom();
-
-    msleeprand(1500);
-
-        tp=math.random(1, 9);--随机点击图片数量
-        for i=1,tp do
-            st=(math.random(0, 10000)%4)*160-25;
-            if st<160 then
-                st=160;
-            end
-            dt=(math.random(0,10000)%6)*154-125;
-            if dt<154 then
-                dt=154;
-            end
-            click(st,dt);
+        ysmsleepaddnmb('回',4,53,131,112,2);
+        local fanhui=textlocal(4,53,131,112);        
+        if(string.match(fanhui,'回')=='回') then           
+            click(62,82);--点击返回
         end
 
-    msleeprand(1500);
-    clickarea(520,1070,618,1108);--选好图片点击完成
 
-    msleeprand(1000);
-    click(262,164);--点击进入输入框
+        msleeprand(1500); --点击相册
+        
+        --if fphoparame=='1' then      
+            clickarea(6,130,630,235)
+        --end
 
-    msleeprand(1000);
-    signpyq=string.gsub(getcir(),' ','');--去除空格
-    if signpyq==0 then
-        notifyMessage('数据库里的朋友圈语录已用完',2000);
-        os.exit();
+
+        --[[
+        ysmsleepaddnmb('回',4,53,131,112,2);
+        local fanhui=textlocal(4,53,131,112);        
+        if(string.match(fanhui,'回')=='回') then           
+            click(62,82);--点击返回
+        end
+
+
+        msleeprand(1500); --点击相册
+        
+        if fphoparame=='1' then      
+            clickarea(6,130,630,235)
+        end
+
+
+        if fphoparame=='2' then      
+            clickarea(6,245,630,350)
+        end
+
+        if fphoparame=='3' then      
+            clickarea(6,360,630,468)
+        end
+
+        if fphoparame=='4' then      
+            clickarea(6,475,630,580)
+        end
+
+        if fphoparame=='5' then      
+            clickarea(6,590,630,698)
+        end
+
+        if fphoparame=='6' then      
+            clickarea(6,706,630,810)
+        end
+
+        if fphoparame=='7' then      
+            clickarea(6,820,630,926)
+        end
+
+        if fphoparame =='8' then      
+            clickarea(6,936,630,1040)
+        end
+        --]]
+        --选择图片
+
+        mSleep(1000);
+        selectimg(tonumber(imgnum),980,1,0);
+
+        msleeprand(1500);
+        clickarea(520,1070,618,1108);--选好图片点击完成
+
+        msleeprand(1000);
+        click(262,164);--点击进入输入框
+
+        msleeprand(1000);
+
+        signpyq=string.gsub(getparamecom(par,'friendtext'),' ','');--去除空格
+
+        if signpyq==0 then
+            notifyMessage('数据库里的朋友圈语录已用完',2000);
+            os.exit();
+        end    
+
+        if signpyq==nil or signpyq=='' then
+            notifyMessage('网络已断开!无法得到数据',2000);
+        else
+            inputText(signpyq);
+        end
+        msleeprand(2000);
+        clickarea(554,62,622,98); --点击发送  
+        
     end    
-
-    if signpyq==nil or signpyq=='' then
-        notifyMessage('网络已断开!无法得到数据',2000);
-    else
-        inputText(signpyq);
-    end
-
-     -- msleeprand(1500);
-     --    a = {"666", 
-     --        "哇", 
-     --        "好像很厉害的样子",
-     --        "长知识了",
-     --        "32个赞",
-     --        "我差点信了",
-     --        "开鲁咯！",
-     --        "上线5黑，赶紧的",
-     --    }
-     --    a_num=math.random(1,#a);
-     --    inputText(a[a_num]);
-
-
-    msleeprand(2000);
-    clickarea(554,62,622,98); --点击发送  
 
     msleeprand(3000);
     btnlefttop();--点击坐上角返回
 
+    return true ;
+end
 
+function selectimg(num,height,funnum,selecnum)  
+    local count = 3;
+    for i=1,4 do
+        mSleep(200);
+        click((count*158)+80,height); 
+        count = count - 1;      
+        mSleep(500);       
+        local tm = 0;
+        for sim = 100, 85, -1 do           --使用 for 循环不断降低精确度(建议精确度不低于50%)
+            x, y = findColorInRegionFuzzy(0x373738, sim, 169, 1067, 410, 1130); 
+            if x ~= -1 and y ~= -1 then   --如果在指定区域找到某点符合条件     
+                tm=1;
+                break;                    --并跳出循环            
+            end
+        end
+       
+        if tm==1 then
+          mSleep(500);
+          click(580,62);
+          mSleep(1000);
+          click(46,64); 
+          selecnum=selecnum+1;
+          if selecnum>=num then
+            break;
+          end 
+         end
+         mSleep(1000);       
     end
+
+    if selecnum<num then       
+        funnum=funnum+1;
+        selectimg(num,height-160,funnum,selecnum);
+    end 
+end
 
 
     --头像设置
@@ -261,6 +389,8 @@
         if st<156 then
             st=156;
         end
+
+
         dt=(math.random(0,10000)%6)*156-125;
         if dt<156 then
             dt=156;

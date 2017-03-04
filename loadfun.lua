@@ -7,10 +7,10 @@ function reary()
 	'catwxw',
 	'register',
 	'post',
+	'mm',
 	'tantan',
 	"tanwxw",
-	'weixi',
-	'mm'
+	'weixi'	
 	};	
 	return t;
 end

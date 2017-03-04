@@ -2,7 +2,6 @@
 jgtime=0;
 function registerrcb(parame)
 
-
     --微信摇一摇
     if string.match(gsinfo,'1030')=="1030" then
          local ytime=getparamecom(gsinfo,'mustt_ytime');
@@ -48,6 +47,7 @@ function registerrcb(parame)
     if parame=='1030' then registerweixicheck(getDeviceID()); end --微信通讯录添加好友
     if parame=='1031' then wxtxlfriend(); end --微信通讯录添加好友
     if parame=='1032' then addressapp(); end --通用修改GPRS地址
+
     --摇一摇--
 
     ---------必须操事情-------
@@ -73,6 +73,7 @@ function registerrcb(parame)
     ---------合拍-------------
     
      return 1;
+    
 end
 
 

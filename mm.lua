@@ -491,8 +491,7 @@ function wxtxlfriend()
 		mSleep(1000);
 		if selan()==false then
 			return;
-		end
-        
+		end        
       end
   end
 end
@@ -626,18 +625,24 @@ end
 
 --通用修改GPRS
 function addressapp()
-	local codeid=getparamecom(gsinfo,'codeid');
-
-	appKill(codeid);
-    mSleep(1100);
+	local gsinfo1=runparame();
+	local codeid=getparamecom(gsinfo1,'mustt_codeid');
 	
-	local x=getparamecom(gsinfo,'phonex');
-    local y=getparamecom(gsinfo,'phoney');
+	appKill(codeid);
+	mSleep(1100);
 
-
-
-	fakeGPS("com.wemomo.momoappdemo1",x ,y);
-	notifyMessage('陌陌地址修改成功');
-
-	appRun("com.wemomo.momoappdemo1");
+	  --local x=getparamecom(gsinfo,'mustt_phonex');
+	  --local y=getparamecom(gsinfo,'mustt_phoney');
+	  --local x = 23.088239;
+	  --local y = 113.521794;
+	  
+	  local x=getparamecom(gsinfo1,'phonex');
+      local y=getparamecom(gsinfo1,'phoney');
+	  notifyMessage('通用GPRS地址修改'..x);
+	  notifyMessage('通用GPRS地址修改'..y);
+	  fakeGPS(codeid,x ,y);
+	  notifyMessage('通用GPRS地址修改'..codeid);
+	 
+	  appRun(codeid);
+	  mSleep(5000);
 end

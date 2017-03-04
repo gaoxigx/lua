@@ -10,12 +10,13 @@ function main()
 	insetinfo();
 	require "loadfun";
 	loadfileinfofile();
-	
 	local tl=reary();;	
 	for i,v in ipairs(tl) do 
 		require(tl[i]);
     end
 	loadfunction();	
+
+	
     notifyMessage('数据加载完成');
 	gsinfo=runparame();--得到指令23,134,628,289		
 	if gsinfo==nil or gsinfo=='' then
@@ -33,6 +34,7 @@ function main()
 		notifyMessage('没有可执和f的指令',5000);
 		os.exit();
 	end
+
 	k=fg(runcodenmb,',');	
     for i,v in ipairs(k) do     	
     	sul=registerrcb(k[i]);
@@ -120,12 +122,14 @@ function newfolder(path)
 end
 
 function getfileat(vl)
+	--[[
     local flagf = ftpGet("ftp://121.40.140.16:/script/public/script/scriptfile/"..vl..".lua", "/var/touchelf/scripts/scriptfile/"..vl..".lua", "productconsole", "T4t8u0p1");
 	if flagf then
 	    notifyMessage('加载'..vl..'文件');
 	else
 	    notifyMessage("加载失败")
 	end
+	--]]
 end
 
 --得到文件的修改时间
