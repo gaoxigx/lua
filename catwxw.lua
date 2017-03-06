@@ -94,7 +94,17 @@ function filesend()
     click(83,1086);
     mSleep(800);
     --[[返回首页]]
-    local mobilecode=textlocalnmb(128,224,338,283);  
+
+   local mobilecode=textlocalnmb(128,224,338,283); 
+    if string.len(mobilecode)>6 then
+        mobilecode=textlocalnmb(122,317,206,367);  
+        if string.len(mobilecode)>6 then
+           notifyMessage('设置异常',2000);
+           return
+        end  
+    end 
+    
+    
     notifyMessage(string.gsub(mobilecode," ","").."手机号码");  
 
     while true do
@@ -175,6 +185,12 @@ function sendfriendfun(mobilecode)
     clickarea(10,164,630,234);--点击朋友圈
 
     if tonumber(imgnum)<=0 then
+        signpyq=string.gsub(getparamecom(par,'friendtext'),' ','');--去除空格
+        if signpyq==nil or signpyq=="" or signpyq=="0" then
+            notifyMessage("请设置微信号朋友圈信息",3000);
+            return false ;
+        end
+
          mSleep(1230);
           touchDown(2, 630, 54)
           mSleep(1600);
@@ -182,9 +198,9 @@ function sendfriendfun(mobilecode)
 
         mSleep(800);
 
-        signpyq=string.gsub(getparamecom(par,'friendtext'),' ','');--去除空格
+        
         inputText(signpyq);
-        mSleep(800);
+        mSleep(1500);
 
         touchDown(0, 589, 83);
         mSleep(200);
@@ -286,7 +302,6 @@ function sendfriendfun(mobilecode)
         clickarea(554,62,622,98); --点击发送  
         
     end    
-
     msleeprand(3000);
     btnlefttop();--点击坐上角返回
 
@@ -665,9 +680,6 @@ function seachfrinedcode(addparame)
         seachfrinedcode(addparame);
         return 1;
     end
-
-
-
 
     msgfr=textlocal(89,470,557,683);    
 

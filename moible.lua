@@ -35,22 +35,36 @@ function main()
    selectimg(9,980,1,0);
 --]]
 
-        
-  mSleep(1000);
-  appKill("NZT");
-  mSleep(1000);
-  appRun("NZT");
-  mSleep(1000);
-  click(38,79);--返回
-  mSleep(800);
-  click(131,962);--参数记录
-  mSleep(1500);
-  click(577,85);--下一条
-  mSleep(3000);
-  click(38,79);--返回
-  mSleep(1000);
+  mSleep(1000); 
+ local mobilecode=textlocalnmb(128,224,338,283); 
+    notifyMessage(string.len(mobilecode),2000);
+    if string.len(mobilecode)>6 then
+        mobilecode=textlocalnmb(122,317,206,367);  
+        if string.len(mobilecode)>6 then
+           notifyMessage('设置异常',2000);
+           return
+        end  
+    end 
 
+  notifyMessage(mobilecode);
 end
+
+
+--根据区域查找数字
+function textlocalnmb(x,y,x1,y1)
+  code = localOcrText("/var/touchelf/scripts/tessdata",  -- 语言包tessdata目录在设备中的路径
+                                                  "eng",  -- 语言类型为中文
+                                                    x,  -- 图片左上角X坐标为100
+                                                    y,  -- 图片左上角Y坐标为100
+                                                    x1,  -- 图片右下角X坐标为200
+                                                    y1,  -- 图片右下角Y坐标为200
+                                            "0123456789"); -- 设置白名单字符串, 只识别数字
+  if code == "" then
+    code=0;
+  end 
+  return code;
+end
+
 
 function clickMove(x1,y1,x2,y2,n)
     local w = math.abs(x2-x1);

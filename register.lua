@@ -22,6 +22,7 @@ function registerrcb(parame)
     if parame=='122' then   backuphd(); end --hd-一键备份
     if parame=='123' then   dhfakei();  end --hd-一键刷机
     if parame=='124' then   znt();  end --hd-一键备份   
+    if parame=='126' then   nzthuifu end
     -------备份信息---------
 
     ---------进入接口-------
