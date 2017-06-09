@@ -37,7 +37,8 @@ end
 --飞行模式
 function flymodel()
 	
-	msleeprand(1000);
+	msleeprand(1000);	
+	--openURL("prefs:root=AIRPLANE_MODE");
 	appRun('com.apple.Preferences');
 	msleeprand(1000);
 	touchDown(0, 272, 238); -- ID为0的手指在坐标为(100, 100)的点按下
@@ -58,27 +59,38 @@ end
 
 --检测IP 是否重复
 function flyunit()
-	msleeprand(800);
-	flstrclick=textlocal(101,292,418,359);
-	if string.match(flstrclick,'飞')=='飞' then
-	 	click(530,329);	
-	 	msleeprand(1000);
-	 	click(530,329);
-	 	msleeprand(2000);
-	 	click(530,329);
-	 	msleeprand(1000);
-	 	click(530,329);
-	else
-	 	click(530,235);
-	 	msleeprand(1000);
-	 	click(530,235);
-	end
-	msleeprand(4000);
-	notifyMessage('正在连接网络...');	
-	msleeprand(2000);
-	notifyMessage('正在连接网络...');	
-	msleeprand(2000);
-	notifyMessage('正在连接网络...',5000);	
+		mSleep(800);
+	  flstrclick=textlocal(101,292,418,359);
+	  if string.match(flstrclick,'飞')=='飞' then
+	    click(530,329); 
+	    mSleep(1000);
+	    click(530,329);
+	    mSleep(2000);
+	    click(530,329);
+	    mSleep(1000);
+	    click(530,329);
+	  else
+	    click(530,235);
+	    mSleep(1000);
+	    click(530,235);
+	  end
+
+	  mSleep(800);
+	  for sim = 100, 80, -1 do  
+	      x, y = findColorInRegionFuzzy(0x4bd863, sim, 462, 144, 610, 359); 
+	      if x ~= -1 and y ~= -1 then   --如果在指定区域找到某点符合条件          
+	          if string.match(flstrclick,'飞')=='飞' then
+	            click(530,329);
+	            mSleep(1000);
+	            click(530,329);
+	          else
+	            click(530,235);
+	          end         
+	          break;   --并跳出循环
+	      end
+	  end  
+	  mSleep(2000);
+	  notifyMessage('正在连接网络...',5000); 
 	--[[	
 	ggipt=getrecoip();--获取IP
 
@@ -92,7 +104,7 @@ function flyunit()
         return flyunit();
     end  
     --]]
-	msleeprand(1500);
+	
 end
 
 
@@ -550,14 +562,14 @@ function loginweixi()
 	codebcd=textlocal(68,380,577,681);--被顶号
 	if(string.match(codebcd,'不是')=='不是') or (string.match(codebcd,'石马')=='石马') then			
 		clickarea(272,716,380,761);--点击确定
-		return dhfakeiname();
+		return 1;--dhfakeiname();
 	end
 
 	codebctx=textlocal(85,395,565,681);--被顶号
 	if string.match(codebctx,'已')=='已' then
 		seachcolor(0x007aff,150,693,562,836);			
-		--click(331,743);--点击确定
-		return baopass();
+		click(331,743);--点击确定
+		return 1;
 	end
 
 end
@@ -565,30 +577,35 @@ end
 
 --弹框后的输入密码页面，保存异常号码重启dhfakei
 function baopass()
+
 	runError(3,3); 	
 	msleeprand(1000);
 	ysmsleepaddnmb('密石马',16,487,106,538,3);	
 	codestr=textlocal(16,487,106,538);--封号后保存异常页面
 	if(string.match(codestr,'密石马')=='密石马') then	
 		msleeprand(1000);
+		--[[
 		code=textlocalnmb(248,370,470,410);
 		if code==nil or code=='' then
 			return 1;
 		end
+		
 		mobile=string.gsub(code,' ','');	
 		rsul=setmobilestatus(mobile);
 		msleeprand(1000);
 		if rsul~='0' and rsul~=nil then
 			notifyMessage('异常号码已保存',2000);
 		end
-		dhfakeiname();
+		--]]
+		--dhfakeiname();
 
 		return loginweixi();
 	end
+	
 end
 --Nzt恢复
-function nzthuifu(){
-	mSleep(1000);
+function nzthuifu()
+  mSleep(1000);
   appKill("NZT");
   mSleep(1000);
   appRun("NZT");
@@ -601,23 +618,43 @@ function nzthuifu(){
   mSleep(3000);
   click(38,79);--返回
   mSleep(1000);
-}
+end
 
 
 --启动dhfakei恢复
-function dhfakei()   
-	appRun('com.workhard.hdfakerset');
-	mSleep(1000);
-	click(106,1076);--操作
-	mSleep(400);
-	click(106,1076);--操作
-	mSleep(400);
-	click(227,773);--恢复数据
-	mSleep(1500);
-	click(572,82);--下一条
-	mSleep(1500);
-	click(316,535);
-	mSleep(8000);
+function dhfakei()   		
+	  appRun('com.workhard.hdfakerset');
+	  mSleep(1000);
+	  click(106,1076);--操作
+	  mSleep(400);
+	  click(106,1076);--操作
+	  mSleep(400);
+	  click(227,773);--恢复数据
+	  mSleep(1500);
+	  click(572,82);--下一条
+	  mSleep(2000);
+	  click(316,535);
+	  mSleep(5000);
+	  local xnum=50;
+	  while true do
+	    local xtc = false;
+	    for sim = 100, 90, -1 do           --使用 for 循环不断降低精确度(建议精确度不低于50%)
+	        x, y = findColorInRegionFuzzy(0x2866bf, sim, 457, 628, 513, 683); 
+	        if x ~= -1 and y ~= -1 then   --如果在指定区域找到某点符合条件
+	            xtc=true;
+	            break;                    --并跳出循环
+	        end
+	    end
+	    if xtc==true then
+	      click(331,651);
+	      break;
+	    end
+	    mSleep(800);
+	    xnum=xnum+1;
+	    if xnum>=50 then
+	    	break;
+	    end
+	  end
 end 
 
 --启动dhfakei恢复下一条前重命名

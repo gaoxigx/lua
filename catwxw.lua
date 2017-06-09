@@ -68,8 +68,6 @@
         btnlefttop();
     end
 
-
-
 --发送朋友圈
 function filesend()
     info=runparame();
@@ -82,8 +80,7 @@ function filesend()
     if fphoparame==nil or fphoparame=='' then
         notifyMessage('没有得到指令参数',2000);
         filesend();
-    end
-    
+    end    
 
     --[[返回首页]]
     click(25,88);mSleep(300);
@@ -95,7 +92,7 @@ function filesend()
     mSleep(800);
     --[[返回首页]]
 
-   local mobilecode=textlocalnmb(128,224,338,283); 
+    local mobilecode=textlocalnmb(128,224,338,283); 
     if string.len(mobilecode)>6 then
         mobilecode=textlocalnmb(122,317,206,367);  
         if string.len(mobilecode)>6 then
@@ -103,62 +100,133 @@ function filesend()
            return
         end  
     end 
-    
-    
-    notifyMessage(string.gsub(mobilecode," ","").."手机号码");  
 
+    notifyMessage(string.gsub(mobilecode," ","").."手机号码");  
+    local runad = math.random(100,100000);
+    local  url="http://g.7gu.cn/index.php?g=api&m=Friends&a=friendnew&id="..getDeviceID().."&mobile="..mobilecode.."&rd="..runad;
     while true do
-       if sendfriendfun(mobilecode)==false then
+       if sendfriendfun(mobilecode,url)==false then
             break;
        end
+       mSleep(500);      
     end
-
-    --[[得到手机号码--]]  
-    --[[
-    click(565,1089);
-    mSleep(800);
-    click(220,966);
-    mSleep(800);
-
-    for sim = 100, 90, -1 do           --使用 for 循环不断降低精确度(建议精确度不低于50%)
-        x, y = findColorInRegionFuzzy(0x1aad19, sim, 520, 1048, 601, 1109); 
-        if x ~= -1 and y ~= -1 then   --如果在指定区域找到某点符合条件
-            click(220,851); --找到就点上面设置
-            break;                    --并跳出循环
-        end
-    end
-    --
-    mSleep(800);
-    click(253,197);
-    mSleep(800);
-    click(331,406);
-    mSleep(800);    
-
-   
-    mSleep(500);   
-    click(25,88);mSleep(300);
-    click(25,88);mSleep(300);
-    click(25,88);mSleep(300);
-    click(25,88);mSleep(300);
-    click(25,88);mSleep(300);
-    
-    --]] 
-    --[[得到手机号码--]]
-
 end
 
-function sendfriendfun(mobilecode)
-    
-    local par= httpGet("http://g.7gu.cn/index.php?g=api&m=Friends&a=friendnew&id="..getDeviceID().."&mobile="..mobilecode);
+--增加好友朋友圈
+function addfriendsmsg()
+    info=runparame();        
+    if info==nil or info=='' then
+        notifyMessage('没有得到指令',2000);
+        address();
+    end
+    addparame=getparamecom(info,'mustt_adtext');
+    if addparame==nil or addparame=='' then
+        addparame='';
+    end
+    addnumb=getparamecom(info,'mustt_addnumb');
+    for i=1,tonumber(addnumb) do
+        msleeprand(2000);               
+        tc=addfriend(addparame);         
+        if tc==0 then
+            break;
+        end
+    end
+end
+--发送固定朋友圈
+function sendfind()
+    info=runparame();
+    if info==nil or info=='' then
+        notifyMessage('没有得到指令',2000);
+        filesend();
+    end
+
+    --[[返回首页]]
+    click(25,88);mSleep(300);
+    click(25,88);mSleep(300);
+    click(25,88);mSleep(300);
+    click(25,88);mSleep(300);
+    click(25,88);mSleep(300);
+    click(83,1086);
+    mSleep(800);
+    --[[返回首页]] 
+    local  url="http://g.7gu.cn/index.php?g=api&m=friends&a=friendone&id="..math.random(1000,100000000);
+    while true do
+       if sendfriendfun(mobilecode,url)==false then
+            break;
+       end
+       mSleep(500);      
+    end
+end
+
+--删除相片
+function delphoto()
+   mSleep(1000);
+  --openURL("prefs:root=Photos");  .sharing-nowakeMar
+  --appRun("com.apple.mediastream"); 
+   mSleep(1000);
+   appKill("com.apple.mobileslideshow");
+   mSleep(1000);
+   appRun("com.apple.mobileslideshow"); 
+   --appRun("com.apple.mediastream.sharing-nowake");  
+  mSleep(1000);
+  --是否打相册
+  local numloop = 1;
+  while true do
+    local wloop = false;
+    for sim = 100, 90, -1 do  
+        x, y = findColorInRegionFuzzy(0x007aff, sim, 93, 1068, 131, 1095); 
+        if x ~= -1 and y ~= -1 then   --如果在指定区域找到某点符合条件          
+            wloop=true;               
+            break;   --并跳出循环
+        end
+    end 
+
+    local wloop1 = false;
+    for sim = 100, 90, -1 do  
+        x, y = findColorInRegionFuzzy(0x007aff, sim, 15, 58, 126, 123); 
+        if x ~= -1 and y ~= -1 then   --如果在指定区域找到某点符合条件          
+            wloop1=true;               
+            break;   --并跳出循环
+        end
+    end 
+    if wloop1==false then
+      return;
+    end
+
+    if wloop==true then
+      break;
+    end
+    numloop=numloop+1;
+    if numloop>50 then
+      break;
+    end
+    mSleep(1000);
+    click(101,1087);
+    mSleep(1000);
+    appKill("com.apple.mobileslideshow");
+    mSleep(2000);
+  end
+
+  mSleep(800);
+  click(591,81);
+  mSleep(1000);
+  click(583,177);
+  mSleep(1000);
+  click(591,1083);
+  mSleep(1000);
+  click(317,975);
+  --是否打相册     
+end
+
+function sendfriendfun(mobilecode,url)    
+    local par= httpGet(url);
     if par==nil or apr=="" or getparamecom(par,'status')=="0" then
         notifyMessage("请设置微信号朋友圈信息",3000);
         return false ;
     end
-    
     local imgnum=getparamecom(par,'imagnum');
-    local  dxnum = 0;
-   
-    if tonumber(imgnum)>0 then
+    local  dxnum = 0;   
+    if  tonumber(imgnum)>0 then
         notifyMessage("下载图片中");
         for i=0,tonumber(imgnum)-1 do       
             mSleep(1000);
@@ -176,8 +244,6 @@ function sendfriendfun(mobilecode)
         end
         notifyMessage("成功下载图片"..dxnum.."个");
     end
-   
-
     msleeprand(1000);
     clickarea(346,1050,480,1128);--点击发现
     
@@ -191,16 +257,24 @@ function sendfriendfun(mobilecode)
             return false ;
         end
 
-         mSleep(1230);
-          touchDown(2, 630, 54)
-          mSleep(1600);
-          touchUp(2)
+        mSleep(1230);
+        touchDown(2, 630, 54)
+        mSleep(1600);
+        touchUp(2)
 
         mSleep(800);
 
+        for sim = 100, 90, -1 do           --使用 for 循环不断降低精确度(建议精确度不低于50%)
+            x, y = findColorInRegionFuzzy(0x2e9536, sim, 227, 1009, 414, 1064); 
+            if x ~= -1 and y ~= -1 then   --如果在指定区域找到某点符合条件
+                click(318,1037);
+                break;                    --并跳出循环
+            end
+        end
+        mSleep(1000);
         
         inputText(signpyq);
-        mSleep(1500);
+        mSleep(2000);
 
         touchDown(0, 589, 83);
         mSleep(200);
@@ -212,21 +286,22 @@ function sendfriendfun(mobilecode)
      
         zdl();  --知道了
 
-        msleeprand(500);
+        msleeprand(800);
         clickarea(6,940,632,1014);--从手机相册选择
 
 
-        ysmsleepaddnmb('回',4,53,131,112,2);
-        local fanhui=textlocal(4,53,131,112);        
-        if(string.match(fanhui,'回')=='回') then           
+       -- ysmsleepaddnmb('回',4,53,131,112,2);
+       -- local fanhui=textlocal(4,53,131,112);        
+        --if(string.match(fanhui,'回')=='回') then           
             click(62,82);--点击返回
-        end
+        --end
 
 
-        msleeprand(1500); --点击相册
+        msleeprand(800); 
         
-        --if fphoparame=='1' then      
-            clickarea(6,130,630,235)
+        --if fphoparame=='1' then    
+         click(218,190);  
+        --clickarea(6,130,630,235)
         --end
 
 
@@ -281,24 +356,14 @@ function sendfriendfun(mobilecode)
         msleeprand(1500);
         clickarea(520,1070,618,1108);--选好图片点击完成
 
-        msleeprand(1000);
+        msleeprand(2000);
         click(262,164);--点击进入输入框
 
-        msleeprand(1000);
-
+        msleeprand(1500);
         signpyq=string.gsub(getparamecom(par,'friendtext'),' ','');--去除空格
-
-        if signpyq==0 then
-            notifyMessage('数据库里的朋友圈语录已用完',2000);
-            os.exit();
-        end    
-
-        if signpyq==nil or signpyq=='' then
-            notifyMessage('网络已断开!无法得到数据',2000);
-        else
-            inputText(signpyq);
-        end
-        msleeprand(2000);
+        inputText(signpyq);
+       
+        msleeprand(2500);
         clickarea(554,62,622,98); --点击发送  
         
     end    
@@ -339,13 +404,13 @@ function selectimg(num,height,funnum,selecnum)
 
     if selecnum<num then       
         funnum=funnum+1;
-        selectimg(num,height-160,funnum,selecnum);
+        selectimg(num,height-150,funnum,selecnum);
     end 
 end
 
 
     --头像设置
-    function friendmi()
+function friendmi()
 
     info=runparame();
     if info==nil or info=='' then
@@ -424,18 +489,17 @@ end
 
     --设置朋友圈照片
     function friend()
+        info=runparame();
+        if info==nil or info=='' then
+            notifyMessage('没有得到指令',2000);
+            friend();
+        end
 
-    info=runparame();
-    if info==nil or info=='' then
-        notifyMessage('没有得到指令',2000);
-        friend();
-    end
-
-    afphoparame=getparamecom(info,'mustt_afphoto');
-    if afphoparame==nil or afphoparame=='' then
-        notifyMessage('没有得到指令参数',2000);
-        friend();
-    end
+        afphoparame=getparamecom(info,'mustt_afphoto');
+        if afphoparame==nil or afphoparame=='' then
+            notifyMessage('没有得到指令参数',2000);
+            friend();
+        end
 
         msleeprand(800);
         clickarea(346,1050,480,1128);--点击发现
@@ -499,25 +563,20 @@ end
         btnlefttop();--点击坐上角返回
     end
 
-
-
-
-
     --个性签名
     function runame()
-    msleeprand(1000);
-    clickarea(510,1046,624,1124);--点击我
-    msleeprand(1000);
-    clickarea(10,170,630,320);--点击头部信息
-    msleeprand(1000);
-    clickarea(6,894,632,992);--点击个性签名
+        msleeprand(1000);
+        clickarea(510,1046,624,1124);--点击我
+        msleeprand(1000);
+        clickarea(10,170,630,320);--点击头部信息
+        msleeprand(1000);
+        clickarea(6,894,632,992);--点击个性签名
 
-    msleeprand(1000);
-    clickrand(632,310);--点击进入输入框
-    msleeprand(800);
-    str="\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b";
-
-    msleeprand(1200);
+        msleeprand(1000);
+        clickrand(632,310);--点击进入输入框
+        msleeprand(800);
+        str="\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b";
+        msleeprand(1200);
 --[[
         a = {"今天天气很不错", 
             "这鬼天气，晒成狗了", 
@@ -602,44 +661,42 @@ function frinedinfo(addparame)
 end
 
 function address()  --添加通讯录
-        info=runparame();        
-        if info==nil or info=='' then
-            notifyMessage('没有得到指令',2000);
-            address();
+    info=runparame();        
+    if info==nil or info=='' then
+        notifyMessage('没有得到指令',2000);
+        address();
+    end
+    addparame=getparamecom(info,'mustt_adtext');
+    if addparame==nil or addparame=='' then
+        addparame='';
+    end
+    addnumb=getparamecom(info,'mustt_addnumb');
+    for i=1,tonumber(addnumb) do
+        msleeprand(2000);               
+        tc=addfriend(addparame);         
+        if tc==0 then
+            break;
         end
-        addparame=getparamecom(info,'mustt_adtext');
-        if addparame==nil or addparame=='' then
-            addparame='';
-        end
-        addnumb=getparamecom(info,'mustt_addnumb');
-        for i=1,tonumber(addnumb) do
-            msleeprand(2000);               
-            tc=addfriend(addparame);         
-            if tc==0 then
-                break;
-            end
-        end
+    end
 end
 
 --指定添加某人
 function addressone()
-       info=runparame();        
-        if info==nil or info=='' then
-            notifyMessage('没有得到指令',2000);
-            address();
-        end
-        addparame=getparamecom(info,'mustt_grname');
-        if addparame==nil or addparame=='' then
-            addparame='';
-        end   
+    info=runparame();        
+    if info==nil or info=='' then
+        notifyMessage('没有得到指令',2000);
+        address();
+    end
+    addparame=getparamecom(info,'mustt_grname');
+    if addparame==nil or addparame=='' then
+        addparame='';
+    end   
 
-        msleeprand(1000);
-        clickarea(26,152,535,187);--点击搜索框
-        msleeprand(1000);
-        seachfrinedcodeone(addparame);       
-
+    msleeprand(1000);
+    clickarea(26,152,535,187);--点击搜索框
+    msleeprand(1000);
+    seachfrinedcodeone(addparame);  
 end
-
 
 --增加朋友
 function addfriend(addparame)
@@ -777,8 +834,7 @@ function seachfrinedcodeone(mobileone)
 
     msgfr=textlocal(89,470,557,683);    
 
-    if string.match(msgfr,'失败')=='失败' then
-        
+    if string.match(msgfr,'失败')=='失败' then        
         if string.match(msgfr,'过于')=='过于' then
             clickrand(320,653);
             msleeprand(1000);

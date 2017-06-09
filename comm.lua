@@ -47,9 +47,8 @@ function sendmobile()
 end
 
 --得到设备命令
-function runparame()
-	cdkeystr=cdkey();
-	sul=httpGet("http://g.7gu.cn/index.php?g=api&m=equictive&a=saveDeviceID&cdkey="..cdkeystr.."&vn="..versioninfo());
+function runparame()	
+	sul=httpGet("http://g.7gu.cn/index.php?g=api&m=equictive&a=saveDeviceID&cdkey="..getDeviceID().."&vn="..versioninfo());
 	return sul;
 end
 

@@ -22,7 +22,9 @@ function registerrcb(parame)
     if parame=='122' then   backuphd(); end --hd-一键备份
     if parame=='123' then   dhfakei();  end --hd-一键刷机
     if parame=='124' then   znt();  end --hd-一键备份   
-    if parame=='126' then   nzthuifu end
+    if parame=='126' then   nzthuifu(); end
+
+  
     -------备份信息---------
 
     ---------进入接口-------
@@ -33,7 +35,11 @@ function registerrcb(parame)
     ---------必须操事情-------
     if parame=='1003' then   dianzan(); end --点赞
     if parame=='1004' then   plinfo(); end --评论
-    if parame=='1005' then   filesend(); end --发送朋友圈
+    
+    if parame=='1005' then   filesend(); end --发送定时朋友圈
+    if parame=='1041' then   sendfind(); end --发送固定朋友圈
+    if parame=='1042' then   delphoto(); end --删除照片
+
     if parame=='1006' then   friendmi(); end --头像设置
     if parame=='1007' then   friend(); end --设置朋友圈照片
     if parame=='1008' then   runame(); end --个性签名

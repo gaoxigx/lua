@@ -522,7 +522,7 @@ function txlfrind()
       local i = 0;
       while true do
         mSleep(500);
-        --[[
+       
           for sim = 100, 92, -1 do  
         x, y = findColorInRegionFuzzy(0xff3b30, sim, 529, 445, 627, 523); 
         if x ~= -1 and y ~= -1 then   --如果在指定区域找到某点符合条件
@@ -534,7 +534,7 @@ function txlfrind()
       end
       clickMove(320,482,180,482,20);
           mSleep(100);
-        --]]
+       
           --for sim = 100, 92, -1 do  
         x, y = findColorInRegionFuzzy(0x71d01d, 90, 24, 259, 90, 361); 
         if x ~= -1 and y ~= -1 then   --如果在指定区域找到某点符合条件
@@ -556,7 +556,7 @@ function txlfrind()
      mSleep(1000);
      addressbook();
      return true;
-  	 --[[
+  	
       local t = true;
       for i=1,6 do
         if fuzzycolor(0x1aad19,494,256,637,1130)==false then
@@ -567,10 +567,10 @@ function txlfrind()
         end
       end
       if t==true then
-        addressbook();
+       -- addressbook();
       end
     return t;
-    ----]]
+   
 end
 
 function selan()
@@ -628,8 +628,8 @@ function addressapp()
 	local gsinfo1=runparame();
 	local codeid=getparamecom(gsinfo1,'mustt_codeid');
 	
-	appKill(codeid);
-	mSleep(1100);
+	   appKill(codeid);
+	   mSleep(1100);
 
 	  --local x=getparamecom(gsinfo,'mustt_phonex');
 	  --local y=getparamecom(gsinfo,'mustt_phoney');
