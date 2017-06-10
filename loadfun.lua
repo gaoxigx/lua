@@ -10,7 +10,8 @@ function reary()
 	'mm',
 	'tantan',
 	"tanwxw",
-	'weixi'	
+	'weixi',
+	'awz'
 	};	
 	return t;
 end

@@ -44,10 +44,8 @@ function ttdianzan()
 	end
 end
 
-
-
-    --向左拨动
-    function clickmoveleft()
+--向左拨动
+function clickmoveleft()
     	x=560;
     	y=76;
         
