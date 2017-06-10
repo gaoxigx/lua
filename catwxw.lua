@@ -158,6 +158,33 @@ function sendfind()
     end
 end
 
+--发送一个固定朋友
+function sendonefind()
+    info=runparame();
+    if info==nil or info=='' then
+        notifyMessage('没有得到指令',2000);
+        sendonefind();
+    end
+    delphoto();
+    mSleep(1000);
+    openweixi();
+    mSleep(2000);
+
+    --[[返回首页]]
+    click(25,88);mSleep(300);
+    click(25,88);mSleep(300);
+    click(25,88);mSleep(300);
+    click(25,88);mSleep(300);
+    click(25,88);mSleep(300);
+    click(83,1086);
+    mSleep(800);
+    --[[返回首页]] 
+   	local str=getparame(info,'mustt_msginfo');--得到对应的值   
+   	dowxtupian(str)--发送一张图片
+   
+
+end
+
 --删除相片
 function delphoto()
    mSleep(1000);
@@ -216,6 +243,66 @@ function delphoto()
   mSleep(1000);
   click(317,975);
   --是否打相册     
+end
+--发送一张固定的朋友信息
+function dowxtupian(signpyq)
+	local imgnum=1;	
+	local tpurl="/var/touchelf/scripts/scriptfile/images/setu.png";
+	if file_exists(tpurl)==false then
+		local path="ftp://121.40.140.16:/script/luaimg/setu.png";      
+        local getdata=ftpGet(path, tpurl, "productconsole", "T4t8u0p1");
+        if getdata then
+		    notifyMessage("下载成功")
+		else
+		    dowxtupian();
+		    return;
+		end
+	end
+	saveImageToAlbum(tpurl);
+
+	msleeprand(1000);
+    clickarea(346,1050,480,1128);--点击发现
+    
+    msleeprand(1000);   
+    clickarea(10,164,630,234);--点击朋友圈
+
+
+	msleeprand(800);
+        clickrand(589,83);--点击右上角
+     
+        zdl();  --知道了
+
+        msleeprand(800);
+        clickarea(6,940,632,1014);--从手机相册选择       
+        click(62,82);--点击返回
+
+        msleeprand(800);  
+        click(218,190);  
+
+        mSleep(1000);
+        selectimgasc(1,208,1,0);
+
+        msleeprand(1500);
+        clickarea(520,1070,618,1108);--选好图片点击完成
+
+        msleeprand(2000);
+        click(262,164);--点击进入输入框
+
+        msleeprand(1500);
+      
+        inputText(signpyq);
+       
+        msleeprand(2500);
+        clickarea(554,62,622,98); --点击发送  
+
+    msleeprand(3000);
+    btnlefttop();--点击坐上角返回
+
+end
+----检测指定文件是否存在
+function file_exists(file_name)
+    local f = io.open(file_name, "r")
+    return f ~= nil and f:close()
 end
 
 function sendfriendfun(mobilecode,url)    
@@ -372,7 +459,7 @@ function sendfriendfun(mobilecode,url)
 
     return true ;
 end
-
+--倒序选择图片
 function selectimg(num,height,funnum,selecnum)  
     local count = 3;
     for i=1,4 do
@@ -408,21 +495,60 @@ function selectimg(num,height,funnum,selecnum)
     end 
 end
 
+--按顺序选择图片
+function selectimgasc(num,height,funnum,selecnum)  
+    local count = 0;
+    for i=1,4 do
+        mSleep(200);
+        click((count*158)+80,height); 
+        count = count + 1;      
+        mSleep(500);       
+        local tm = 0;
+        for sim = 100, 85, -1 do           --使用 for 循环不断降低精确度(建议精确度不低于50%)
+            x, y = findColorInRegionFuzzy(0x373738, sim, 169, 1067, 410, 1130); 
+            if x ~= -1 and y ~= -1 then   --如果在指定区域找到某点符合条件     
+                tm=1;
+                break;                    --并跳出循环            
+            end
+        end
+       
+        if tm==1 then
+          mSleep(500);
+          click(580,62);
+          mSleep(1000);
+          click(46,64); 
+          selecnum=selecnum+1;
+          if selecnum>=num then
+            break;
+          end 
+         end
+         mSleep(1000);       
+    end
+
+    if selecnum<num then       
+        funnum=funnum+1;
+        selectimg(num,height+150,funnum,selecnum);
+    end 
+end
+
 
     --头像设置
 function friendmi()
-
-    info=runparame();
-    if info==nil or info=='' then
-        notifyMessage('没有得到指令',2000);
-        friendmi();
-    end
-
-    aphoparame=getparamecom(info,'mustt_aphoto');
-    if aphoparame==nil or aphoparame=='' then
-        notifyMessage('没有得到指令参数',2000);
-        friendmi();
-    end
+	delphoto();
+	local tpurl="/var/touchelf/scripts/scriptfile/images/tx1.png";
+	if file_exists(tpurl)==false then
+		local path="ftp://121.40.140.16:/script/luaimg/tx1.png";      
+        local getdata=ftpGet(path, tpurl, "productconsole", "T4t8u0p1");
+        if getdata then
+		    notifyMessage("下载成功")
+		else
+		    friendmi();
+		    return;
+		end
+	end	
+	saveImageToAlbum(tpurl);
+     mSleep(1000);
+	 openweixi()
 
         msleeprand(2000);
         clickarea(510,1046,624,1124); --点击我
@@ -430,55 +556,24 @@ function friendmi()
         clickarea(10,170,630,320);--点击头部栏信息
         msleeprand(1200);
         clickarea(6,164,632,314);--点击头像
-        -- msleeprand(2000);
-        -- btnrighttop();--点击个人头像右上角选择
+        msleeprand(2000);
+        btnrighttop();--点击个人头像右上角选择
         msleeprand(1200);
-        clickarea(182,954,460,1005);--点击从手机相册选择
 
-        msleeprand(1500); --点击相册
-        if aphoparame=='1' then      
-            clickarea(6,130,630,286)
-        end
+         zdl();  --知道了
 
-        if aphoparame=='2' then      
-            clickarea(6,296,630,450)
-        end
+        msleeprand(800);
+        click(308,885);--从手机相册选择      
+        click(62,82);--点击返回
 
-        if aphoparame=='3' then      
-            clickarea(6,460,630,616)
-        end
+        msleeprand(800);  
+        click(218,190);  
 
-        if aphoparame=='4' then      
-            clickarea(6,626,630,780)
-        end
-
-        if aphoparame=='5' then      
-            clickarea(6,790,630,950)
-        end
-
-        if afphoparame=='6' then      
-            clickarea(6,950,630,1120)
-        end
-
-        msleeprand(2000); --点击移动
-        clickmove();
+        mSleep(1000);
+        selectimgasc(1,208,1,0);
 
         msleeprand(1500);
-    -- notifyMessage('sdfsdf',5000); 
-        st=(math.random(0, 10000)%4)*156-20;
-        if st<156 then
-            st=156;
-        end
-
-
-        dt=(math.random(0,10000)%6)*156-125;
-        if dt<156 then
-            dt=156;
-        end
-        click(st,dt);--随机选择图片
-
-        msleeprand(1500);
-        clickarea(540,1040,616,1076);--选取图片
+        clickarea(520,1070,618,1108);--选好图片点击完成
 
         msleeprand(1500);
         btnlefttop();

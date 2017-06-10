@@ -44,6 +44,7 @@ function loginawxwx()
 
 	login62zh()--登入62数据
  end
+ --awz恢复下一条数据
  function awxnexwx()
  	appRun("AWZ");--打开awz
  	mSleep(1000);

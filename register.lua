@@ -22,14 +22,14 @@ function registerrcb(parame)
     if parame=='122' then   backuphd(); end --hd-一键备份
     if parame=='123' then   dhfakei();  end --hd-一键刷机
     if parame=='124' then   znt();  end --hd-一键备份   
-    if parame=='126' then   nzthuifu(); end
-
-  
+    if parame=='126' then   nzthuifu(); end 
     -------备份信息---------
 
     ---------进入接口-------
     if parame=='131' then   return registerweixi(getDeviceID());end --执行微信注册
     if parame=='132' then   return loginweixi();   end --执行微信登入
+    if parame=='136' then    return loginawxwx(); end --awz登入
+    if parame=='137' then 	return awxnexwx(); end --awz恢复下一条数据
     ---------进入接口-------
 
     ---------必须操事情-------
@@ -39,6 +39,7 @@ function registerrcb(parame)
     if parame=='1005' then   filesend(); end --发送定时朋友圈
     if parame=='1041' then   sendfind(); end --发送固定朋友圈
     if parame=='1042' then   delphoto(); end --删除照片
+    if parame=='1043' then   sendonefind()  end --发送一个固定的朋友圈
 
     if parame=='1006' then   friendmi(); end --头像设置
     if parame=='1007' then   friend(); end --设置朋友圈照片
@@ -79,7 +80,7 @@ function registerrcb(parame)
     if parame=='5001' then    hepai();end --合拍关注如果有聊天即时回复一句话
     ---------合拍-------------
     
-     return 1;
+    return 1;
     
 end
 
