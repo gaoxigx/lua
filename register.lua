@@ -1,7 +1,7 @@
 --注册所有方法程序
 jgtime=0;
 function registerrcb(parame)
-
+	os.execute("su mobile -c uicache");
     --微信摇一摇
     if string.match(gsinfo,'1030')=="1030" then
          local ytime=getparamecom(gsinfo,'mustt_ytime');

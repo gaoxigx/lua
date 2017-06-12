@@ -14,6 +14,10 @@ function loginawxwx()
 	--得到62数据
  	local url='http://g.7gu.cn/index.php?g=Api&m=Wxh&a=wx62data';
 	local redata = httpGet(url);	
+	if redata==nil then
+		notifyMessage("登陆没有62数据号,请联系管理员");
+		os.exit();
+	end
 	
 	local wxid=0;
 	local wxpwd=0;
@@ -118,28 +122,25 @@ function  login62zh()
 
 	mSleep(800);
 	click(455,1055);--其他方式登录	
-	mSleep(1500);
-	click(272,325);--点击输入帐号 
+	mSleep(2000);
+	click(272,325);--点击输入帐号 	
+	click(272,332);--点击输入帐号 
 	mSleep(500);
-	click(272,325);--点击输入帐号 
 	inputText(weixiinfo['wxid']);
 	mSleep(1200);
-	click(244,422);--点击输入密码
+	click(347,403);
+	click(592,1088);--点击下一项
 	inputText(weixiinfo['wxpwd']);
 	mSleep(1000);
-	local msgcode=textlocal(80,419,541,481);--匹配通讯录点否		
-	if(string.match(msgcode,'匹')=='匹') or (string.match(msgcode,'录')=='录') then			
-		click(190,700);--否
-	end
-
+	seachcolor('0x1aad19',11,458,622,839);--点登录
 	while true do
-	mSleep(500);
-	click(560,1085);--点击登录
-	mSleep(500);
-	if seachcolorreturn(0x1aad19,548,1062,578,1097)==1 then
-		break;
-	end
-	click(190,700);--否
+		mSleep(500);
+		click(560,1085);--点我
+		mSleep(500);
+		if seachcolorreturn(0x1aad19,548,1062,578,1097)==1 then
+			break;
+		end
+		click(190,700);--否
 	end
 end	
 

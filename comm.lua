@@ -521,7 +521,16 @@ function textlocalnmb(x,y,x1,y1)
 	return code;
 end
 
-
+--查找当前屏幕颜色值并点击
+function  seachclick(color,x,y,x1,y1)	
+	for sim = 100, 80, -1 do   
+		x,y=findColorInRegionFuzzy(color,sim,x,y,x1,y1); -- 在全屏范围找到第一个颜色为0x0000ff的点, 精确度为90%, 将其坐标保存到变量x和y中
+		if x ~= -1 and y ~= -1 then          -- 如果找到了
+			mSleep(200);
+		    click(x,y);
+		end
+	end
+end
 --查找当前屏幕颜色值并点击
 function  seachcolor(color,x,y,x1,y1)	
 	for sim = 100, 80, -1 do   
@@ -529,6 +538,7 @@ function  seachcolor(color,x,y,x1,y1)
 		if x ~= -1 and y ~= -1 then          -- 如果找到了
 			mSleep(200);
 		    click(x,y);
+		    break;
 		else
 			mSleep(1000);		
 			seachcolor(color,x,y,x1,y1);

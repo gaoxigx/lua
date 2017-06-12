@@ -248,7 +248,7 @@ end
 function dowxtupian(signpyq)
 	local imgnum=1;	
 	local tpurl="/var/touchelf/scripts/scriptfile/images/setu.png";
-	if file_exists(tpurl)==false then
+	if file_exists(tpurl)==false or getparame(gsinfo,'mustt_isfile')==2 or getparame(gsinfo,'mustt_isfile')=='2' then
 		local path="ftp://121.40.140.16:/script/luaimg/setu.png";      
         local getdata=ftpGet(path, tpurl, "productconsole", "T4t8u0p1");
         if getdata then
@@ -536,7 +536,7 @@ end
 function friendmi()
 	delphoto();
 	local tpurl="/var/touchelf/scripts/scriptfile/images/tx1.png";
-	if file_exists(tpurl)==false then
+	if file_exists(tpurl)==false  then
 		local path="ftp://121.40.140.16:/script/luaimg/tx1.png";      
         local getdata=ftpGet(path, tpurl, "productconsole", "T4t8u0p1");
         if getdata then
@@ -558,9 +558,7 @@ function friendmi()
         clickarea(6,164,632,314);--点击头像
         msleeprand(2000);
         btnrighttop();--点击个人头像右上角选择
-        msleeprand(1200);
-
-         zdl();  --知道了
+        zdl();  --知道了
 
         msleeprand(800);
         click(308,885);--从手机相册选择      
@@ -584,17 +582,22 @@ function friendmi()
 
     --设置朋友圈照片
     function friend()
-        info=runparame();
-        if info==nil or info=='' then
-            notifyMessage('没有得到指令',2000);
-            friend();
-        end
 
-        afphoparame=getparamecom(info,'mustt_afphoto');
-        if afphoparame==nil or afphoparame=='' then
-            notifyMessage('没有得到指令参数',2000);
-            friend();
-        end
+    	delphoto();
+		local tpurl="/var/touchelf/scripts/scriptfile/images/bj.png";
+		if file_exists(tpurl)==false then
+			local path="ftp://121.40.140.16:/script/luaimg/bj.png";      
+	        local getdata=ftpGet(path, tpurl, "productconsole", "T4t8u0p1");
+	        if getdata then
+			    notifyMessage("下载成功")
+			else
+			    friendmi();
+			    return;
+			end
+		end	
+		saveImageToAlbum(tpurl);
+	     mSleep(1000);
+		 openweixi();
 
         msleeprand(800);
         clickarea(346,1050,480,1128);--点击发现
@@ -608,48 +611,18 @@ function friendmi()
         clickarea(34,185,271,218);--从手机相册选择
 
 
-        msleeprand(800); --点击相册
-        if afphoparame=='1' then      
-            clickarea(6,130,630,286)
-        end
-
-        if afphoparame=='2' then      
-            clickarea(6,296,630,450)
-        end
-
-        if afphoparame=='3' then      
-            clickarea(6,460,630,616)
-        end
-
-        if afphoparame=='4' then      
-            clickarea(6,626,630,780)
-        end
-
-        if afphoparame=='5' then      
-            clickarea(6,790,630,950)
-        end
-
-        if afphoparame=='6' then      
-            clickarea(6,950,630,1120)
-        end
-
-        msleeprand(1500); --点击移动
-        clickmove();
-
         msleeprand(800);
-    -- notifyMessage('sdfsdf',5000); 
-        st=(math.random(0, 10000)%4)*155-25;
-        if st<155 then
-            st=155;
-        end
-        dt=(math.random(0,10000)%6)*157-125;
-        if dt<157 then
-            dt=157;
-        end
-        click(st,dt);--随机选择图片
+        --click(308,885);--从手机相册选择      
+        click(62,82);--点击返回
 
-        msleeprand(1200);
-        click(578,1061);--选取图片
+        msleeprand(800);  
+        click(218,190);  
+
+        mSleep(1000);
+        selectimgasc(1,208,1,0);
+
+        msleeprand(1500);
+        clickarea(520,1070,618,1108);--选好图片点击完成
 
         msleeprand(1200);
         btnlefttop();
@@ -660,50 +633,34 @@ function friendmi()
 
     --个性签名
     function runame()
-        msleeprand(1000);
-        clickarea(510,1046,624,1124);--点击我
-        msleeprand(1000);
-        clickarea(10,170,630,320);--点击头部信息
-        msleeprand(1000);
-        clickarea(6,894,632,992);--点击个性签名
-
-        msleeprand(1000);
-        clickrand(632,310);--点击进入输入框
-        msleeprand(800);
-        str="\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b";
-        msleeprand(1200);
---[[
-        a = {"今天天气很不错", 
-            "这鬼天气，晒成狗了", 
-            "又下雨，MB",
-            "老是躺输没意思cao",
-            "32个赞",
-            "都走了！",
-            "开鲁咯！",
-            "许多不舍！",
-        }
-        a_num=math.random(1,#a);
-        --]]
-        signstr=string.gsub(getsiing(),' ','');--去除空格
-        if signstr==0 then
-            notifyMessage('数据库里个性签名语录已用完',2000);
-            os.exit();
-        end    
-
-        if signstr==nil or signstr=='' then
+    	os.execute("su mobile -c uicache");
+        local signstr=httpGet("http://g.7gu.cn/index.php?g=api&m=Wxwapi&a=sign");
+        if signstr==nil or signstr=='' or signstr=='0' then
             notifyMessage('网络已断开!无法得到数据',2000);
-        else
-            inputText(str..signstr);
+            return;
         end
 
-        
+    	mSleep(500);
+    	openweixi();
 
-        msleeprand(2000);
-        clickarea(550,62,622,100); --点击完成
+        mSleep(1000);
+        click(510,1046,624,1124);--点击我
+        mSleep(1000);
+        click(10,170,630,320);--点击头部信息
+        mSleep(1000);
+        click(6,894,632,992);--点击个性签名
 
-        msleeprand(1000);
+        mSleep(1000);
+     
+        clickrand(632,310);--点击进入输入框
+        mSleep(800);
+        str="\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b";
+        inputText(str);
+        inputText(signstr);
+        mSleep(1000);
+        click(550,62,622,100); --点击完成
+        mSleep(1000);
         btnlefttop();--点击坐上角返回
-
     end
 
 
