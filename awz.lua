@@ -43,7 +43,7 @@ function loginawxwx()
 	writeFile("/var/mobile/iggparams.txt",wx62);--写入	
 	set62dta();--设置62数据
 	setwxname(wxid..'--'..wxpwd);	
-	notifyMessage("已经加62数据");	
+	notifyMessage("已经加62数据");
 	mSleep(1000);
 
 	login62zh()--登入62数据
@@ -257,7 +257,7 @@ function shezhizl()
 	click(307,292);--女
 	mSleep(800);
 	click(299,939);--设置个性签名
-	inputText("青春无期限，无热血不少年！");
+	inputText("昨天依然过去，以笑脸去迎接新的一天");
 	click(592,86);--完成
 end	
 

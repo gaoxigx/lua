@@ -718,6 +718,7 @@ function address()  --添加通讯录
         notifyMessage('没有得到指令',2000);
         address();
     end
+    openweixi();--打开微信
     addparame=getparamecom(info,'mustt_adtext');
     if addparame==nil or addparame=='' then
         addparame='';
@@ -752,9 +753,9 @@ end
 
 --增加朋友
 function addfriend(addparame)
-    clickarea(190,1050,306,1128);--点击通讯录
+    clickrand(236,1085);--点击通讯录
     msleeprand(1000);
-    clickarea(26,152,535,187);--点击搜索框
+    clickrand(196,172);--点击搜索框
     msleeprand(1000);
     m=seachfrinedcode(addparame);    
     if m==0 then
@@ -767,16 +768,19 @@ end
 --搜索朋友
 function seachfrinedcode(addparame)
     friendsex = '关闭';
-    clickrand(296,79);
+ 
     str="\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b";
     local mobile=friendmobile();
+
     if mobile==0 or mobile==nil then
         notifyMessage('没有手机号码',1000);   
         return;
     end 
-    mobile=string.sub(mobile,1,11);
-    inputText(str..mobile);
 
+    mobile = getparame(mobile,"mobile");
+    clickrand(296,82);
+    msleeprand(1000);
+    inputText(str..mobile);
 
     msleeprand(1000);
     clickarea(29,211,608,311);--搜索
@@ -834,7 +838,7 @@ function seachfrinedcode(addparame)
 
     if ifv==0 and friendsex=='男' then
             seachcolor(0x06bf04,6,394,637,1037);--增加到通讯录 按颜色查找通讯录
-           -- clickrand(374,734);--
+            clickrand(374,734);
             msleeprand(1500);
             frinedinfo(addparame);
     end
