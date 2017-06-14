@@ -99,10 +99,10 @@ function writeFile(path,longid)
 	file:close()
 end
 
-function getparame(sul,str)
-	v=string.sub(sul,string.find(sul,'<'..str..'>')+string.len('<'..str..'>'),string.find(sul,'</'..str..'>')-1);
-	return v;
-end
+-- function getparame(sul,str)
+-- 	v=string.sub(sul,string.find(sul,'<'..str..'>')+string.len('<'..str..'>'),string.find(sul,'</'..str..'>')-1);
+-- 	return v;
+-- end
 
 
 
@@ -142,6 +142,12 @@ function  login62zh()
 		end
 		click(190,700);--否
 	end
+
+    msleeprand(1000);
+    local msgcoty=textlocal(61,440,580,608);        
+    if(string.match(msgcoty,'号')=='号') or (string.match(msgcoty,'立')=='立') then         
+    click(320,665);--不再提示
+    end
 end	
 
 --下载

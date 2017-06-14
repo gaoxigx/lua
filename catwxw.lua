@@ -644,22 +644,21 @@ function friendmi()
     	openweixi();
 
         mSleep(1000);
-        click(510,1046,624,1124);--点击我
+        click(560,1082);--点击我
         mSleep(1000);
-        click(10,170,630,320);--点击头部信息
+        click(170,242);--点击头部信息
         mSleep(1000);
-        click(6,894,632,992);--点击个性签名
-
+        click(278,933);--点击个性签名
         mSleep(1000);
-     
-        clickrand(632,310);--点击进入输入框
+        clickrand(560,287);--点击进入输入框
         mSleep(800);
         str="\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b";
         inputText(str);
+        mSleep(1000);
         inputText(signstr);
         mSleep(1000);
-        click(550,62,622,100); --点击完成
-        mSleep(1000);
+        click(589,85); --点击完成
+        mSleep(1500);
         btnlefttop();--点击坐上角返回
     end
 
