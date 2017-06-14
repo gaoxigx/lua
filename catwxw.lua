@@ -783,7 +783,7 @@ function seachfrinedcode(addparame)
     inputText(str..mobile);
 
     msleeprand(1000);
-    clickarea(29,211,608,311);--搜索
+    click(479,226);--搜索
     msleeprand(2000);
     
     myjg=textlocal(136,397,472,467);
@@ -791,6 +791,16 @@ function seachfrinedcode(addparame)
     if string.match(myjg,'无结果')=='无结果' then     
         msleeprand(1000);
         seachfrinedcode(addparame);
+        return 1;
+    end
+
+    msgfr=textlocal(89,470,557,683); 
+    if string.match(msgfr,'不存在')=='不存在' then
+      	--friendmobiletypeset(mobile,1);
+        clickrand(320,653);
+        msleeprand(200);
+        seachfrinedcode(addparame);
+       
         return 1;
     end
 
@@ -829,26 +839,32 @@ function seachfrinedcode(addparame)
     end 
 
     local ifv = seachcolorreturn(0xf37e7d,169,173,635,316); 
+
+
     if ifv==1 and friendsex=='女' then
-            seachcolor(0x06bf04,6,394,637,1037);--增加到通讯录 按颜色查找通讯录
+    		notifyMessage("dsfdsf");
+            seachcolor(0x1aad19,6,394,637,1037);--增加到通讯录 按颜色查找通讯录
            -- clickrand(374,734);--
             msleeprand(1500);
             frinedinfo(addparame);
     end
 
     if ifv==0 and friendsex=='男' then
-            seachcolor(0x06bf04,6,394,637,1037);--增加到通讯录 按颜色查找通讯录
-            clickrand(374,734);
+    		notifyMessage("dsfdsf");
+            seachcolor(0x1aad19,6,394,637,1037);--增加到通讯录 按颜色查找通讯录
+            --clickrand(374,734);--
             msleeprand(1500);
             frinedinfo(addparame);
     end
 
     if friendsex=='关闭' then
-            seachcolor(0x06bf04,6,394,637,1037);--增加到通讯录 按颜色查找通讯录
+            seachcolor(0x1aad19,6,394,637,1037);--增加到通讯录 按颜色查找通讯录
            -- clickrand(374,734);--
             msleeprand(1500);
             frinedinfo(addparame);
     end
+
+
     
     btnlefttop();--返回
     msleeprand(1000);
@@ -863,8 +879,8 @@ end
 
 --搜索朋友
 function seachfrinedcodeone(mobileone)
-    friendsex = '关闭';
-    clickrand(296,79);
+    friendsex = "男";
+    
     str="\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b";
     local mobile=mobileone;
     if mobile==0 or mobile==nil then
@@ -872,6 +888,8 @@ function seachfrinedcodeone(mobileone)
         return;
     end 
     mobile=string.sub(mobile,1,11);
+    clickrand(296,79);
+    mSleep(500);
     inputText(str..mobile);
 
 
@@ -914,32 +932,34 @@ function seachfrinedcodeone(mobileone)
     end 
 
     local ifv = seachcolorreturn(0xf37e7d,169,173,635,316); 
+
+    notifyMessage(ifv,2000);
     if ifv==1 and friendsex=='女' then
-            seachcolor(0x06bf04,6,394,637,1037);--增加到通讯录 按颜色查找通讯录
+            seachcolor(0x1aad19,6,394,637,1037);--增加到通讯录 按颜色查找通讯录
            -- clickrand(374,734);--
             msleeprand(1500);
             frinedinfo(mobileone);
     end
 
     if ifv==0 and friendsex=='男' then
-            seachcolor(0x06bf04,6,394,637,1037);--增加到通讯录 按颜色查找通讯录
+            seachcolor(0x1aad19,6,394,637,1037);--增加到通讯录 按颜色查找通讯录
            -- clickrand(374,734);--
             msleeprand(1500);
             frinedinfo(mobileone);
     end
 
     if friendsex=='关闭' then
-            seachcolor(0x06bf04,6,394,637,1037);--增加到通讯录 按颜色查找通讯录
+            seachcolor(0x1aad19,6,394,637,1037);--增加到通讯录 按颜色查找通讯录
            -- clickrand(374,734);--
             msleeprand(1500);
             frinedinfo(mobileone);
     end
     
     btnlefttop();--返回
-    msleeprand(1000);
+    msleeprand(800);
 
     btnrighttop();--取消
-    msleeprand(1000);
+    msleeprand(800);
 
     btnlefttop();--返回
     return 1;

@@ -540,8 +540,8 @@ function  seachcolor(color,x,y,x1,y1)
 		    click(x,y);
 		    break;
 		else
-			mSleep(1000);		
-			seachcolor(color,x,y,x1,y1);
+			mSleep(100);		
+			--100seachcolor(color,x,y,x1,y1);
 		end
 	end
 end
