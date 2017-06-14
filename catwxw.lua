@@ -775,8 +775,9 @@ function seachfrinedcode(addparame)
         notifyMessage('没有手机号码',1000);   
         return;
     end 
-
+  
     mobile = getparame(mobile,"mobile");
+  
     clickrand(296,82);
     msleeprand(1000);
     inputText(str..mobile);
