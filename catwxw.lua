@@ -195,7 +195,7 @@ function delphoto()
    mSleep(1000);
    appRun("com.apple.mobileslideshow"); 
    --appRun("com.apple.mediastream.sharing-nowake");  
-  mSleep(1000);
+   mSleep(1000);
   --是否打相册
   local numloop = 1;
   while true do
@@ -650,11 +650,12 @@ function friendmi()
         mSleep(1000);
         click(278,933);--点击个性签名
         mSleep(1000);
-        clickrand(560,287);--点击进入输入框
+        click(560,287);--点击进入输入框
         mSleep(800);
         str="\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b";
         inputText(str);
-        mSleep(1000);
+        mSleep(1000);      
+        signstr="看我朋友圈,别怪我没有告诉你";
         inputText(signstr);
         mSleep(1000);
         click(589,85); --点击完成
