@@ -550,34 +550,36 @@ function friendmi()
      mSleep(1000);
 	 openweixi()
 
-        msleeprand(2000);
-        clickarea(510,1046,624,1124); --点击我
-        msleeprand(800);
-        clickarea(10,170,630,320);--点击头部栏信息
-        msleeprand(1200);
-        clickarea(6,164,632,314);--点击头像
-        msleeprand(2000);
-        btnrighttop();--点击个人头像右上角选择
-        zdl();  --知道了
+        mSleep(1000);
+        click(560,1083); --点击我
+        mSleep(800);
+        click(200,247);--点击头部栏信息
+        mSleep(1000);
+        click(226,239);--点击头像
+        mSleep(2000);
+        click(590,85);--三点
+        mSleep(800);
+        zdl();--知道了
 
-        msleeprand(800);
+        mSleep(800);
         click(308,885);--从手机相册选择      
+        mSleep(800);
         click(62,82);--点击返回
 
-        msleeprand(800);  
-        click(218,190);  
+        mSleep(800);  
+        click(218,190); --第一个相册 
 
         mSleep(1000);
         selectimgasc(1,208,1,0);
 
-        msleeprand(1500);
-        clickarea(520,1070,618,1108);--选好图片点击完成
+        mSleep(1200);
+        click(542,1091);--选好图片点击完成
 
-        msleeprand(1500);
-        btnlefttop();
+        mSleep(1500);
+        click(86,86);--返回个人信息
 
-        msleeprand(800);
-        btnlefttop();--点击左上角返回
+        mSleep(800);
+        click(55,83);--返回我
     end
 
     --设置朋友圈照片
@@ -599,56 +601,51 @@ function friendmi()
 	     mSleep(1000);
 		 openweixi();
 
-        msleeprand(800);
-        clickarea(346,1050,480,1128);--点击发现
-        msleeprand(800);
-        clickarea(10,164,630,234);--点击朋友圈
-        msleeprand(800);
-        clickarea(8,136,632,506);--轻触设置相册封面    
-        msleeprand(800);
-        clickarea(6,940,632,1020);--点击更改相册封面
-        msleeprand(1000);
-        clickarea(34,185,271,218);--从手机相册选择
+        mSleep(1000);
+        click(400,1076);--点击发现
+        mSleep(1000);
+        click(248,203);--点击朋友圈
+        mSleep(800);
+        click(328,365);--轻触设置相册封面    
+        mSleep(1000);
+        click(323,978);--点击更改相册封面
+        mSleep(1200);
+        click(280,203);--从手机相册选择
 
+        mSleep(800);
+        click(80,82);--点击返回
 
-        msleeprand(800);
-        --click(308,885);--从手机相册选择      
-        click(62,82);--点击返回
-
-        msleeprand(800);  
-        click(218,190);  
+        mSleep(800);  
+        click(218,190);--第一个相册  
 
         mSleep(1000);
         selectimgasc(1,208,1,0);
 
-        msleeprand(1500);
-        clickarea(520,1070,618,1108);--选好图片点击完成
+        mSleep(1200);
+        click(542,1091);--选好图片点击完成
 
-        msleeprand(1200);
-        btnlefttop();
-
-        msleeprand(800);
-        btnlefttop();--点击坐上角返回
+        mSleep(1200);
+        click(80,85);--返回点发现
     end
 
     --个性签名
     function runame()
-    	os.execute("su mobile -c uicache");
-        local signstr=httpGet("http://g.7gu.cn/index.php?g=api&m=Wxwapi&a=sign");
-        if signstr==nil or signstr=='' or signstr=='0' then
-            notifyMessage('网络已断开!无法得到数据',2000);
-            return;
-        end
+    	os.execute("su mobile -c uicache");--清空缓存
+        -- local signstr=httpGet("http://g.7gu.cn/index.php?g=api&m=Wxwapi&a=sign");
+        -- if signstr==nil or signstr=='' or signstr=='0' then
+        --     notifyMessage('网络已断开!无法得到数据',2000);
+        --     return;
+        -- end
 
-    	mSleep(500);
+    	mSleep(1000);
     	openweixi();
 
         mSleep(1000);
-        click(560,1082);--点击我
+        click(560,1083); --点击我
+        mSleep(800);
+        click(200,247);--点击头部栏信息
         mSleep(1000);
-        click(170,242);--点击头部信息
-        mSleep(1000);
-        click(278,933);--点击个性签名
+        click(278,930);--点击个性签名
         mSleep(1000);
         click(560,287);--点击进入输入框
         mSleep(800);
@@ -657,10 +654,10 @@ function friendmi()
         mSleep(1000);      
         signstr="看我朋友圈,别怪我没有告诉你";
         inputText(signstr);
-        mSleep(1000);
+        mSleep(1200);
         click(589,85); --点击完成
-        mSleep(1500);
-        btnlefttop();--点击坐上角返回
+        mSleep(800);
+        click(55,83);--返回我
     end
 
 

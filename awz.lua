@@ -148,6 +148,30 @@ function  login62zh()
     if(string.match(msgcoty,'号')=='号') or (string.match(msgcoty,'立')=='立') then         
     click(320,665);--不再提示
     end
+
+	mSleep(1000);
+	click(233,205);--帐号与安全
+	mSleep(1000);
+	click(248,418);--微信密码
+	mSleep(1000);
+	click(302,395);--输入框
+	mSleep(1000);
+	inputText(weixiinfo['wxpwd']);
+	mSleep(1000);
+	click(455,493);--确定
+	mSleep(1000);
+	click(337,439);--密码框
+	inputText("asd168168");
+	mSleep(1200);
+	click(322,535);--确认密码框
+	inputText("asd168168");
+	mSleep(1200);
+	click(587,83);--完成
+	mSleep(1200);
+	click(47,83);--返回
+	mSleep(800);
+	click(47,83);--返回
+
 end	
 
 --下载
