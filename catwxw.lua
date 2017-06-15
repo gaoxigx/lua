@@ -584,9 +584,9 @@ function friendmi()
     function friend()
 
     	delphoto();
-		local tpurl="/var/touchelf/scripts/scriptfile/images/bj.png";
+		local tpurl="/var/touchelf/scripts/scriptfile/images/bj.jpg";
 		if file_exists(tpurl)==false then
-			local path="ftp://121.40.140.16:/script/luaimg/bj.png";      
+			local path="ftp://121.40.140.16:/script/luaimg/bj.jpg";      
 	        local getdata=ftpGet(path, tpurl, "productconsole", "T4t8u0p1");
 	        if getdata then
 			    notifyMessage("下载成功")
@@ -654,7 +654,8 @@ function friendmi()
         mSleep(800);
         str="\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b";
         inputText(str);
-        mSleep(1000);      
+        mSleep(2000);  
+
         signstr="看我朋友圈,别怪我没有告诉你";
         inputText(signstr);
         mSleep(1000);
