@@ -647,8 +647,7 @@ function friendmi()
         mSleep(1000);
         click(278,930);--点击个性签名
         mSleep(1000);
-        click(560,287);--点击进入输入框
-        mSleep(800);
+        -- click(560,287);--点击进入输入框
         str="\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b";
         inputText(str);
         mSleep(1000);      
