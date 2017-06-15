@@ -1,6 +1,31 @@
 -- 适用屏幕参数appKill("com.tencent.xin");
 
 
+
+function sendnew()
+	
+	for sim = 100, n, -1 do   
+		x,y=findColorInRegionFuzzy(0x00c0ff,80,43,1050,79,1092); -- 在全屏范围找到第一个颜色为0x0000ff的点, 精确度为90%, 将其坐标保存到变量x和y中
+		if x ~= -1 and y ~= -1 then          -- 如果找到了
+			click(64,1068)
+			break;
+		else
+			click(59,86);
+		end
+	end
+
+	while true do
+		click(440,87);
+		click(554,949);
+		x,y=findColorInRegionFuzzy(0x00c0ff,80,224,719,262,744); -- 在全屏范围找到第一个颜色为0x0000ff的点, 精确度为90%, 将其坐标保存到变量x和y中
+		if x ~= -1 and y ~= -1 then          -- 如果找到了
+			click(64,1068)
+			break;		
+		end
+	end
+
+
+end
 -- 陌陌关注
 function findmm()
 
@@ -30,8 +55,6 @@ function findmm()
     		i=i+1;
     	end
     	--是否到了首页
-
-
     	if(i>tonumber(ynum)) then 
     		break;
     	end

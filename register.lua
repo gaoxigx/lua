@@ -44,7 +44,7 @@ function registerrcb(parame)
     if parame=='1006' then   friendmi(); end --头像设置
     if parame=='1007' then   friend(); end --设置朋友圈照片
     if parame=='1008' then   runame(); end --个性签名
-    if parame=='1009' then   address(); end --添加通讯录
+    if parame=='9009' then   address(); end --添加通讯录
     if parame=='1021' then   addressone(); end --指定添加某人
     if parame=='1010' then   emailvfun(); end --绑定邮箱  
     if parame=='1011' then   finame(); end --修改名字
