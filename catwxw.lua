@@ -260,43 +260,43 @@ function dowxtupian(signpyq)
 	end
 	saveImageToAlbum(tpurl);
 
-	msleeprand(1000);
-    clickarea(346,1050,480,1128);--点击发现
+	mSleep(1000);
+    click(400,1077);--点击发现
     
-    msleeprand(1000);   
-    clickarea(10,164,630,234);--点击朋友圈
+    mSleep(1000);   
+    click(275,200);--点击朋友圈
 
 
-	msleeprand(800);
-        clickrand(589,83);--点击右上角
-     
-        zdl();  --知道了
+	mSleep(800);
+    click(589,83);--点击右上角
+ 
+    zdl();  --知道了
 
-        msleeprand(800);
-        clickarea(6,940,632,1014);--从手机相册选择       
-        click(62,82);--点击返回
+    mSleep(1000);
+    click(311,981);--从手机相册选择 
+    mSleep(1000);      
+    click(62,82);--点击返回
 
-        msleeprand(800);  
-        click(218,190);  
+    mSleep(800);  
+    click(218,190); --第一相册
 
-        mSleep(1000);
-        selectimgasc(1,208,1,0);
+    mSleep(1000);
+    selectimgasc(1,208,1,0);
 
-        msleeprand(1500);
-        clickarea(520,1070,618,1108);--选好图片点击完成
+    mSleep(1500);
+    click(555，1097);--选好图片点击完成
 
-        msleeprand(2000);
-        click(262,164);--点击进入输入框
+    mSleep(2000);
+    click(262,164);--点击进入输入框
 
-        msleeprand(1500);
-      
-        inputText(signpyq);
-       
-        msleeprand(2500);
-        clickarea(554,62,622,98); --点击发送  
+    mSleep(1500);
+    inputText(signpyq);
+   
+    mSleep(2500);
+    click(589,88); --点击发送  
 
-    msleeprand(3000);
-    btnlefttop();--点击坐上角返回
+    mSleep(3000);
+    click(82,85); --返回发现
 
 end
 ----检测指定文件是否存在
@@ -656,7 +656,7 @@ function friendmi()
         inputText(signstr);
         mSleep(1200);
         click(589,85); --点击完成
-        mSleep(800);
+        mSleep(1200);
         click(55,83);--返回我
     end
 
@@ -966,28 +966,30 @@ end
 
  --修改名字
     function finame()
-        msleeprand(2000);
-        clickarea(510,1046,624,1124);--点击我
-        msleeprand(2000);
-        clickarea(10,170,630,320);--点击头部信息
-        msleeprand(2000);
-        clickarea(6,324,630,404);--点击个人信息下的名字
+        mSleep(1000);
+        openweixi();
 
-        msleeprand(2000);
+        mSleep(1200);
+        click(559,1080);--点击我
+        mSleep(1000);
+        click(217,247);--点击头部信息
+        mSleep(1000);
+        click(217,367;--点击个人信息下的名字
+
+        mSleep(1000);
         str="\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b";
         inputText(str);--删除键
 
-        msleeprand(3000);
+        mSleep(1200);
+        inputText("晓婷");
+        -- wxn=getweixiname();
+        -- inputText(wxn);
 
-        wxn=getweixiname();
+        mSleep(1500);
+        click(589,88); --点击保存
 
-        inputText(wxn);
-
-        msleeprand(2000);
-        clickarea(490,1058,624,1120); --点击完成
-
-        msleeprand(2000);
-        btnlefttop();--点击坐上角返回
+        mSleep(1200);
+        click(55,83);--返回我
     end
 
 
