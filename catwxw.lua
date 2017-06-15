@@ -284,7 +284,7 @@ function dowxtupian(signpyq)
     selectimgasc(1,208,1,0);
 
     mSleep(1500);
-    click(555，1097);--选好图片点击完成
+    click(555,1097);--选好图片点击完成
 
     mSleep(2000);
     click(262,164);--点击进入输入框
