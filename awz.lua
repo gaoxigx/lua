@@ -149,30 +149,63 @@ function  login62zh()
     click(320,665);--不再提示
     end
 
-	mSleep(1000);
+end	
+
+--修改密码
+function awzsetpwd()
+	mSleep(1200);--点我
+	click(560,1082);
+	mSleep(2200);
+	click(220,761);--设置
+	mSleep(1200);
 	click(233,205);--帐号与安全
-	mSleep(1000);
+	mSleep(1200);
+
+	while true do
 	click(248,418);--微信密码
-	mSleep(1000);
-	click(302,395);--输入框
-	mSleep(1000);
-	inputText(weixiinfo['wxpwd']);
-	mSleep(1000);
-	click(455,493);--确定
-	mSleep(1000);
+	mSleep(1200);
+		if seachcolorreturn(0x007aff,153,475,215,503)==1 then
+			break;
+		end
+		click(63,83);--返回
+		mSleep(1200);
+		click(245,722);--微信密码
+		break;
+		if seachcolorreturn(0x007aff,153,475,215,503)==1 then
+			break;
+		end
+		click(63,83);--返回
+		mSleep(1200);
+		click(230,809);--微信密码
+		break;
+	end
+
+	-- click(302,395);--输入框
+	mSleep(1500);
+	--weixiinfo['wxpwd']；
+	inputText('zzxxcc11');
+	mSleep(1500);
+	click(458,491);--确定
+
+	mSleep(1200);
 	click(337,439);--密码框
 	inputText("asd168168");
+
 	mSleep(1200);
 	click(322,535);--确认密码框
 	inputText("asd168168");
+
 	mSleep(1200);
 	click(587,83);--完成
 	mSleep(1200);
 	click(47,83);--返回
 	mSleep(800);
 	click(47,83);--返回
-
-end	
+	mSleep(800);
+	click(47,83);--返回
+	mSleep(800);
+	click(47,83);--返回
+end
 
 --下载
 function xiazai()

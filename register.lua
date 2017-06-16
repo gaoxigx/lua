@@ -30,6 +30,7 @@ function registerrcb(parame)
     if parame=='132' then   return loginweixi();   end --执行微信登入
     if parame=='136' then    return loginawxwx(); end --awz登入
     if parame=='137' then 	return awxnexwx(); end --awz恢复下一条数据
+    if parame=='138' then   return awzsetpwd();end--修改密码
     ---------进入接口-------
 
     ---------必须操事情-------

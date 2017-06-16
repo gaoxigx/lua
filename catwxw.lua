@@ -171,14 +171,15 @@ function sendonefind()
     mSleep(2000);
 
     --[[返回首页]]
-    click(25,88);mSleep(300);
-    click(25,88);mSleep(300);
-    click(25,88);mSleep(300);
-    click(25,88);mSleep(300);
-    click(25,88);mSleep(300);
-    click(83,1086);
-    mSleep(800);
+    -- click(25,88);mSleep(300);
+    -- click(25,88);mSleep(300);
+    -- click(25,88);mSleep(300);
+    -- click(25,88);mSleep(300);
+    -- click(25,88);mSleep(300);
+    -- click(83,1086);
+    -- mSleep(800);
     --[[返回首页]] 
+    mSleep(1200);
    	local str=getparame(info,'mustt_msginfo');--得到对应的值   
    	dowxtupian(str)--发送一张图片
    
@@ -286,13 +287,13 @@ function dowxtupian(signpyq)
     mSleep(1500);
     click(555,1097);--选好图片点击完成
 
-    mSleep(2000);
+    mSleep(1200);
     click(262,164);--点击进入输入框
-
-    mSleep(1500);
+   
+    mSleep(1000);
     inputText(signpyq);
    
-    mSleep(2500);
+    mSleep(1500);
     click(589,88); --点击发送  
 
     mSleep(3000);
@@ -547,10 +548,10 @@ function friendmi()
 		end
 	end	
 	saveImageToAlbum(tpurl);
-     mSleep(1000);
-	 openweixi()
+         mSleep(1000);
+    	 openweixi()
 
-        mSleep(1000);
+        mSleep(1600);
         click(560,1083); --点击我
         mSleep(800);
         click(200,247);--点击头部栏信息
@@ -601,13 +602,13 @@ function friendmi()
 	     mSleep(1000);
 		 openweixi();
 
-        mSleep(1000);
+        mSleep(1600);
         click(400,1076);--点击发现
         mSleep(1000);
         click(248,203);--点击朋友圈
-        mSleep(800);
-        click(328,365);--轻触设置相册封面    
         mSleep(1000);
+        click(328,365);--轻触设置相册封面    
+        mSleep(1200);
         click(323,978);--点击更改相册封面
         mSleep(1200);
         click(280,203);--从手机相册选择
@@ -630,7 +631,7 @@ function friendmi()
 
     --个性签名
     function runame()
-    	os.execute("su mobile -c uicache");--清空缓存
+    	-- os.execute("su mobile -c uicache");--清空缓存
         -- local signstr=httpGet("http://g.7gu.cn/index.php?g=api&m=Wxwapi&a=sign");
         -- if signstr==nil or signstr=='' or signstr=='0' then
         --     notifyMessage('网络已断开!无法得到数据',2000);
@@ -640,21 +641,21 @@ function friendmi()
     	mSleep(1000);
     	openweixi();
 
-        mSleep(1000);
+        mSleep(1600);
         click(560,1083); --点击我
         mSleep(800);
         click(200,247);--点击头部栏信息
         mSleep(1000);
-        click(278,930);--点击个性签名
-        mSleep(1000);
-        -- click(560,287);--点击进入输入框
-        str="\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b";
-        inputText(str);
-        mSleep(2000);  
+        click(278,910);--点击个性签名
 
-        signstr="看我朋友圈,别怪我没有告诉你";
-        inputText(signstr);
+        -- click(560,287);--点击进入输入框
+        str="\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b";
+        -- inputText(str);
+        -- mSleep(2000);  
+        -- signstr="看我朋友圈,别怪我没有告诉你";
         mSleep(1200);
+        inputText(str.."看我朋友圈,别怪我没有告诉你");
+        mSleep(1500);
         click(589,85); --点击完成
         mSleep(1200);
         click(55,83);--返回我
@@ -974,21 +975,21 @@ end
         mSleep(1000);
         click(217,247);--点击头部信息
         mSleep(1000);
-        click(217,367;--点击个人信息下的名字
-
-        mSleep(1000);
+        click(217,367);--点击个人信息下的名字
         str="\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b";
-        inputText(str);--删除键
-
         mSleep(1200);
-        inputText("晓婷");
+        inputText(str.."晓婷");
         -- wxn=getweixiname();
         -- inputText(wxn);
 
-        mSleep(1500);
-        click(589,88); --点击保存
+        mSleep(1200);
+        click(589,1097); --右下角完成
 
         mSleep(1200);
+        click(55,83);--返回我
+        mSleep(800);
+        click(55,83);--返回我
+        mSleep(800);
         click(55,83);--返回我
     end
 
