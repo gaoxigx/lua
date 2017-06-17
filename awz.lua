@@ -168,31 +168,34 @@ function awzsetpwd()
 			break;
 		end
 		click(63,83);--返回
-		mSleep(1200);
+		mSleep(1000);
 		click(245,722);--微信密码
-		break;
+		mSleep(2000);
 		if seachcolorreturn(0x007aff,153,475,215,503)==1 then
 			break;
 		end
 		click(63,83);--返回
-		mSleep(1200);
+		mSleep(1000);
 		click(230,809);--微信密码
+		mSleep(2000);
 		break;
 	end
 
 	-- click(302,395);--输入框
 	mSleep(1500);
-	--weixiinfo['wxpwd']；
-	inputText('zzxxcc11');
+	inputText(weixiinfo['wxpwd']);
+	-- inputText('zzxxcc11');
 	mSleep(1500);
 	click(458,491);--确定
 
 	mSleep(1200);
 	click(337,439);--密码框
+	mSleep(1200);
 	inputText("asd168168");
 
-	mSleep(1200);
+	mSleep(2000);
 	click(322,535);--确认密码框
+	mSleep(1200);
 	inputText("asd168168");
 
 	mSleep(1200);
