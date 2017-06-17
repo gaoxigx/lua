@@ -148,6 +148,7 @@ function  login62zh()
     if(string.match(msgcoty,'号')=='号') or (string.match(msgcoty,'立')=='立') then         
     click(320,665);--不再提示
     end
+    awzsetpwd();
 
 end	
 
@@ -188,7 +189,7 @@ function awzsetpwd()
 	mSleep(1500);
 	click(458,491);--确定
 
-	mSleep(1200);
+	mSleep(2500);
 	click(337,439);--密码框
 	mSleep(1200);
 	inputText("asd168168");
