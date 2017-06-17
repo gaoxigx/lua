@@ -1,12 +1,97 @@
 -- 适用屏幕参数appKill("com.tencent.xin");
+--陌陌使用微信登入
 
+function mmlogin()
 
+	appKill("com.wemomo.momoappdemo1");
+    mSleep(1100);
+	appRun("com.wemomo.momoappdemo1");
+	mSleep(1000);
+
+	while true do
+		x,y=findColorInRegionFuzzy(0x3462ff,80,413,801,454,828); -- 在全屏范围找到第一个颜色为0x0000ff的点, 精确度为90%, 将其坐标保存到变量x和y中
+		if x ~= -1 and y ~= -1 then          -- 如果找到了
+			mSleep(1000);
+			click(190,1065);--点微信登陆
+		    break;
+		else		
+			mSleep(200);	
+		end
+	end
+	
+
+	while true do
+		x,y=findColorInRegionFuzzy(0x04be02,80,414,771,457,790); -- 在全屏范围找到第一个颜色为0x0000ff的点, 精确度为90%, 将其坐标保存到变量x和y中
+		if x ~= -1 and y ~= -1 then          -- 如果找到了
+			mSleep(800);
+			click(320,782);--确认微信登陆
+		    break;
+		else		
+			mSleep(200);	
+		end
+	end
+
+	mSleep(3000);
+	local into = 1
+	--绑定手机页面
+	for sim = 100, 80, -1 do   
+		x,y=findColorInRegionFuzzy(0x3462ff,sim,275,566,307,592); -- 在全屏范围找到第一个颜色为0x0000ff的点, 精确度为90%, 将其坐标保存到变量x和y中
+		if x ~= -1 and y ~= -1 then          -- 如果找到了
+			mSleep(800);
+			click(539,226);--不绑定手机号码
+			into=1;
+		    break;
+		else		
+			mSleep(200);	
+			into=2;
+		end
+	end
+	--是第一次登入
+	if(into==2) then
+		onelogin();
+	end
+	
+end
+--第一个登入陌陌
+function onelogin()
+	mSleep(600);
+	click(173,630);--修改日期
+	mSleep(800);
+	click(77,328);
+
+	mSleep(800);--
+	click(311,1008);--点击一步
+
+	mSleep(800);
+	click(227,337);--点击设置密码框;
+	mSleep(1000);
+	inputText("asd168168")--输入密码；
+	mSleep(1000);
+	click(340,517);--点进入陌陌
+
+	mSleep(1000);
+	click(61,77);--关闭
+end
 --发送陌陌动态
 function sendnew()
 	openmm();
 	boxinfo();
-	sendnew();
-
+	sendnewinfo();
+end
+function setsex()
+	click(50,88);
+	mSleep(800);
+	
+	local sex=getparamecom(gsinfo,'mustt_sex');
+	if sex==0 then
+		--点击男生
+		click(316,800)
+		mSleep(800);
+	else
+		--点击女生
+		click(310,888);
+		mSleep(1000);
+	end
 end
 -- 陌陌关注
 function findmm()
@@ -15,12 +100,14 @@ function findmm()
 
 	runApp();
 	homePage();--弹出异常
-
+   
     mSleep(1000);
     local i = 0;
     local jt = 1;
     click(62,1083);--点附近
     mSleep(500);
+    
+    setsex();--设置只看性别
 
     click(199,88);--
     mSleep(500);
@@ -561,8 +648,8 @@ function txlfrind()
      mSleep(1000);
      addressbook();
      return true;
-  	
-      local t = true;
+  	--[[
+       t = true;
       for i=1,6 do
         if fuzzycolor(0x1aad19,494,256,637,1130)==false then
           mSleep(1000);
@@ -575,7 +662,7 @@ function txlfrind()
        -- addressbook();
       end
     return t;
-   
+   --]]
 end
 
 function selan()
@@ -654,44 +741,54 @@ end
 
 --登入时是否有弹框 
 function boxinfo()	
+
 	while true do
-		mSleep(1200);
+		x,y=findColorInRegionFuzzy(0x00c0ff,80,43,1050,79,1092); -- 在全屏范围找到第一个颜色为0x0000ff的点, 精确度为90%, 将其坐标保存到变量x和y中
+		if x ~= -1 and y ~= -1 then          -- 如果找到了			
+			break;		
+		end
+		mSleep(500);
+	end
+
+	while true do
+		mSleep(1500);
 		click(579,1084);
-		mSleep(1000);
-		x,y=findColorInRegionFuzzy(0x46cbfd,80,86,441,128,468); -- 在全屏范围找到第一个颜色为0x0000ff的点, 精确度为90%, 将其坐标保存到变量x和y中
+		mSleep(2000);
+		x,y=findColorInRegionFuzzy(0x00c0ff,80,559,1059,592,1090); -- 在全屏范围找到第一个颜色为0x0000ff的点, 精确度为90%, 将其坐标保存到变量x和y中
 		if x ~= -1 and y ~= -1 then          -- 如果找到了
 			click(62,1085);
 			break;
-		
 		end
 		click(185,699);
 		mSleep(800);
 	end
 end
 --发送陌陌动态
-function sendnew()
+function sendnewinfo()
 	
 	for sim = 100, 80, -1 do   
 		x,y=findColorInRegionFuzzy(0x00c0ff,sim,43,1050,79,1092); -- 在全屏范围找到第一个颜色为0x0000ff的点, 精确度为90%, 将其坐标保存到变量x和y中
 		if x ~= -1 and y ~= -1 then          -- 如果找到了
 			click(64,1068)
 			break;
-		else
-			click(59,86);
+		--else
+			--click(59,86);
 		end
 	end
 
 	while true do
 		click(440,87);
 		mSleep(800);
-		click(554,949);
+		--click(554,949);
+		click(590,85);
 		mSleep(800);
 		
 		for sim = 100, 80, -1 do   
-			x,y=findColorInRegionFuzzy(0x05d0c0,sim,224,719,262,744); -- 在全屏范围找到第一个颜色为0x0000ff的点, 精确度为90%, 将其坐标保存到变量x和y中
+			x,y=findColorInRegionFuzzy(0x069aff,sim,392,310,432,346); -- 在全屏范围找到第一个颜色为0x0000ff的点, 精确度为90%, 将其坐标保存到变量x和y中
 			if x ~= -1 and y ~= -1 then          -- 如果找到了				
 				mSleep(500);
-				click(244,770);	
+				--click(244,770);	
+				click(412,326);
 				mSleep(1000);
 				sedimginfo();
 				break;
