@@ -1,12 +1,31 @@
 -- 适用屏幕参数appKill("com.tencent.xin");
---陌陌使用微信登入
 
+--陌陌站街
+function mobileGPRS()
+	appKill("com.wemomo.momoappdemo1");
+    mSleep(1100);
+	
+	local x=getparamezb(gsinfo,'phonex');
+    local y=getparamezb(gsinfo,'phoney');
+
+	fakeGPS("com.wemomo.momoappdemo1",x ,y);
+
+	appRun("com.wemomo.momoappdemo1");--启动陌陌
+	
+	boxinfo();
+
+	infomovedow(311,514,300)
+
+end 
+
+--陌陌使用微信登入
 function mmlogin()
 
 	appKill("com.wemomo.momoappdemo1");
     mSleep(1100);
 	appRun("com.wemomo.momoappdemo1");
 	mSleep(1000);
+
 
 	while true do
 		x,y=findColorInRegionFuzzy(0x3462ff,80,413,801,454,828); -- 在全屏范围找到第一个颜色为0x0000ff的点, 精确度为90%, 将其坐标保存到变量x和y中
@@ -15,10 +34,10 @@ function mmlogin()
 			click(190,1065);--点微信登陆
 		    break;
 		else		
-			mSleep(200);	
+			click(31,88);--点返回
+			mSleep(500);	
 		end
-	end
-	
+	end	
 
 	while true do
 		x,y=findColorInRegionFuzzy(0x04be02,80,414,771,457,790); -- 在全屏范围找到第一个颜色为0x0000ff的点, 精确度为90%, 将其坐标保存到变量x和y中
@@ -31,7 +50,7 @@ function mmlogin()
 		end
 	end
 
-	mSleep(3000);
+	mSleep(3500);
 	local into = 1
 	--绑定手机页面
 	for sim = 100, 80, -1 do   
@@ -62,18 +81,63 @@ function onelogin()
 	mSleep(800);--
 	click(311,1008);--点击一步
 
-	mSleep(800);
-	click(227,337);--点击设置密码框;
-	mSleep(1000);
-	inputText("asd168168")--输入密码；
-	mSleep(1000);
-	click(340,517);--点进入陌陌
+	mSleep(3000);
+	click(227,337);--点击设置密码框;	
 
-	mSleep(1000);
+	click(66,880);
+	mSleep(500);
+	click(127,880);
+	mSleep(500);
+	click(194,880);
+	click(66,880);
+	mSleep(500);
+	click(127,880);
+	mSleep(500);
+	click(194,880);
+
+	while true do
+		x,y=findColorInRegionFuzzy(0x3462ff,80,400,510,444,540); -- 在全屏范围找到第一个颜色为0x0000ff的点, 精确度为90%, 将其坐标保存到变量x和y中
+		if x ~= -1 and y ~= -1 then          -- 如果找到了
+			mSleep(1000);
+			click(340,517);--点进入陌陌
+		    break;
+		else			
+			mSleep(500);	
+		end
+	end
+
+
+	while true do
+		x,y=findColorInRegionFuzzy(0x3462ff,80,310,543,337,565); -- 在全屏范围找到第一个颜色为0x0000ff的点, 精确度为90%, 将其坐标保存到变量x和y中
+		if x ~= -1 and y ~= -1 then          -- 如果找到了
+			mSleep(1000);
+			click(541,233);--取消绑定手机
+		    break;
+		else			
+			mSleep(500);	
+		end
+	end
+
+	mSleep(2000);
 	click(61,77);--关闭
 end
 --发送陌陌动态
 function sendnew()
+	delphoto();
+	local tpurl="/var/touchelf/scripts/scriptfile/images/mmtu.jpg";
+	if file_exists(tpurl)==false  then
+		local path="ftp://121.40.140.16:/script/luaimg/mmtu.jpg";      
+        local getdata=ftpGet(path, tpurl, "productconsole", "T4t8u0p1");
+        if getdata then
+		    notifyMessage("下载成功")
+		else
+		    friendmi();
+		    return;
+		end
+	end	
+	saveImageToAlbum(tpurl);
+    mSleep(1000);
+
 	openmm();
 	boxinfo();
 	sendnewinfo();
@@ -83,6 +147,7 @@ function setsex()
 	mSleep(800);
 	
 	local sex=getparamecom(gsinfo,'mustt_sex');
+	sex=0;
 	if sex==0 then
 		--点击男生
 		click(316,800)
@@ -99,7 +164,7 @@ function findmm()
  	local ynum=getparamecom(gsinfo,'mustt_ynum');
 
 	runApp();
-	homePage();--弹出异常
+	--homePage();--弹出异常
    
     mSleep(1000);
     local i = 0;
@@ -130,7 +195,7 @@ function findmm()
 
     	x, y = findColorInRegionFuzzy(0xf95645,93,338,1045,357,1066); 
 		if x ~= -1 and y ~= -1 then   --如果在指定区域找到某点符合条件
-			sendMsg();
+			--sendMsg();
 		end
 
     	if(listcolorinfo(0x77cee5,95,175,185,320,238)==false and listcolor90(0x7394ff, 199, 168, 292, 296)==false and listcolor90(0xf52156, 103, 250, 138, 285)==false and listcolorinfo(0xe81f1f,80, 175, 141, 416, 200)==false) then
@@ -140,24 +205,24 @@ function findmm()
 			if fl==1 then
 				i=i+1; 
 			end
-
+			--[[
 			if fl==2 then
 				mSleep(100)
-				blockinfo();
+				--blockinfo();
 				mSleep(100)
-				blockinfo();
+				--blockinfo();
 				break; 
-			end
+			end--]]
 	    	--关注 
 	    	mSleep(100)
-			blockinfo();
+			--blockinfo();
 	    end
-
+	    --[[
 		if(listcolorinfo(0x2158ff,90,21,148,144,224)==true) then
 			jt=jt+1;
 			infomove(305,749,140);
 		end
-
+		--]]
 	    homelist();
     end
 	
@@ -261,38 +326,81 @@ end
 --关注
 function followinfo()
 	mSleep(500);
-	if(listcolorinfo(0x141414,90,407,1078,431,1101)==true and listcolorinfo(0x00c0ff,95,48,1066,98,1111)==true and listcolorinfo(0xd21515,90,443,1066,496,1121)) then
-	
-		mSleep(500);
-		click(299,1094); --点关注
+	--if(listcolorinfo(0x00c0ff,80,434,1098,454,1105)==true) then	
 
-		mSleep(1000);
-		click(459,633);
-
-		mSleep(2000);
-		click(556,373)--点赞
-		mSleep(500);
-		--notifyMessage(gsinfo,7000);
-		
-		issendmsg=getparamecom(gsinfo,"mustt_issendmsg");
-		if issendmsg=="2" then
-			if sendMsgInfo()==1 then
-				return 2;
+		for sim = 100, 80, -1 do   
+			x,y=findColorInRegionFuzzy(0x00c0ff,sim,434,1098,454,1105); -- 在全屏范围找到第一个颜色为0x0000ff的点, 精确度为90%, 将其坐标保存到变量x和y中
+			if x ~= -1 and y ~= -1 then          -- 如果找到了
+				mSleep(500);
+				click(468,1094); --点关注
+				mSleep(500);
+			    break;
+			else		
+				mSleep(200);	
 			end
 		end
 
+		for sim = 100, 80, -1 do   
+			x,y=findColorInRegionFuzzy(0xff5833,sim,532,355,577,392); -- 在全屏范围找到第一个颜色为0x0000ff的点, 精确度为90%, 将其坐标保存到变量x和y中
+			if x ~= -1 and y ~= -1 then          -- 如果找到了
+				mSleep(2000);
+				click(556,373); --点赞
+				mSleep(500);
+			    break;
+			else		
+				mSleep(200);	
+			end
+		end
+
+		for sim = 100, 80, -1 do   
+			x,y=findColorInRegionFuzzy(0xff5833,sim,535,516,577,553); -- 在全屏范围找到第一个颜色为0x0000ff的点, 精确度为90%, 将其坐标保存到变量x和y中
+			if x ~= -1 and y ~= -1 then          -- 如果找到了
+				mSleep(2000);
+				click(556,373); --点赞
+				mSleep(500);
+			    break;
+			else		
+				mSleep(200);	
+			end
+		end
+
+		--
+		
+		
+		
+		mSleep(1000);
+		click(459,633);		
+		--notifyMessage(gsinfo,7000);
+		
+		issendmsg=getparamecom(gsinfo,"mustt_issendmsg");
+
+		
+		if issendmsg=="2" then
+			for sim = 100, 80, -1 do   
+				x,y=findColorInRegionFuzzy(0x00c0ff,sim,277,1082,295,1101); -- 在全屏范围找到第一个颜色为0x0000ff的点, 精确度为90%, 将其坐标保存到变量x和y中
+				if x ~= -1 and y ~= -1 then          -- 如果找到了
+					if sendMsgInfo()==1 then
+						return 2;
+					end
+				    break;
+				else		
+					mSleep(200);	
+				end
+			end
+		end
+		--[[
 		blockinfo(); --关注之后返回
 		mSleep(500)
 		if(listcolorinfo(0x00c0ff,80,31,1063,161,1122)==false) then
 			blockinfo(); --关注之后返回
 			mSleep(500)
 		end
-		
+		--]]
 		mSleep(500)
 		blockinfo();
 		return 1;
-	end
-	return 0;
+	--end
+	--return 0;
 end
 
 --点返回
@@ -766,6 +874,7 @@ end
 --发送陌陌动态
 function sendnewinfo()
 	
+
 	for sim = 100, 80, -1 do   
 		x,y=findColorInRegionFuzzy(0x00c0ff,sim,43,1050,79,1092); -- 在全屏范围找到第一个颜色为0x0000ff的点, 精确度为90%, 将其坐标保存到变量x和y中
 		if x ~= -1 and y ~= -1 then          -- 如果找到了
@@ -795,7 +904,8 @@ function sendnewinfo()
 			else
 				mSleep(200);
 			end
-		end		
+		end	
+		break;	
 	end
 
 end
@@ -808,7 +918,8 @@ function sedimginfo()
 		mSleep(2000);
 		click(281,182);--点输入框
 		mSleep(800);
-		inputText("长按二维码，别怪我没有告诉你噢，闺蜜开直播了");--..math.random(1,10000000)
+		local str=getparamecom(gsinfo,'mustt_newmm');
+		inputText(str);--..math.random(1,10000000)
 		mSleep(2500);
 		click(595,85);--点发送
 		mSleep(2500);
