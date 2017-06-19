@@ -70,9 +70,10 @@ function registerrcb(parame)
 
     ---------陌陌-------------
     if parame=='2901' then    mmlogin();end --微信登入陌陌
+    if parame=='2902' then    sendnew();end --发送陌陌动态
     if parame=='3001' then    findmm();end --陌陌关注如果有聊天即时回复一句话
     if parame=='3002' then    mmGPRS();end --陌陌修改GPRS地理位置
-    if parame=='3003' then    sendnew();end --发送陌陌动态
+    if parame=='3003' then    mobileGPRS();end --陌陌站街打开刷新
     ---------陌陌-------------
 
     --定时关机--
