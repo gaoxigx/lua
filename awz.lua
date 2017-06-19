@@ -442,3 +442,4 @@ function delphoto()
   click(317,975);
   --是否打相册     
 end
+
