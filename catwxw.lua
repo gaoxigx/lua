@@ -179,8 +179,9 @@ function sendonefind()
     -- click(83,1086);
     -- mSleep(800);
     --[[返回首页]] 
-    mSleep(1200);
+    -- mSleep(1200);
    	local str=getparame(info,'mustt_msginfo');--得到对应的值   
+    mSleep(1000);
    	dowxtupian(str)--发送一张图片
    
 
@@ -235,14 +236,14 @@ function delphoto()
     mSleep(2000);
   end
 
-  mSleep(800);
-  click(591,81);
-  mSleep(1000);
-  click(583,177);
-  mSleep(1000);
-  click(591,1083);
-  mSleep(1000);
-  click(317,975);
+  -- mSleep(800);
+  -- click(591,81);
+  -- mSleep(1000);
+  -- click(583,177);
+  -- mSleep(1000);
+  -- click(591,1083);
+  -- mSleep(1000);
+  -- click(317,975);
   --是否打相册     
 end
 --发送一张固定的朋友信息
@@ -290,10 +291,10 @@ function dowxtupian(signpyq)
     mSleep(1200);
     click(262,164);--点击进入输入框
    
-    mSleep(1000);
+    mSleep(1100);
     inputText(signpyq);
    
-    mSleep(1500);
+    mSleep(1600);
     click(589,88); --点击发送  
 
     mSleep(3000);
@@ -548,9 +549,19 @@ function friendmi()
 		    return;
 		end
 	end	
-	saveImageToAlbum(tpurl);
+	saveImageToAlbum(tpurl);--把图片放进相册
          mSleep(1000);
-    	 openweixi()
+
+
+            
+        if findseachcolor(0x1aad19,548,1062,578,1097,80)==false then
+            openweixi();
+
+        end
+
+
+
+
 
         mSleep(1600);
         click(560,1083); --点击我
@@ -655,7 +666,7 @@ function friendmi()
         -- inputText(str);
         -- mSleep(2000);  
         -- signstr="看我朋友圈,别怪我没有告诉你";
-        mSleep(1200);
+        mSleep(1100);
         inputText(str.."看我朋友圈,别怪我没有告诉你");
         mSleep(1500);
         click(589,85); --点击完成
