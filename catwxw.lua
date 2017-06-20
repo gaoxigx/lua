@@ -537,7 +537,8 @@ end
 function friendmi()
 	delphoto();
 	local tpurl="/var/touchelf/scripts/scriptfile/images/tx1.png";
-	if file_exists(tpurl)==false  then
+	poto=getparamecom(info,'mustt_poto');
+	if file_exists(tpurl)==false or poto=='2'  then
 		local path="ftp://121.40.140.16:/script/luaimg/tx1.png";      
         local getdata=ftpGet(path, tpurl, "productconsole", "T4t8u0p1");
         if getdata then
@@ -588,7 +589,8 @@ function friendmi()
 
     	delphoto();
 		local tpurl="/var/touchelf/scripts/scriptfile/images/bj.jpg";
-		if file_exists(tpurl)==false then
+		pypoto=getparamecom(info,'mustt_pypoto');
+		if file_exists(tpurl)==false or pypoto=='2' then
 			local path="ftp://121.40.140.16:/script/luaimg/bj.jpg";      
 	        local getdata=ftpGet(path, tpurl, "productconsole", "T4t8u0p1");
 	        if getdata then

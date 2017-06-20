@@ -9,13 +9,10 @@ function mobileGPRS()
     local y=getparamezb(gsinfo,'phoney');
 
 	fakeGPS("com.wemomo.momoappdemo1",x ,y);
-
 	appRun("com.wemomo.momoappdemo1");--启动陌陌
-	
 	boxinfo();
-
-	infomovedow(311,514,300)
-
+	infomovedow(311,514,400);
+	mSleep(2000);
 end 
 
 --陌陌使用微信登入
@@ -25,7 +22,6 @@ function mmlogin()
     mSleep(1100);
 	appRun("com.wemomo.momoappdemo1");
 	mSleep(1000);
-
 
 	while true do
 		x,y=findColorInRegionFuzzy(0x3462ff,80,413,801,454,828); -- 在全屏范围找到第一个颜色为0x0000ff的点, 精确度为90%, 将其坐标保存到变量x和y中
