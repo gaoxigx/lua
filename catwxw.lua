@@ -179,8 +179,9 @@ function sendonefind()
     -- click(83,1086);
     -- mSleep(800);
     --[[返回首页]] 
-    mSleep(1200);
+    -- mSleep(1200);
    	local str=getparame(info,'mustt_msginfo');--得到对应的值   
+    mSleep(1000);
    	dowxtupian(str)--发送一张图片
    
 
@@ -290,10 +291,10 @@ function dowxtupian(signpyq)
     mSleep(1200);
     click(262,164);--点击进入输入框
    
-    mSleep(1000);
+    mSleep(1100);
     inputText(signpyq);
    
-    mSleep(1500);
+    mSleep(1600);
     click(589,88); --点击发送  
 
     mSleep(3000);
@@ -663,7 +664,7 @@ function friendmi()
         -- inputText(str);
         -- mSleep(2000);  
         -- signstr="看我朋友圈,别怪我没有告诉你";
-        mSleep(1200);
+        mSleep(1100);
         inputText(str.."看我朋友圈,别怪我没有告诉你");
         mSleep(1500);
         click(589,85); --点击完成
