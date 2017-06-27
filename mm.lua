@@ -14,6 +14,21 @@ function mobileGPRS()
 	infomovedow(311,514,400);
 	mSleep(2000);
 end 
+--给和我打招呼人发送信息
+function zgsendmsg()
+	for sim = 100, 80, -1 do   
+		x,y=findColorInRegionFuzzy(0x0f4ad1,sim,25,534,109,617); -- 在全屏范围找到第一个颜色为0x0000ff的点, 精确度为90%, 将其坐标保存到变量x和y中
+		if x ~= -1 and y ~= -1 then          -- 如果找到了
+			mSleep(800);
+			click(x,y);--不绑定手机号码
+			into=1;
+		    break;
+		else		
+			mSleep(200);	
+			into=2;
+		end
+	end
+end
 
 --陌陌使用微信登入
 function mmlogin()
@@ -168,13 +183,12 @@ function findmm()
     click(62,1083);--点附近
     mSleep(500);
     
-    setsex();--设置只看性别
-
-    click(199,88);--
-    mSleep(500);
-
     click(322,82);--点人
+
     mSleep(500);
+
+    setsex();--设置只看性别
+    mSleep(2000);
 
     click(62,1083);--点附近
     mSleep(500);
@@ -211,7 +225,7 @@ function findmm()
 			end--]]
 	    	--关注 
 	    	mSleep(100)
-			--blockinfo();
+			blockinfo();
 	    end
 	    --[[
 		if(listcolorinfo(0x2158ff,90,21,148,144,224)==true) then
@@ -254,20 +268,21 @@ function sendMsgInfo()
 	mSleep(100);
 
 	inputText(txtmsg);--输入字信息
-	mSleep(100);
+	mSleep(1000);
 
 	click(560,1092);
 	mSleep(500);
 
 	blockinfo();
 	mSleep(500);
-
+	--[[
 	blockinfo();
 	mSleep(1000);
 
 	mSleep(500);
 	click(62,1083);
 	mSleep(500);
+	--]]
 	return 0;
 end
 
@@ -321,7 +336,7 @@ function sendMsg()
 end
 --关注
 function followinfo()
-	mSleep(500);
+	mSleep(1500);
 	--if(listcolorinfo(0x00c0ff,80,434,1098,454,1105)==true) then	
 
 		for sim = 100, 80, -1 do   
@@ -336,23 +351,24 @@ function followinfo()
 			end
 		end
 
-		for sim = 100, 80, -1 do   
+		for sim = 100, 95, -1 do   
 			x,y=findColorInRegionFuzzy(0xff5833,sim,532,355,577,392); -- 在全屏范围找到第一个颜色为0x0000ff的点, 精确度为90%, 将其坐标保存到变量x和y中
 			if x ~= -1 and y ~= -1 then          -- 如果找到了
-				mSleep(2000);
-				click(556,373); --点赞
 				mSleep(500);
+				click(556,373); --点赞
+				mSleep(2000);
+		
 			    break;
 			else		
 				mSleep(200);	
 			end
 		end
 
-		for sim = 100, 80, -1 do   
+		for sim = 100, 90, -1 do   
 			x,y=findColorInRegionFuzzy(0xff5833,sim,535,516,577,553); -- 在全屏范围找到第一个颜色为0x0000ff的点, 精确度为90%, 将其坐标保存到变量x和y中
 			if x ~= -1 and y ~= -1 then          -- 如果找到了
 				mSleep(2000);
-				click(556,373); --点赞
+				click(556,535); --点赞
 				mSleep(500);
 			    break;
 			else		
@@ -360,12 +376,12 @@ function followinfo()
 			end
 		end
 
-		--
 		
 		
 		
-		mSleep(1000);
-		click(459,633);		
+		
+		--mSleep(1000);
+		--click(459,633);		
 		--notifyMessage(gsinfo,7000);
 		
 		issendmsg=getparamecom(gsinfo,"mustt_issendmsg");
@@ -392,8 +408,26 @@ function followinfo()
 			mSleep(500)
 		end
 		--]]
-		mSleep(500)
-		blockinfo();
+
+		mSleep(1000)
+		--blockinfo();
+		--mSleep(500)
+		--[[
+		local tnum = 1;
+		while true do 
+			tnum=tnum+1;
+			mSleep(1000)
+			if(listcolorinfo(0x00c0ff,80,52,1058,46,1078)==true) then
+				break;
+			end
+
+			if tnum>5 then
+				break;
+			end
+			blockinfo(); --关注之后返回
+			mSleep(500)
+		end
+		--]]
 		return 1;
 	--end
 	--return 0;
@@ -466,6 +500,7 @@ function infomove(x,y,z);
     touchMove(0,x,y-z);
     mSleep(100);                
     touchUp(0);
+     mSleep(1000);       
 end
 
 function infomovedow(x,y,z);

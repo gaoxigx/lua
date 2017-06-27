@@ -19,7 +19,6 @@
                 touchUp(0);
             end  
     end
-
 --点赞
     function dianzan()
         filelike();
@@ -538,8 +537,9 @@ end
 function friendmi()
 	delphoto();
 	local tpurl="/var/touchelf/scripts/scriptfile/images/tx1.png";
-	poto=getparamecom(info,'mustt_poto');
-	if file_exists(tpurl)==false or poto=='2'  then
+	local poto=getparamecom(gsinfo,"mustt_poto");
+
+	if file_exists(tpurl)==false or poto=='2' or poto==2  then
 		local path="ftp://121.40.140.16:/script/luaimg/tx1.png";      
         local getdata=ftpGet(path, tpurl, "productconsole", "T4t8u0p1");
         if getdata then
@@ -600,7 +600,7 @@ function friendmi()
 
     	delphoto();
 		local tpurl="/var/touchelf/scripts/scriptfile/images/bj.jpg";
-		pypoto=getparamecom(info,'mustt_pypoto');
+		pypoto=getparamecom(gsinfo,'mustt_pypoto');
 		if file_exists(tpurl)==false or pypoto=='2' then
 			local path="ftp://121.40.140.16:/script/luaimg/bj.jpg";      
 	        local getdata=ftpGet(path, tpurl, "productconsole", "T4t8u0p1");
@@ -666,9 +666,9 @@ function friendmi()
         -- inputText(str);
         -- mSleep(2000);  
         -- signstr="看我朋友圈,别怪我没有告诉你";
-        mSleep(1100);
+        mSleep(2100);
         inputText(str.."看我朋友圈,别怪我没有告诉你");
-        mSleep(1500);
+        mSleep(3000);
         click(589,85); --点击完成
         mSleep(1200);
         click(55,83);--返回我
@@ -751,7 +751,7 @@ function addressone()
         notifyMessage('没有得到指令',2000);
         address();
     end
-    addparame=getparamecom(info,'mustt_grname');
+    addparame=getparamecom(gsinfo,'mustt_grname');
     if addparame==nil or addparame=='' then
         addparame='';
     end   
@@ -1015,7 +1015,7 @@ end
             sexb();
         end
 
-        sexparame=getparamecom(info,'mustt_sex');
+        sexparame=getparamecom(gsinfo,'mustt_sex');
         if sexparame==nil or sexparame=='' then
             notifyMessage('没有得到指令参数',2000);
             sexb();

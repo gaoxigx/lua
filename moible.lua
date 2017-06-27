@@ -4,8 +4,27 @@ SCREEN_COLOR_BITS=32;
 
 -- 主入口
 function main()
-	mmlogin();
+	while true do 
+		homelist()
+	end
 end
+
+function homelist()
+	infomove(305,749,210);--155
+end
+
+--上下拉动
+function infomove(x,y,z);
+	mSleep(800);
+    touchDown(0,x,y);
+    mSleep(500);                
+    touchMove(0,x,y-z);
+    mSleep(100);                
+    touchUp(0);
+    mSleep(2000);
+end
+
+
 
 function mmlogin()
 
